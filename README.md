@@ -1,4 +1,6 @@
-This is the starter template for CS312 projects based on Next.js](https://nextjs.org/). _You should replace this portion with a description of your project._
+OneList: An Interactive Site for the Perfect Social Playlist. 
+
+OneList is an interactive site where a host can create a new page for a social event and share it with friends using a unique code. Event attendees can add their favorite songs through a Spotify-integrated search bar and collaboratively build up a playlist. All event attendees can like or dislike songs in the playlist, which boosts more well-liked songs to the top and bumps weaker suggestions to the bottom. Once everyone has added and voted on the playlist songs, the host can export these songs to a Spotify playlist to play at the event. This project offers both accessibility and interactivity to create the perfect collaborative music playlist.
 
 The project was bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app), and includes a number of additional libraries, including the Rest Testing Library, Jest, and ESLint, among others. It also includes the basic configuration for using Travis CI.
 
