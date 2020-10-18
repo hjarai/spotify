@@ -1,8 +1,8 @@
 {
-  "name": "project-template-next",
+  "name": "one-list",
   "version": "0.1.0",
   "private": true,
-  "author": "Your name here",
+  "author": "Walker Frankenberg, David Gikoshvili, Cheko Mkocheko, Farhan Islam, Ellie Packard, Arielle Landau, Griffin Pizzano, Hirona Arai, Will Ingram",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
