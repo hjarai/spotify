@@ -10,30 +10,32 @@ describe('Creation Page Tests', () => {
 
     test('creation page is rendered with all the components', () => {
         //title input, description, default image, create/cancel/import image buttons
+        return undefined;
     });
 
     test('clicking on upload/import brings user to option to import from file', () => {
-        
+        return undefined;
     });
 
     test('image is saved and displayed when user clicks save button', () => {
-
+        return undefined;
     });
 
     test('Create button is disabled without title', () => {
-
+        return undefined;
     });
 
     test('Clicking create will change state to OneList page', () => {
-
+        return undefined;
     });
 
     test('CreationPage returns a new OneList', () => {
         //check variable of returned function (set of (image, title, description), equivalent to "newArticle" in assignment 3)
+        return undefined;
     });
     
     test('Cancel button returns user to Home Page', () => {
-        
+        return undefined;        
     });
 
 
