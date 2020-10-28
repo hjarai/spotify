@@ -1,0 +1,52 @@
+[
+  {
+    "title":"Paradise",
+    "artist":["Bazzi"],
+    "id":1
+  },
+  {
+    "title":"Heartless",
+    "artist":["The Weeknd"],
+    "id":2
+  },
+  {
+    "title":"Intentions",
+    "artist":["Justin Bieber","Quavo"],
+    "id":3
+  },
+  {
+   "title":"boyfriend",
+   "artist":["Ariana Grande","Social House"],
+   "id":4
+  },
+  {
+  "title":"Better",
+  "artist":["Khalid"],
+  "id":5
+  },
+  {
+  "title":"1950",
+  "artist":["King Princess"],
+  "id":6
+  },
+  {
+    "title":"Blueberry Faygo",
+    "artist":["Lil Mosey"],
+    "id":7
+  },
+  {
+    "title":"Slide Away",
+    "artist":["Miley Cyrus"],
+    "id":8
+  },
+  {
+    "title":"Goodbyes (feat. Young Thug)",
+    "artist":["Post Malone","Young Thug"],
+    "id":9
+  },
+  {
+    "title":"Mo Bamba",
+    "artist":["Sheck Wes"],
+    "id":10
+  }
+]

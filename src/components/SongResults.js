@@ -1,0 +1,49 @@
+import React from 'react';
+
+import SearchSongDetail from './SearchSongDetail';
+
+
+export default function SongResults ({songs, searchTerm, sortType, addSong}) {
+  let displayedSongs = songs; 
+
+  if (searchTerm) {
+    const term = searchTerm.toLowerCase();
+    displayedSongs = displayedSongs.filter((song) => {
+      const title = song.title.toLowerCase();
+      const artist = song.artist.toString().toLowerCase();
+
+      if (sortType ==='artist') {
+        return artist.includes(term);
+      }
+      return title.includes(term);
+    });
+  }
+
+  if (sortType) {
+    displayedSongs = displayedSongs.sort((s1, s2) => {
+      if (s1[sortType] < s2[sortType]) {
+        return -1;
+      } else if (s1[sortType] === s2[sortType]) {
+        return 0;
+      }
+      return 1;
+    });
+  }
+  
+  
+  
+  let songList = displayedSongs.map((song) => {
+    return (
+    <SearchSongDetail key = {song.id} details = {song} addSong = {addSong} />
+  )});
+
+  if (searchTerm===undefined || searchTerm==="") {
+    songList = '';
+  }
+  
+  else if (songList.length === 0){
+    songList = "No Results Found";
+  }
+
+  return <div> {songList}</div>
+}
