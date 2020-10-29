@@ -14,7 +14,7 @@ describe('Top level integration tests', () => {
   });
 });
 
-describe.skip('Home Page Tests', () => {
+describe('Home Page Tests', () => {
 
   test('Initially renders home view', ()=>{
 
