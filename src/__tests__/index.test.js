@@ -1,16 +1,35 @@
 /*
- Tests of our top-level component.
-
- No tests currently. 
+ Tests of our top-level component. 
  */
 
-//import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 
-//import Home from '../pages/index';
+import Home from '../pages/index';
 
 
 describe('Top level integration tests', () => {
   test('First test', () => {
       return undefined;
   });
+});
+
+describe('Home Page Tests', () => {
+
+  test('Initially renders home view', ()=>{
+
+    render(<Home />);
+    expect(screen.queryByText("Welcome to OneList")).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'CreateOneListButton' })).toBeInTheDocument(); 
+   });
+
+  test('Clicking button functionality for creating OneList', () =>{
+      render(<Home />);
+      fireEvent.click(screen.queryByText('Create OneList'));
+      let homePage = screen.queryByText("Welcome to OneList");
+      expect(homePage).not.toBeInTheDocument();
+      expect(screen.queryByText("Unique ID:")).toBeInTheDocument();
+      
+
+  });
+
 });
