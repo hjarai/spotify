@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+//import { useEffect, useState } from 'react';
 
 import Head from 'next/head';
 
 import styles from '../styles/Home.module.css';
-import { createEvent } from '@testing-library/react';
+//import { createEvent } from '@testing-library/react';
 
 export default function Home() {
   //useState to switch pages ?
@@ -15,7 +15,7 @@ export default function Home() {
   
   function createEvent(){
 
-  };
+  }
 
   return (
     <div className={styles.container}>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, prefer-const */
 /*
  Tests of our top-level component. 
  */
