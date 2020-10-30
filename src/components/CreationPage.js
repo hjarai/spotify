@@ -6,4 +6,7 @@ import { useState } from 'react';
 //OneList is an object {title: , description:, image: , playlist:{}}
 export default function CreationPage({ setMode }){
 
+    return(
+        <input type="file" accept="image/*" multiple = "false" />
+    );
 };    
