@@ -64,6 +64,10 @@ describe('Creation Page Tests', () => {
         fireEvent.click(importButton);
         expect(handler).toHaveBeenCalled();
         expect(Image.src).toBe('http://somelink/somepath/newimage.jpg'); //localhost:3000/pages/api/[OneList.id].js/newimage.jpg
+
+        const file = new File(['dummy image'], 'exampleImage.png', {type: 'image/png'})
+        const imageInput = getByRole('img')
+        fireEvent.change(imageInput, {target: {files: [file]}}) 
     });
 
   
