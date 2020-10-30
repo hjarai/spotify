@@ -57,18 +57,17 @@ describe('Creation Page Tests', () => {
 
     test('clicking on import image brings user to option to import from file', () => {
         render(<CreationPage setMode={handler} />);
-        const importButton = getByRole('button', { name: 'Import Image' });
-        expect(Image).toBeVisible();
-        expect(Image.src).toBe('http://somelink/somepath/defaultimage.jpg');
+    
+        const defaultImage = screen.getByRole('img'); 
+        expect(defaultImage).toBeVisible();
+        expect(defaultImage.src).toBe('http://somelink/somepath/defaultimage.jpg');
 
-        fireEvent.click(importButton);
-        expect(handler).toHaveBeenCalled();
-        expect(Image.src).toBe('http://somelink/somepath/newimage.jpg'); //localhost:3000/pages/api/[OneList.id].js/newimage.jpg
-
-        //alternative option found from online research
+        
         const file = new File(['dummy image'], 'exampleImage.png', {type: 'image/png'})
         const imageInput = getByRole('img')
         fireEvent.change(imageInput, {target: {files: [file]}}) 
+
+        expect(defaultImage).toNotBeVisible();
     });
 
   

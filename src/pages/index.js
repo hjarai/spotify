@@ -1,4 +1,5 @@
 //import { useEffect, useState } from 'react';
+import CreationPage from '../components/CreationPage';
 
 import Head from 'next/head';
 
@@ -17,6 +18,7 @@ export default function Home() {
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
         <p>Now go and give it some content...</p>
+        <CreationPage/>
       </main>
 
       <footer>A CS 312 Project</footer>
