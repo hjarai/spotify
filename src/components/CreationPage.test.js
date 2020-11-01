@@ -8,7 +8,7 @@ const mockOneList = {
     description: 'One of the worst songs in existence',
     image_path: '/testimage.jpg',
     playlist: [{title: 'Hello', artist: 'Adele', upvote: '10'}],
-    date: '12/25/20'
+    date: '2020-12-25'
   };
 
 describe('Creation Page Tests', () => {
@@ -23,35 +23,35 @@ describe('Creation Page Tests', () => {
         render(<CreationPage setMode={handler} />);
         
         //check if title input is rendered
-        const titleInput = screen.getByRole('textbox', { name: 'title' });
+        const titleInput = screen.getByRole('textbox', { name: 'Title' });
         expect(titleInput).toBeInTheDocument();
         expect(titleInput).toBeVisible();
 
         //check if description input is rendered
-        const descriptionInput = screen.getByRole('textbox', { name: 'description' });
+        const descriptionInput = screen.getByRole('textbox', { name: 'Description' });
         expect(descriptionInput).toBeInTheDocument();
         expect(descriptionInput).toBeVisible();
 
         //check if date input is rendered
-        const dateInput = screen.getByRole('textbox', { name: 'date' });
+        const dateInput = screen.getByLabelText('Date');
         expect(dateInput).toBeInTheDocument();
         expect(dateInput).toBeVisible();
         
         //check if default image is rendered
         const defaultImage = screen.getByRole('img'); 
         expect(defaultImage).toBeVisible();
-        expect(defaultImage.src).toBe('http://somelink/somepath/defaultimage.jpg')
+        expect(defaultImage.src).toBe('http://localhost/defaultImage.png')
 
         //check that create button is rendered
-        const createButton = getByRole('button', { name: 'Create' });
+        const createButton = screen.getByRole('button', { name: 'Create' });
         expect(createButton).toBeVisible();
         
         //check that cancel button is rendered
-        const cancelButton = getByRole('button', { name: 'Cancel' });
+        const cancelButton = screen.getByRole('button', { name: 'Cancel' });
         expect(cancelButton).toBeVisible();
 
         //check that import (image) button is rendered
-        const importButton = getByRole('file', { name: 'Import Image' });
+        const importButton = screen.getByLabelText('Import Image');
         expect(importButton).toBeVisible();
     });
 
@@ -60,14 +60,14 @@ describe('Creation Page Tests', () => {
     
         const defaultImage = screen.getByRole('img'); 
         expect(defaultImage).toBeVisible();
-        expect(defaultImage.src).toBe('http://somelink/somepath/defaultimage.jpg');
+        expect(defaultImage.src).toBe('http://localhost/defaultImage.png');
 
         
         const file = new File(['dummy image'], 'exampleImage.png', {type: 'image/png'})
-        const imageInput = getByRole('img')
+        const imageInput = screen.getByRole('img')
         fireEvent.change(imageInput, {target: {files: [file]}}) 
 
-        expect(defaultImage).toNotBeVisible();
+        expect(defaultImage).not.toBeVisible();
     });
 
   
@@ -75,9 +75,9 @@ describe('Creation Page Tests', () => {
     test('Create button is disabled without title', () => {
         render(<CreationPage setMode={handler} />);
 
-        const titleInput = screen.getByRole('textbox', { name: 'title' });
+        const titleInput = screen.getByRole('textbox', { name: 'Title' });
         expect(titleInput).toHaveValue('');
-        const createButton = getByRole('button', { name: 'Create' });
+        const createButton = screen.getByRole('button', { name: 'Create' });
         expect(createButton).toBeDisabled();
 
         fireEvent.change(titleInput, { target: { value: 'Some Title' } });
@@ -95,14 +95,15 @@ describe('Creation Page Tests', () => {
 
     test('CreationPage returns a new OneList', () => {
         //check setMode is called &  its variables are (set of (image, title, description), equivalent to "newArticle" in assignment 3)
-        render(<Editor setMode={handler} />);
+        render(<CreationPage setMode={handler} />);
         const titleInput = screen.getByRole('textbox', { name: 'Title' });
         const descriptionInput = screen.getByRole('textbox', { name: 'Description' });
-        const dateInput = screen.getByRole('textbox', { name: 'Date' });
+        const dateInput = screen.getByLabelText('Date');
         const createButton = screen.getByRole('button', { name: 'Create' });
 
         fireEvent.change(titleInput, { target: { value: mockOneList.title } });
         fireEvent.change(descriptionInput, { target: { value: mockOneList.description } });
+        fireEvent.change(dateInput, { target: { value: mockOneList.date } });
         fireEvent.click(createButton);
 
         expect(handler).toHaveBeenCalled();
@@ -110,9 +111,8 @@ describe('Creation Page Tests', () => {
         const newOneList = handler.mock.calls[0][0]; // value the handler was called with
 
         expect(newOneList.title).toEqual(mockOneList.title);
-        expect(newOneList.description).toEqual(mockOneList.extract);
+        expect(newOneList.description).toEqual(mockOneList.description);
         expect(newOneList.date).toEqual(mockOneList.date);
-        //need tests for images also
     });
     
    /* test('Cancel button returns user to Home Page', () => {
