@@ -12,7 +12,7 @@ import SongResults from '../components/SongResults.js';
 
 import Queue from '../components/Queue.js';
 
-export default function Home() {
+export default function AddPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
