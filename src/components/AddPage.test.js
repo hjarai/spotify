@@ -1,4 +1,4 @@
-import Home from './index';
+import Home from '../pages/index';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 const song = {title: "Mo Bamba", artist:["Sheck Wes"]};
