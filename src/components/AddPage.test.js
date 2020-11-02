@@ -1,4 +1,4 @@
-import AddPage from '../components/AddPage.js';
+import AddPage from './AddPage.js';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 const song = {title: "Mo Bamba", artist:["Sheck Wes"]};
