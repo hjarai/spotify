@@ -10,6 +10,7 @@ function SearchBar({
 }) {
   const searchField = (
     <input
+      aria-label="title"
       type="text"
       placeholder="Search"
       value={searchTerm}
@@ -21,6 +22,7 @@ function SearchBar({
 
   const sortTool = (
     <select
+      aria-label = "dropdown"
       className={styles.select}
       value={sortType}
       onChange={(event) => {
