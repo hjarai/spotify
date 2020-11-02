@@ -46,14 +46,12 @@ function SearchBar({
     </div>
   );
 }
-/*
-searchBar.propTypes = {
+
+SearchBar.propTypes = {
   searchTerm: PropTypes.string.isRequired,
   sortType: PropTypes.string.isRequired,
-  ascending: PropTypes.bool.isRequired,
   setTerm: PropTypes.func.isRequired,
   setType: PropTypes.func.isRequired,
-  setDirection: PropTypes.func.isRequired,
 };
-*/
+
 export default SearchBar;

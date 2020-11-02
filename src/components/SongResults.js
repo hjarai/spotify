@@ -2,6 +2,7 @@ import React from 'react';
 
 import SearchSongDetail from './SearchSongDetail';
 
+import PropTypes from 'prop-types';
 
 export default function SongResults ({songs, searchTerm, sortType, addSong}) {
   let displayedSongs = songs; 
@@ -47,3 +48,11 @@ export default function SongResults ({songs, searchTerm, sortType, addSong}) {
 
   return <div> {songList}</div>
 }
+
+
+SongResults.propTypes = {
+  songs: PropTypes.array.isRequired,
+  searchTerm: PropTypes.string.isRequired,
+  addSong: PropTypes.func.isRequired,
+  sortType: PropTypes.string.isRequired,
+};

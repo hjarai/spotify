@@ -1,7 +1,5 @@
 import Home from './index';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import data from '../../data/songs.json';
-import SearchBar from '../components/SearchBar';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 const song = {title: "Mo Bamba", artist:["Sheck Wes"]};
 

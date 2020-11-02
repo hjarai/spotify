@@ -33,6 +33,8 @@ export default function Home() {
       setQueue(newQueue);
     }
 
+    setView();
+
     return (
       <div className={styles.container}>
         <Head>

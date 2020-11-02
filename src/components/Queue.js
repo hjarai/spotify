@@ -1,10 +1,11 @@
 import React from 'react';
 
 import SongDetail from './SongDetail';
+import PropTypes from 'prop-types';
 
 export default function Queue ({queue,deleteSong}) {
-  let songList = queue.map((song) => (
-    <SongDetail key = {song.title} details = {song} deleteSong = {deleteSong} />
+  const songList = queue.map((song) => (
+    <SongDetail key = {song.id} details = {song} deleteSong = {deleteSong} />
   ));
 
 
@@ -12,3 +13,8 @@ export default function Queue ({queue,deleteSong}) {
     <div> QUEUE: {songList} </div>
   )
 }
+
+Queue.propTypes = {
+  queue: PropTypes.array.isRequired,
+  deleteSong: PropTypes.func.isRequired,
+};

@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Queue from '../components/Queue';
 
 const song = {title: "Mo Bamba", artist:["Sheck Wes"]};
