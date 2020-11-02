@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
+/* eslint-disable no-undef, no-unused-vars */
+
 //assume setMode is what changes state to OneList page and Home page
 //OneList is an object {title: , description:, image: , playlist:{}}
 export default function CreationPage({ setMode }){
@@ -29,18 +31,19 @@ export default function CreationPage({ setMode }){
                 <img
                     src= {eventImage} width="150" height="150"/>
                 
-                <label for= "userImage">Choose a picture for your event: </label>
+                <label htmlFor= "userImage">Choose a picture for your event: </label>
                 <input id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = "false" 
-                    onChange={()=>setEventImage(document.getElementById('userImage'))}/>
+                    onChange={()=>setEventImage(document.getElementById('userImage'))}/> 
+                    
             
             </div>
 
             <div>
                 <textarea 
-                    id = 'eventTitle'
-                    aria-label = 'Title'
-                    name = 'Title'
-                    placeholder = 'Enter your event title'
+                    id = "eventTitle"
+                    aria-label = "Title"
+                    name = "Title"
+                    placeholder = "Enter your event title"
                     value={eventTitle} 
                     onChange={(event)=>setEventTitle(event.target.value)}
                     />
@@ -49,10 +52,10 @@ export default function CreationPage({ setMode }){
             <div>
 
                 <textarea 
-                    id = 'eventDescription'
-                    name = 'Description'
-                    aria-label = 'Description'
-                    placeholder = 'Enter your event description'
+                    id = "eventDescription"
+                    name = "Description"
+                    aria-label = "Description"
+                    placeholder = "Enter your event description"
                     value={eventDescription} 
                     onChange={(event)=>setEventDescription(event.target.value)}
                     />
@@ -60,8 +63,8 @@ export default function CreationPage({ setMode }){
             </div>
 
             <div>
-                <label for='Date'></label>
-                <input type='date' value = {eventDate} name = 'Date' aria-label = 'Date'
+                <label htmlFor="Date" />
+                <input type="date" value = {eventDate} name = "Date" aria-label = "Date"
                     onChange={(event) => setEventDate(event.target.value)} />
             </div>
 

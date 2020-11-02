@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import CreationPage from './CreationPage';
-
+/* eslint-disable no-undef, no-unused-vars */
 // fake testing onelist
 const mockOneList = {
     id: 135397,
@@ -23,7 +23,7 @@ describe('Creation Page Tests', () => {
         render(<CreationPage setMode={handler} />);
         
         //check if title input is rendered
-        const titleInput = screen.getByRole('textbox', { name: 'Title' });
+        const titleInput = screen.getByRole('textbox', { name: 'Title' }); 
         expect(titleInput).toBeInTheDocument();
         expect(titleInput).toBeVisible();
 

@@ -7,6 +7,8 @@ import {useState} from 'react';
 
 import styles from '../styles/Home.module.css';
 
+/* eslint-disable no-undef, no-unused-vars */
+
 export default function Home() {
   const [view, setView] = useState('home');
   const [oneList, setOneList] = useState();
