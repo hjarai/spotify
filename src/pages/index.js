@@ -1,7 +1,8 @@
-import { useState } from 'react';
 
+/* eslint-disable no-undef, no-unused-vars */
 import Head from 'next/head';
-
+import { useState } from 'react';
+import CreationPage from '../components/CreationPage.js'
 import styles from '../styles/Home.module.css';
 
 import SearchBar from '../components/SearchBar.js';
@@ -13,13 +14,31 @@ import SongResults from '../components/SongResults.js';
 import Queue from '../components/Queue.js';
 
 export default function Home() {
+  const [view, setView] = useState('home');
+  const [oneList, setOneList] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
   const [queue,setQueue] = useState([]);
-  const [view] = useState('addPage');
 
-  if (view === 'addPage'){
+  const setMode = (OneList) => {
+    //need another if statement to transition from home component to creation page
+    if (OneList === undefined) {
+      setView('home')
+      }
+    else {
+      setView('OneList'); 
+      setOneList(OneList);
+        }
+    };
+  
+  let pageContent;
+
+  if (view === 'createOneList') {
+    pageContent = (<CreationPage setMode = {setMode}/>);
+
+  }  else if (view === 'OneList'){
+  
     const addSong = (newSong) => {
       const newQueue = [...queue];
       newQueue.push(newSong);
@@ -33,14 +52,8 @@ export default function Home() {
       setQueue(newQueue);
     }
     
-    return (
-      <div className={styles.container}>
-        <Head>
-          <title>Final Project</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-
-        <main>
+    pageContent = (
+      <>
           <h1 className="title">Final Project</h1>
           <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
           <SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>
@@ -49,11 +62,23 @@ export default function Home() {
             <button>Add All</button>
             <button>Back</button>
           </div>
-          
-        </main>
+      </>);
+    }else {
 
-        <footer>A CS 312 Project</footer>
-      </div>
-    );
+    pageContent = (<>
+      <h1 className="title">Welcome to OneList</h1>
+      <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> </>)
   }
+
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>Welcome Page</title>
+      </Head>
+      <main>
+        {pageContent}
+      </main>
+      <footer> CS 312 Final Project: OneList</footer>
+    </div>
+  );
 }
