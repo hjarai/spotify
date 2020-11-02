@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-//import defaultImage from '../../public/defaultImage.png';
 
 //assume setMode is what changes state to OneList page and Home page
 //OneList is an object {title: , description:, image: , playlist:{}}
@@ -12,7 +11,7 @@ export default function CreationPage({ setMode }){
     const [eventDate, setEventDate] = useState();
     const [eventImage, setEventImage] = useState(defaultImage);
     const [eventId] = useState('5678');
-
+    
     const OneList = {
         id : eventId,
         title : eventTitle,
@@ -22,7 +21,6 @@ export default function CreationPage({ setMode }){
         date : eventDate,   
     }
     
-    //put image in correct server folder using put 
     
     return(
         <div>
@@ -32,7 +30,8 @@ export default function CreationPage({ setMode }){
                     src= {eventImage} width="150" height="150"/>
                 
                 <label for= "userImage">Choose a picture for your event: </label>
-                <input id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = "false" />
+                <input id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = "false" 
+                    onChange={()=>setEventImage(document.getElementById('userImage'))}/>
             
             </div>
 
