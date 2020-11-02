@@ -10,7 +10,7 @@ export default function CreationPage({ setMode }){
     const defaultImage = "/defaultImage.png";
     const [eventTitle, setEventTitle] = useState();
     const [eventDescription, setEventDescription] = useState();
-    const [eventDate, setEventDate] = useState();
+    const [eventDate, setEventDate] = useState('2020-12-25');
     const [eventImage, setEventImage] = useState(defaultImage);
     const [eventId] = useState('5678');
     
@@ -32,7 +32,7 @@ export default function CreationPage({ setMode }){
                     src= {eventImage} width="150" height="150"/>
                 
                 <label htmlFor= "userImage">Choose a picture for your event: </label>
-                <input id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = "false" 
+                <input id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = {false} 
                     onChange={()=>setEventImage(document.getElementById('userImage'))}/> 
                     
             

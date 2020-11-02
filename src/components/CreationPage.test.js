@@ -55,7 +55,7 @@ describe('Creation Page Tests', () => {
         expect(importButton).toBeVisible();
     });
 
-    test('clicking on import image brings user to option to import from file', () => {
+    test.skip('clicking on import image brings user to option to import from file', () => {
         render(<CreationPage setMode={handler} />);
     
         const defaultImage = screen.getByRole('img'); 
