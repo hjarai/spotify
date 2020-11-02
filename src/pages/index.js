@@ -38,32 +38,8 @@ export default function Home() {
     pageContent = (<CreationPage setMode = {setMode}/>);
 
   }  else if (view === 'OneList'){
-  
-    const addSong = (newSong) => {
-      const newQueue = [...queue];
-      newQueue.push(newSong);
-      setQueue(newQueue);
-    };
-
-    const deleteSong = (deletedSong) => {
-      const newQueue = queue.filter((song)=>{
-        return song.id !== deletedSong.id;
-      });
-      setQueue(newQueue);
-    }
-    
-    pageContent = (
-      <>
-          <h1 className="title">Final Project</h1>
-          <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
-          <SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>
-          <Queue queue={queue} deleteSong = {deleteSong}/>
-          <div>
-            <button>Add All</button>
-            <button>Back</button>
-          </div>
-      </>);
-    }else {
+    pageContent = (<AddPage />);
+  } else {
 
     pageContent = (<>
       <h1 className="title">Welcome to OneList</h1>
