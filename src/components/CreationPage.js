@@ -1,17 +1,17 @@
-
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 
 
 export default function CreationPage() {
 
-    const [currentID, setID] = useState(makeEventID());
-
     function makeEventID(){
-        var S4 = function() {
+        const S4 = function() {
           return ((Math.floor(Math.random()*10).toString())); 
         };
        return (S4()+S4()+S4()+S4()+S4()+S4());
       }
+
+      const [currentID, setID] = useState(makeEventID());
     return( 
         <div >
             <div className="EventID">
