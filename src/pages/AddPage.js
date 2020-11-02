@@ -13,11 +13,11 @@ import SongResults from '../components/SongResults.js';
 import Queue from '../components/Queue.js';
 
 export default function Home() {
-  const [searchTerm, setSearchTerm] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
   const [queue,setQueue] = useState([]);
-  const [view,setView] = useState();
+  const [view,setView] = useState('addPage');
 
   if (view === 'addPage'){
     const addSong = (newSong) => {
