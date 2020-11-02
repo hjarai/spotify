@@ -3,6 +3,8 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import CreationPage from '../components/CreationPage.js'
+import AddPage from '../components/AddPage.js'
+
 import styles from '../styles/Home.module.css';
 
 import SearchBar from '../components/SearchBar.js';
