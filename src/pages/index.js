@@ -9,6 +9,7 @@ import styles from '../styles/Home.module.css';
 
 export default function Home() {
   const [view, setView] = useState('home');
+  const [oneList, setOneList] = useState();
 
 
   const setMode = (OneList) => {
@@ -17,7 +18,8 @@ export default function Home() {
       setView('home')
       }
     else {
-      setView('OneList') 
+      setView('OneList'); 
+      setOneList(OneList);
         }
     };
 
