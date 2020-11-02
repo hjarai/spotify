@@ -17,45 +17,30 @@ export default function AddPage() {
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
   const [queue,setQueue] = useState([]);
-  const [view,setView] = useState('addPage');
 
-  if (view === 'addPage'){
-    const addSong = (newSong) => {
-      const newQueue = [...queue];
-      newQueue.push(newSong);
-      setQueue(newQueue);
-    };
+  const addSong = (newSong) => {
+    const newQueue = [...queue];
+    newQueue.push(newSong);
+    setQueue(newQueue);
+  };
 
-    const deleteSong = (deletedSong) => {
-      const newQueue = queue.filter((song)=>{
-        return song.id !== deletedSong.id;
-      });
-      setQueue(newQueue);
-    }
-
-    setView();
-
-    return (
-      <div className={styles.container}>
-        <Head>
-          <title>Final Project</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-
-        <main>
-          <h1 className="title">Final Project</h1>
-          <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
-          <SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>
-          <Queue queue={queue} deleteSong = {deleteSong}/>
-          <div>
-            <button>Add All</button>
-            <button>Back</button>
-          </div>
-          
-        </main>
-
-        <footer>A CS 312 Project</footer>
-      </div>
-    );
+  const deleteSong = (deletedSong) => {
+    const newQueue = queue.filter((song)=>{
+      return song.id !== deletedSong.id;
+    });
+    setQueue(newQueue);
   }
+
+  return (
+    <>
+        <h1 className="title">Final Project</h1>
+        <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
+        <SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>
+        <Queue queue={queue} deleteSong = {deleteSong}/>
+        <div>
+          <button>Add All</button>
+          <button>Back</button>
+        </div>
+    </>
+  );
 }
