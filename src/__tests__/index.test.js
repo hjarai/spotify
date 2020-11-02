@@ -4,6 +4,7 @@
  */
 
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import CreationPage from '../components/CreationPage';
 
 import Home from '../pages/index';
 
@@ -14,21 +15,21 @@ describe('Top level integration tests', () => {
   });
 });
 
-describe.skip('Home Page Tests', () => {
+describe('Home Page Tests', () => {
 
   test('Initially renders home view', ()=>{
 
     render(<Home />);
     expect(screen.queryByText("Welcome to OneList")).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: 'CreateOneListButton' })).toBeInTheDocument(); 
+    expect(screen.queryByRole('button', { className: 'CreateOneListButton' })).toBeInTheDocument(); 
    });
 
   test('Clicking button functionality for creating OneList', () =>{
-      render(<Home />);
-      fireEvent.click(screen.queryByText('Create OneList'));
+      render(<Home/>);
       let homePage = screen.queryByText("Welcome to OneList");
+      fireEvent.click(screen.queryByText('Create OneList'));
       expect(homePage).not.toBeInTheDocument();
-      expect(screen.queryByText("Unique ID:")).toBeInTheDocument();
+      expect(screen.queryByText("Event ID:")).toBeInTheDocument();
       
 
   });

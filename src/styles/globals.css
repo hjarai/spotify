@@ -36,7 +36,24 @@ main {
   cursor: pointer;
 
 }
+.EventID{
+  text-align:right;
+  display: inline-block;
+  width: fit-content;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+.EventText{
+  float: left;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ID{
+  float: left;
+  width: fit-content;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 4px;
 
+}
 footer {
   width: 100%;
   height: 100px;
