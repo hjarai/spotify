@@ -8,7 +8,7 @@ describe('Top level integration tests', () => {
   const handler = jest.fn();
 
   beforeEach(() => {
-    render(<Home />);
+    render(<AddPage />);
     handler.mockReset();
   });
 
