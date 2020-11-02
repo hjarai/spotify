@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 export default function Queue ({queue,deleteSong}) {
   const songList = queue.map((song) => (
-    <SongDetail key = {song.id} details = {song} deleteSong = {deleteSong} />
+    <SongDetail key = {song.title} details = {song} deleteSong = {deleteSong} />
   ));
 
 
