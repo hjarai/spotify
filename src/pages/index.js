@@ -17,36 +17,43 @@ export default function Home() {
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
   const [queue,setQueue] = useState([]);
+  const [view,setView] = useState();
 
-  const addSong = (newSong) => {
-    const newQueue = [...queue];
-    newQueue.push(newSong);
-    setQueue(newQueue);
-  };
+  if (view === 'addPage'){
+    const addSong = (newSong) => {
+      const newQueue = [...queue];
+      newQueue.push(newSong);
+      setQueue(newQueue);
+    };
 
-  const deleteSong = (deletedSong) => {
-    const newQueue = queue.filter((song)=>{
-      return song.id !== deletedSong.id;
-    });
-    setQueue(newQueue);
+    const deleteSong = (deletedSong) => {
+      const newQueue = queue.filter((song)=>{
+        return song.id !== deletedSong.id;
+      });
+      setQueue(newQueue);
+    }
+
+    return (
+      <div className={styles.container}>
+        <Head>
+          <title>Final Project</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        <main>
+          <h1 className="title">Final Project</h1>
+          <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
+          <SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>
+          <Queue queue={queue} deleteSong = {deleteSong}/>
+          <div>
+            <button>Add All</button>
+            <button>Back</button>
+          </div>
+          
+        </main>
+
+        <footer>A CS 312 Project</footer>
+      </div>
+    );
   }
-
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Final Project</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <h1 className="title">Final Project</h1>
-        <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
-        <SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>
-        <Queue queue={queue} deleteSong = {deleteSong}/>
-        <button>Back</button>
-      </main>
-
-      <footer>A CS 312 Project</footer>
-    </div>
-  );
 }
