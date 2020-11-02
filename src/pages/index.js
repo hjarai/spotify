@@ -8,7 +8,19 @@ import {useState} from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-  
+  const [view, setView] = useState('home');
+
+
+  const setMode = (OneList) => {
+    //need another if statement to transition from home component to creation page
+    if (OneList === undefined) {
+      setView('home')
+      }
+    else {
+      setView('OneList') 
+        }
+    };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -20,7 +32,7 @@ export default function Home() {
         <h1 className="title">Final Project</h1>
         <p>Hooray, you got the project deployed!</p>
         <p>Now go and give it some content...</p>
-        <CreationPage/>
+        <CreationPage setMode={setMode}/>
       </main>
 
       <footer>A CS 312 Project</footer>
