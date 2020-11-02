@@ -48,7 +48,7 @@ function SearchBar({
 }
 
 SearchBar.propTypes = {
-  searchTerm: PropTypes.string.isRequired,
+  searchTerm: PropTypes.string,
   sortType: PropTypes.string.isRequired,
   setTerm: PropTypes.func.isRequired,
   setType: PropTypes.func.isRequired,

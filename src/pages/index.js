@@ -17,7 +17,7 @@ export default function Home() {
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
   const [queue,setQueue] = useState([]);
-  const [view,setView] = useState();
+  const [view] = useState('addPage');
 
   if (view === 'addPage'){
     const addSong = (newSong) => {
@@ -32,8 +32,6 @@ export default function Home() {
       });
       setQueue(newQueue);
     }
-
-    setView();
     
     return (
       <div className={styles.container}>

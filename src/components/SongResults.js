@@ -52,7 +52,7 @@ export default function SongResults ({songs, searchTerm, sortType, addSong}) {
 
 SongResults.propTypes = {
   songs: PropTypes.array.isRequired,
-  searchTerm: PropTypes.string.isRequired,
+  searchTerm: PropTypes.string,
   addSong: PropTypes.func.isRequired,
   sortType: PropTypes.string.isRequired,
 };
