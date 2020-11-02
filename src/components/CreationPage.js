@@ -22,7 +22,6 @@ export default function CreationPage({ setMode }){
        return (S4()+S4()+S4()+S4()+S4()+S4());
       }
 
-    );
     
     const OneList = {
         id : currentID,
