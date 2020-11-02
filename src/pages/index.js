@@ -1,13 +1,27 @@
+
 /* eslint-disable no-undef, no-unused-vars */
 import Head from 'next/head';
 import { useState } from 'react';
 import CreationPage from '../components/CreationPage.js'
+import AddPage from '../components/AddPage.js'
+
 import styles from '../styles/Home.module.css';
 
+import SearchBar from '../components/SearchBar.js';
+
+import data from '../../data/songs.json';
+
+import SongResults from '../components/SongResults.js';
+
+import Queue from '../components/Queue.js';
 
 export default function Home() {
   const [view, setView] = useState('home');
   const [oneList, setOneList] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortType, setSortType] = useState('title');
+  const [songs] = useState(data);
+  const [queue,setQueue] = useState([]);
 
   const setMode = (OneList) => {
     //need another if statement to transition from home component to creation page
@@ -25,7 +39,9 @@ export default function Home() {
   if (view === 'createOneList') {
     pageContent = (<CreationPage setMode = {setMode}/>);
 
-  }  else {
+  }  else if (view === 'OneList'){
+    pageContent = (<AddPage />);
+  } else {
 
     pageContent = (<>
       <h1 className="title">Welcome to OneList</h1>
