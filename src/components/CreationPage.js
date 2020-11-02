@@ -13,7 +13,7 @@ export default function CreationPage({ setMode }){
     const [eventDescription, setEventDescription] = useState();
     const [eventDate, setEventDate] = useState('2020-12-25');
     const [eventImage, setEventImage] = useState(defaultImage);
-    const [currentID, setID] = useState(makeEventID());
+   
   
       function makeEventID(){
         const S4 = function() {
@@ -21,6 +21,8 @@ export default function CreationPage({ setMode }){
         };
        return (S4()+S4()+S4()+S4()+S4()+S4());
       }
+    
+    const [currentID, setID] = useState(makeEventID());
 
     
     const OneList = {
