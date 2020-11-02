@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -12,10 +13,19 @@ export default function CreationPage({ setMode }){
     const [eventDescription, setEventDescription] = useState();
     const [eventDate, setEventDate] = useState('2020-12-25');
     const [eventImage, setEventImage] = useState(defaultImage);
-    const [eventId] = useState('5678');
+    const [currentID, setID] = useState(makeEventID());
+  
+      function makeEventID(){
+        const S4 = function() {
+          return ((Math.floor(Math.random()*10).toString())); 
+        };
+       return (S4()+S4()+S4()+S4()+S4()+S4());
+      }
+
+    );
     
     const OneList = {
-        id : eventId,
+        id : currentID,
         title : eventTitle,
         description : eventDescription,
         image_path: ``,
@@ -27,6 +37,12 @@ export default function CreationPage({ setMode }){
     return(
         <div>
             <div>
+            <div>
+                <div className="EventID">
+                    <p className="EventText"> Event ID:</p>
+                    <p className="ID">{currentID}</p>     
+                </div>
+            </div>
 
                 <img
                     src= {eventImage} width="150" height="150"/>
@@ -78,3 +94,4 @@ export default function CreationPage({ setMode }){
 CreationPage.propTypes = {
     setMode : PropTypes.func
 }
+
