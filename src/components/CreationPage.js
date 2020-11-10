@@ -29,7 +29,7 @@ export default function CreationPage({ setMode }){
         id : currentID,
         title : eventTitle,
         description : eventDescription,
-        image_path: ``,
+        image_path: eventImage,
         playlist: [],
         date : eventDate,   
     }
