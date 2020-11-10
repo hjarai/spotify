@@ -11,12 +11,12 @@ export default function PlaylistPage({ setMode, OneList }) {
     return(
         //ADD LABELS TO EACH COMPONENT
         <div> 
-            <h6 aria-label = 'Event ID'>{OneList.id}</h6>
-            <h1 aria-label = 'Title'>{OneList.title}</h1>
-            <h2 aria-label = 'Description'>{OneList.description}</h2>
-            <h3 aria-label = 'Date'>{OneList.date}</h3>
-            <img src = {OneList.image_path} width="150" height="150"></img>
-            <ul aria-label = 'Playlist'>{currentPlaylist}</ul>
+            <h6 aria-label = "Event ID">{OneList.id}</h6>
+            <h1 aria-label = "Title">{OneList.title}</h1>
+            <h2 aria-label = "Description">{OneList.description}</h2>
+            <h3 aria-label = "Date">{OneList.date}</h3>
+            <img src = {OneList.image_path} width="150" height="150" />
+            <ul aria-label = "Playlist">{currentPlaylist}</ul>
             
 
             <button onClick={() => setMode('AddPage')}>Add Songs </button>
