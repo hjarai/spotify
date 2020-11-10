@@ -1,6 +1,7 @@
+/* eslint-disable no-undef, no-unused-vars */
 import { render, screen, fireEvent } from '@testing-library/react';
 import PlaylistPage from './PlaylistPage';
-/* eslint-disable no-undef, no-unused-vars */
+
 const mockOneList = {
     id: 135397,
     title: 'Mo Bamba',
@@ -65,6 +66,39 @@ describe.skip('PlayList Page tests', () => {
         expect(handler).toHaveBeenCalledWith("AddPage");
 
     });
+
+});
+
+describe.skip('Delete song button inside song component', () => {
+    // const handler = jest.fn();
+
+    // beforeEach(() => {
+    //     handler.mockReset();
+    // });
+
+    test('User can remove a song that they added previously',() => {
+
+        //fake playlist and user signed in
+        render(<PlaylistPage setMode={"AddPage"} OneList={mockOneList}/>);
+        //songs added with the fake user
+        const removeSongButton = screen.getByRole('button', { name: 'Remove'});
+        expect(removeSongButton).toBeVisible();
+        fireEvent.click(removeSongButton);
+        const song = mockOneList.title;
+        expect(screen.queryByText(song)).not.toBeInTheDocument();    
+    
+    });
+
+    test("User can't remove a song that they did not add",() => {
+
+        //fake playlist and user signed in
+        render(<PlaylistPage setMode={"AddPage"} OneList={mockOneList}/>);
+        //songs not added by same user signed in
+        const removeSongButton = screen.getByRole('button', { name: 'Remove'});
+        expect(removeSongButton).not.toBeVisible();  
+    
+    });
+
 
 });
 
