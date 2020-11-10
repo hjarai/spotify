@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import AttendeeSignInPage from './AttendeeSignInPage.js';
 /* eslint-disable no-undef, no-unused-vars */
 
