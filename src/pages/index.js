@@ -5,6 +5,7 @@ import { useState } from 'react';
 import CreationPage from '../components/CreationPage.js'
 import AddPage from '../components/AddPage.js'
 import PlaylistPage from '../components/PlaylistPage.js';
+import Login from '../components/login.js'
 
 import styles from '../styles/Home.module.css';
 
@@ -63,7 +64,15 @@ export default function Home() {
         <title>Welcome Page</title>
       </Head>
       <main>
-        {pageContent}
+      <div>
+      {pageContent}
+      </div>
+      <div>
+        <Login>
+          
+        </Login>
+      </div>
+        
       </main>
       <footer> CS 312 Final Project: OneList</footer>
     </div>
