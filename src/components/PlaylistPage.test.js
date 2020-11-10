@@ -11,7 +11,7 @@ const mockOneList = {
     date: '2020-12-25'
   };
 
-describe.skip('PlayList Page tests', () => {
+describe('PlayList Page tests', () => {
     const handler = jest.fn();
 
     beforeEach(() => {

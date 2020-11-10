@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 import CreationPage from '../components/CreationPage.js'
 import AddPage from '../components/AddPage.js'
+import PlaylistPage from '../components/PlaylistPage.js';
 
 import styles from '../styles/Home.module.css';
 
@@ -28,10 +29,14 @@ export default function Home() {
     if (OneList === undefined) {
       setView('home')
       }
-    else {
+    
+    else if (OneList === OneList) {
       setView('OneList'); 
       setOneList(OneList);
         }
+    else if (OneList === 'AddPage') {
+      setView('AddPage')
+      }
     };
   
   let pageContent;
@@ -39,7 +44,11 @@ export default function Home() {
   if (view === 'createOneList') {
     pageContent = (<CreationPage setMode = {setMode}/>);
 
-  }  else if (view === 'OneList'){
+  }  else if (view === 'OneList') {
+    pageContent = (<PlaylistPage setMode = {setMode} OneList = {oneList} />)
+
+  } else if (view === 'AddPage'){
+
     pageContent = (<AddPage />);
   } else {
 
