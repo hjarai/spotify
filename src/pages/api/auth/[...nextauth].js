@@ -8,6 +8,7 @@ const options = {
   providers: [
 
     Providers.Spotify({
+    
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET
     }),
@@ -26,7 +27,7 @@ const options = {
   // The secret should be set to a reasonably long random string.
   // It is used to sign cookies and to sign and encrypt JSON Web Tokens, unless
   // a seperate secret is defined explicitly for encrypting the JWT.
-  secret: process.env.SECRET,
+  //secret: process.env.SECRET,
 
   session: {
     // Use JSON Web Tokens for session instead of database sessions.
@@ -88,5 +89,7 @@ const options = {
   // Enable debug messages in the console if you are having problems
   debug: false,
 }
+
+
 
 export default (req, res) => NextAuth(req, res, options)

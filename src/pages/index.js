@@ -67,7 +67,7 @@ export default function Home() {
       {pageContent}
       </div>
       <div>
-        <Login />
+        <Login Host Login/>
       </div>
         
       </main>
