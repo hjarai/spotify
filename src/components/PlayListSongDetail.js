@@ -14,7 +14,5 @@ export default function PlayListSongDetail({songDetails}) {
 }
 
 PlayListSongDetail.propTypes = {
-    songDetails : PropTypes.object,
-    songDetails.title : PropTypes.string,
-    songDetails.artist : PropTypes.string
+    songDetails : PropTypes.object
 }
