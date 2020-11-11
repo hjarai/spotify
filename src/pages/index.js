@@ -30,15 +30,14 @@ export default function Home() {
     if (OneList === undefined) {
       setView('home')
       }
-    
-    else if (OneList === OneList) {
-      setView('OneList'); 
-      setOneList(OneList);
-        }
     else if (OneList === 'AddPage') {
-      setView('AddPage')
-      }
-    };
+      setView('AddPage');
+    }
+    else {
+      setOneList(OneList);
+      setView('OneList');    
+    }
+  };
   
   let pageContent;
 
@@ -50,7 +49,7 @@ export default function Home() {
 
   } else if (view === 'AddPage'){
 
-    pageContent = (<AddPage />);
+    pageContent = (<AddPage setMode = {setMode} OneList={oneList}/>);
   } else {
 
     pageContent = (<>
@@ -68,9 +67,7 @@ export default function Home() {
       {pageContent}
       </div>
       <div>
-        <Login>
-          Host Login
-        </Login>
+        <Login Host Login/>
       </div>
         
       </main>
