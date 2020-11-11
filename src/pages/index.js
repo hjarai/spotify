@@ -1,7 +1,7 @@
 
 /* eslint-disable no-undef, no-unused-vars */
 import Head from 'next/head';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CreationPage from '../components/CreationPage.js'
 import AddPage from '../components/AddPage.js'
 import PlaylistPage from '../components/PlaylistPage.js';
@@ -38,6 +38,39 @@ export default function Home() {
       setView('OneList');    
     }
   };
+
+  const setSongDetails = (voteA) => {
+    const currentPlaylist = oneList.playlist.map((song) => 
+      {
+        if (song.id===voteA[0]){
+          song.upvote += voteA[1];
+          song.downvote += voteA[2];
+          return song;
+        }
+        else{
+          return song;
+        } 
+      }
+    );
+    const currentOneList = {...oneList};
+    currentOneList.playlist = currentPlaylist;
+    currentOneList.playlist = currentOneList.playlist.sort((song1,song2)=>{
+      const song1sum = (song1.upvote) + (song1.downvote);
+      const song2sum = (song2.upvote) + (song2.downvote);
+      if (song1sum > song2sum){
+        return -1;
+      }
+      else if (song1sum === song2sum){
+        return 0;
+      }
+      else{
+        return 1;
+      }
+    })
+    setOneList(currentOneList);
+  }
+  console.log();
+  
   
   let pageContent;
 
@@ -45,7 +78,7 @@ export default function Home() {
     pageContent = (<CreationPage setMode = {setMode}/>);
 
   }  else if (view === 'OneList') {
-    pageContent = (<PlaylistPage setMode = {setMode} OneList = {oneList} />)
+    pageContent = (<PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails = {setSongDetails}/>)
 
   } else if (view === 'AddPage'){
 
