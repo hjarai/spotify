@@ -8,7 +8,7 @@ export default function PlayListSongDetail({songDetails}) {
       //onClick={()=> {songDetails.upvote = songDetails.upvote - 1}
       {songDetails.title} by {songDetails.artist}
       <button>^</button>
-      <button}>V</button>
+      <button>V</button>
     </div>
   )
 }
