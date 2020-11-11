@@ -1,4 +1,4 @@
-import PlaylistSongDetail from './PlaylistSongDetail';
+import PlayListSongDetail from './PlayListSongDetail';
 
 import PropTypes from 'prop-types';
 /* eslint-disable no-undef, no-unused-vars */
