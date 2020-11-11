@@ -1,24 +1,23 @@
 import { useState } from 'react';
 
+import PropTypes from 'prop-types';
+
 import SearchBar from '../components/SearchBar.js';
 
 import data from '../../data/songs.json';
 
 import SongResults from '../components/SongResults.js';
 
-import Queue from '../components/Queue.js';
-
 export default function AddPage({setMode, OneList}) {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
-  let currentOneList = {...OneList}; 
+  const currentOneList = {...OneList}; 
 
   const addSong = (newSong) => {
     if (currentOneList.playlist === undefined) {
       currentOneList.playlist = [newSong];
     } else {
-      console.log(currentOneList.playlist);
       if (currentOneList.playlist.includes(newSong) === false){
         currentOneList.playlist.push(newSong);
       }
@@ -43,3 +42,9 @@ export default function AddPage({setMode, OneList}) {
     </>
   );
 }
+
+AddPage.propTypes = {
+    setMode : PropTypes.func,
+    OneList : PropTypes.object
+}
+

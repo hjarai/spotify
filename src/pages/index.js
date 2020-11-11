@@ -36,7 +36,7 @@ export default function Home() {
     else {
       setOneList(OneList);
       setView('OneList');    
-    };
+    }
   };
   
   let pageContent;
@@ -67,9 +67,7 @@ export default function Home() {
       {pageContent}
       </div>
       <div>
-        <Login>
-          Host Login
-        </Login>
+        <Login Host Login/>
       </div>
         
       </main>

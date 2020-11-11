@@ -1,4 +1,4 @@
-import PlaylistSongDetail from './PlaylistSongDetail';
+import PlayListSongDetail from './PlayListSongDetail';
 
 import PropTypes from 'prop-types';
 /* eslint-disable no-undef, no-unused-vars */
@@ -7,17 +7,14 @@ import PropTypes from 'prop-types';
 export default function PlaylistPage({ setMode, OneList }) {
     let currentPlaylist;
     if (OneList.playlist===undefined){
-        currentPlaylist = <li></li>
+        currentPlaylist = <></>
     }
     else{
         currentPlaylist = OneList.playlist.map((song) => {
-            console.log(song.title)
             return (
-            <PlaylistSongDetail key = {song.id} songDetails = {song}/>
+            <PlayListSongDetail key = {song.title} songDetails = {song}/>
         )});
     }
-    //console.log(currentPlaylist);
-    //console.log(OneList.playlist);
 
     return(
         //ADD LABELS TO EACH COMPONENT
@@ -32,9 +29,7 @@ export default function PlaylistPage({ setMode, OneList }) {
 
             <button onClick={() => setMode('AddPage')}>Add Songs </button>
             <button>Export</button>
-            
-              
-           
+       
         </div>
 
     );
