@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 /* eslint-disable no-undef, no-unused-vars */
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
-export default function PlaylistPage({ setMode, OneList }) {
+export default function PlaylistPage({ setMode, OneList, setSongDetails }) {
     let currentPlaylist;
     if (OneList.playlist===undefined){
         currentPlaylist = <></>
@@ -12,7 +12,7 @@ export default function PlaylistPage({ setMode, OneList }) {
     else{
         currentPlaylist = OneList.playlist.map((song) => {
             return (
-            <PlayListSongDetail key = {song.title} songDetails = {song}/>
+            <PlayListSongDetail key = {song.title} songDetails = {song} setSongDetails = {setSongDetails}/>
         )});
     }
 
@@ -38,5 +38,6 @@ export default function PlaylistPage({ setMode, OneList }) {
 
 PlaylistPage.propTypes = {
     setMode : PropTypes.func,
-    OneList : PropTypes.object.isRequired
+    OneList : PropTypes.object.isRequired,
+    setSongDetails: PropTypes.func
 }

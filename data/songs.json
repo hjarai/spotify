@@ -2,51 +2,71 @@
   {
     "title":"Paradise",
     "artist":["Bazzi"],
-    "id":1
+    "id":1,
+    "upvote":0,
+    "downvote":0
   },
   {
     "title":"Heartless",
     "artist":["The Weeknd"],
-    "id":2
+    "id":2,
+    "upvote":0,
+    "downvote":0
   },
   {
     "title":"Intentions",
     "artist":["Justin Bieber","Quavo"],
-    "id":3
+    "id":3,
+    "upvote":0,
+    "downvote":0
   },
   {
    "title":"boyfriend",
    "artist":["Ariana Grande","Social House"],
-   "id":4
+   "id":4,
+   "upvote":0,
+   "downvote":0
   },
   {
   "title":"Better",
   "artist":["Khalid"],
-  "id":5
+  "id":5,
+  "upvote":0,
+  "downvote":0
   },
   {
   "title":"1950",
   "artist":["King Princess"],
-  "id":6
+  "id":6,
+  "upvote":0,
+  "downvote":0
   },
   {
     "title":"Blueberry Faygo",
     "artist":["Lil Mosey"],
-    "id":7
+    "id":7,
+    "upvote":0,
+    "downvote":0
   },
   {
     "title":"Slide Away",
     "artist":["Miley Cyrus"],
-    "id":8
+    "id":8,
+    "upvote":0,
+    "downvote":0
   },
   {
     "title":"Goodbyes (feat. Young Thug)",
     "artist":["Post Malone","Young Thug"],
-    "id":9
+    "id":9,
+    "upvote":0,
+    "downvote":0
   },
   {
     "title":"Mo Bamba",
     "artist":["Sheck Wes"],
-    "id":10
+    "id":10,
+    "upvote":0,
+    "downvote":0
   }
 ]
