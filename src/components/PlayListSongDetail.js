@@ -36,5 +36,6 @@ const [downvoteDisable,setDownvoteDisable] = useState();
 }
 
 PlayListSongDetail.propTypes = {
-    songDetails : PropTypes.object
+    songDetails : PropTypes.object,
+    setSongDetails: PropTypes.func
 }

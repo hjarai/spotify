@@ -38,5 +38,6 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails }) {
 
 PlaylistPage.propTypes = {
     setMode : PropTypes.func,
-    OneList : PropTypes.object.isRequired
+    OneList : PropTypes.object.isRequired,
+    setSongDetails: PropTypes.func
 }
