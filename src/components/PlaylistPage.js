@@ -11,13 +11,10 @@ export default function PlaylistPage({ setMode, OneList }) {
     }
     else{
         currentPlaylist = OneList.playlist.map((song) => {
-            console.log(song.title)
             return (
-            <PlayListSongDetail key = {song.id} songDetails = {song}/>
+            <PlayListSongDetail key = {song.title} songDetails = {song}/>
         )});
     }
-    //console.log(currentPlaylist);
-    //console.log(OneList.playlist);
 
     return(
         //ADD LABELS TO EACH COMPONENT
@@ -32,9 +29,7 @@ export default function PlaylistPage({ setMode, OneList }) {
 
             <button onClick={() => setMode('AddPage')}>Add Songs </button>
             <button>Export</button>
-            
-              
-           
+       
         </div>
 
     );
