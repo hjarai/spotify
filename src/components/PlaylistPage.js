@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 export default function PlaylistPage({ setMode, OneList }) {
     let currentPlaylist;
     if (OneList.playlist===undefined){
-        currentPlaylist = <li></li>
+        currentPlaylist = <></>
     }
     else{
         currentPlaylist = OneList.playlist.map((song) => {
