@@ -1,12 +1,23 @@
+import PlaylistSongDetail from './PlaylistSongDetail';
 
 import PropTypes from 'prop-types';
 /* eslint-disable no-undef, no-unused-vars */
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 export default function PlaylistPage({ setMode, OneList }) {
-    const currentPlaylist = OneList.playlist.map((song) => {
-        <li>{song.title}</li>
-    })
+    let currentPlaylist;
+    if (OneList.playlist===undefined){
+        currentPlaylist = <li></li>
+    }
+    else{
+        currentPlaylist = OneList.playlist.map((song) => {
+            console.log(song.title)
+            return (
+            <PlaylistSongDetail key = {song.id} songDetails = {song}/>
+        )});
+    }
+    //console.log(currentPlaylist);
+    //console.log(OneList.playlist);
 
     return(
         //ADD LABELS TO EACH COMPONENT

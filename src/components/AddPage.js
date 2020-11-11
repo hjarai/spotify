@@ -8,34 +8,37 @@ import SongResults from '../components/SongResults.js';
 
 import Queue from '../components/Queue.js';
 
-export default function AddPage() {
+export default function AddPage({setMode, OneList}) {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
-  const [queue,setQueue] = useState([]);
+  let currentOneList = {...OneList}; 
 
   const addSong = (newSong) => {
-    const newQueue = [...queue];
-    newQueue.push(newSong);
-    setQueue(newQueue);
+    if (currentOneList.playlist === undefined) {
+      currentOneList.playlist = [newSong];
+    } else {
+      console.log(currentOneList.playlist);
+      if (currentOneList.playlist.includes(newSong) === false){
+        currentOneList.playlist.push(newSong);
+      }
+    }
   };
-
+  /*
   const deleteSong = (deletedSong) => {
     const newQueue = queue.filter((song)=>{
       return song.id !== deletedSong.id;
     });
     setQueue(newQueue);
   }
-
+  */
   return (
     <>
         <h1 className="title">Final Project</h1>
         <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
         <SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>
-        <Queue queue={queue} deleteSong = {deleteSong}/>
         <div>
-          <button>Add All</button>
-          <button>Back</button>
+          <button onClick = {()=>setMode(currentOneList)}>Back</button>
         </div>
     </>
   );
