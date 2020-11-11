@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function SearchSongDetail({details, addSong}) {
   //console.log('DETAILS');
@@ -13,4 +14,9 @@ export default function SearchSongDetail({details, addSong}) {
       <button onClick={()=> {addSong(details)}}>+</button>
     </div>
   )
+}
+
+SearchSongDetail.propTypes = {
+    details : PropTypes.object,
+    addSong : PropTypes.func
 }
