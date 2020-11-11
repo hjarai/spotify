@@ -8,6 +8,7 @@ const options = {
   providers: [
 
     Providers.Spotify({
+    
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET
     }),
@@ -88,5 +89,7 @@ const options = {
   // Enable debug messages in the console if you are having problems
   debug: false,
 }
+
+
 
 export default (req, res) => NextAuth(req, res, options)

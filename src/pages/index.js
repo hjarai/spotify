@@ -69,7 +69,7 @@ export default function Home() {
       </div>
       <div>
         <Login>
-          
+          Host Login
         </Login>
       </div>
         
