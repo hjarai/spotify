@@ -13,7 +13,7 @@ export default function PlaylistPage({ setMode, OneList }) {
         currentPlaylist = OneList.playlist.map((song) => {
             console.log(song.title)
             return (
-            <PlaylistSongDetail key = {song.id} songDetails = {song}/>
+            <PlayListSongDetail key = {song.id} songDetails = {song}/>
         )});
     }
     //console.log(currentPlaylist);
