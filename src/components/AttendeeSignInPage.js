@@ -46,6 +46,8 @@ export default function AttendeeSignInPage({ setMode, user, setUser }){
 }  
 
 AttendeeSignInPage.propTypes = {
-    setMode : PropTypes.func
+    setMode : PropTypes.func.isRequired,
+    user : PropTypes.string,
+    setUser : PropTypes.func
 }
 

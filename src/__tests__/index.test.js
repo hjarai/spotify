@@ -21,7 +21,8 @@ describe('Home Page Tests', () => {
 
     render(<Home />);
     expect(screen.queryByText("Welcome to OneList")).toBeInTheDocument();
-    expect(screen.queryByRole('button', { className: 'CreateOneListButton' })).toBeInTheDocument(); 
+    expect(screen.queryByRole('button', { name: 'Create OneList' })).toBeInTheDocument(); 
+    expect(screen.queryByRole('button', { name: 'Join OneList' })).toBeInTheDocument(); 
    });
 
   test('Clicking button functionality for creating OneList', () =>{
