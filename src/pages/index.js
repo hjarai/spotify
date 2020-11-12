@@ -71,24 +71,13 @@ export default function Home() {
   }
   console.log();
   
-  
-  let pageContent;
-
-  if (view === 'createOneList') {
-    pageContent = (<CreationPage setMode = {setMode}/>);
-
-  }  else if (view === 'OneList') {
-    pageContent = (<PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails = {setSongDetails}/>)
-
-  } else if (view === 'AddPage'){
-
-    pageContent = (<AddPage setMode = {setMode} OneList={oneList}/>);
-  } else {
-
-    pageContent = (<>
-      <h1 className="title">Welcome to OneList</h1>
-      <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> </>)
-  }
+  const pageContent = (view === 'createOneList')? <CreationPage setMode = {setMode}/>
+  :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} />
+  :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList}/>
+  :<> 
+    <h1 className="title">Welcome to OneList</h1>
+    <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> 
+  </>
 
   return (
     <div className={styles.container}>
