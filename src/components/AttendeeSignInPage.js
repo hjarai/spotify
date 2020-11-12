@@ -6,22 +6,25 @@ import { useState } from 'react';
 /* eslint-disable no-undef, no-unused-vars */
 
 //assume setMode is what changes state to OneList page and Home page
-export default function AttendeeSignInPage({ setMode }){
+export default function AttendeeSignInPage({ setMode, user, setUser }){
     const [eventId, seteventId] = useState();
-    const [user, setUser] = useState();
-    
     
     return(
         <div>
+            <h1> Sign in to your OneList! </h1>
             <div>
+                <h2> Event ID </h2>
                 <textarea 
-                    placeholder = "Enter Event ID"
+                    aria-label = "EventId"
+                    placeholder = "Enter 6-digit Event ID"
                     value={eventId} 
                     onChange={(event)=>seteventId(event.target.value)}
                     />
             </div>
             <div>
+                <h2> Username </h2>
                 <textarea 
+                    aria-label = "User"
                     placeholder = "Enter a username"
                     value={user} 
                     onChange={(event)=>setUser(event.target.value)}
@@ -29,13 +32,22 @@ export default function AttendeeSignInPage({ setMode }){
             </div>
 
         {/* //all the buttons here */}
-        <button disabled={!eventId} onClick={() => setMode(eventId)}>Sign in</button>
-        <button onClick={() => setMode()}>Cancel</button>
+        <button
+            disabled={!eventId || eventId.length!==6} 
+            onClick={() => setMode(eventId)}>
+                Sign In
+            </button>
+        <button 
+            onClick={() => setMode()}>
+                Cancel
+            </button>
         </div>
     );
 }  
 
 AttendeeSignInPage.propTypes = {
-    setMode : PropTypes.func
+    setMode : PropTypes.func.isRequired,
+    user : PropTypes.string,
+    setUser : PropTypes.func
 }
 
