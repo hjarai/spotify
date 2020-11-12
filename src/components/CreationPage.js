@@ -25,6 +25,8 @@ export default function CreationPage({ setMode }){
     const [currentID, setID] = useState(makeEventID());
 
     
+
+    
     const OneList = {
         id : currentID,
         title : eventTitle,
@@ -50,11 +52,11 @@ export default function CreationPage({ setMode }){
                 
                 <label htmlFor= "userImage">Choose a picture for your event: </label>
                 <input id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = {false} 
-                    onChange={()=>setEventImage(document.getElementById('userImage'))}/> 
-                    
+                    onChange={()=>setEventImage( URL.createObjectURL(event.target.files[0]))}/>  
+           
             
             </div>
-
+          
             <div>
                 <textarea 
                     id = "eventTitle"
