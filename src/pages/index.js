@@ -16,6 +16,7 @@ import data from '../../data/songs.json';
 import SongResults from '../components/SongResults.js';
 
 import Queue from '../components/Queue.js';
+import AttendeeSignInPage from '../components/AttendeeSignInPage.js';
 
 export default function Home() {
   const [view, setView] = useState('home');
@@ -24,17 +25,23 @@ export default function Home() {
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
   const [queue,setQueue] = useState([]);
+  const [user, setUser] = useState();
 
-  const setMode = (OneList) => {
+  const setMode = (param) => {
     //need another if statement to transition from home component to creation page
-    if (OneList === undefined) {
+    if (param === undefined) {
       setView('home')
       }
-    else if (OneList === 'AddPage') {
+    else if (param === 'AddPage') {
       setView('AddPage');
     }
+    else if (typeof param === 'string') {
+      //const serverdata = fetch OneList corresponsing with param from server
+      //setOneList(serverdata)
+      setView('OneList');
+    }
     else {
-      setOneList(OneList);
+      setOneList(param);
       setView('OneList');    
     }
   };
@@ -72,12 +79,18 @@ export default function Home() {
   console.log();
   
   const pageContent = (view === 'createOneList')? <CreationPage setMode = {setMode}/>
-  :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} />
-  :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList}/>
-  :<> 
-    <h1 className="title">Welcome to OneList</h1>
-    <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> 
-  </>
+    :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
+    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} user={user}/>
+    :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList}/>
+    :<div> 
+      <h1 className="title">Welcome to OneList</h1>
+      <div>
+        <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> 
+      </div>
+      <div>
+        <button className="JoinOneListButton" onClick = {() => {setView('attendeeSignIn')}}>Join OneList</button> 
+      </div>
+    </div>
 
   return (
     <div className={styles.container}>

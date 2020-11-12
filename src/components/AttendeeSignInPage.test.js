@@ -1,11 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import AttendeeSignInPage from './AttendeeSignInPage.js';
 /* eslint-disable no-undef, no-unused-vars */
 
 const mockEventId = '123456';
-const user = 'pam';
+const mockuser = 'pam';
 
-describe.skip('Attendee Sign in Page Tests', () => {
+describe('Attendee Sign in Page Tests', () => {
     const handler = jest.fn();
 
     beforeEach(() => {
@@ -14,7 +14,7 @@ describe.skip('Attendee Sign in Page Tests', () => {
 
     //sign in page components rendered
     test('playlist is rendered with all the components', () => {
-        render(<AttendeeSignInPage setMode={handler} />);
+        render(<AttendeeSignInPage setMode={handler} user={mockuser} />);
         
         //check if eventId input is rendered
         const eventIdInput = screen.getByRole('textbox', { name: 'EventId' }); 
@@ -36,9 +36,41 @@ describe.skip('Attendee Sign in Page Tests', () => {
     });
           
 
-    //Sign In button disabled unless 6 digit eventId & unique username is enetered
+    //Sign In button disabled unless 6 digit eventId
+    test('Sign in button is disabled without 6 digit event id', () => {
+        render(<AttendeeSignInPage setMode={handler} />);
+      
+        const eventIdInput = screen.getByRole('textbox', { name: 'EventId' }); 
+        expect(eventIdInput).toHaveValue('');
+        const SignInButton = screen.getByRole('button', { name: 'Sign In' });
+        expect(SignInButton).toBeDisabled();
 
-    //Sign in button calls setmode with eventID & username
+        fireEvent.change(eventIdInput, { target: { value: '12345' } });
+        expect(eventIdInput).toHaveValue('12345');
+        expect(SignInButton).toBeDisabled();
+
+        fireEvent.change(eventIdInput, { target: { value: '123456' } });
+        expect(eventIdInput).toHaveValue('123456');
+        expect(SignInButton).toBeEnabled();
+
+        fireEvent.change(eventIdInput, { target: { value: '1234567' } });
+        expect(eventIdInput).toHaveValue('1234567');
+        expect(SignInButton).toBeDisabled();
+    });
+
+    //Sign in button calls setmode with eventID
+    test('Sign in button is disabled without 6 digit event id', () => {
+        render(<AttendeeSignInPage setMode={handler} user={mockuser}/>);
+      
+        const eventIdInput = screen.getByRole('textbox', { name: 'EventId' }); 
+        const SignInButton = screen.getByRole('button', { name: 'Sign In' });
+
+        fireEvent.change(eventIdInput, { target: { value: '123456' } });
+        expect(eventIdInput).toHaveValue('123456');
+
+        fireEvent.click(SignInButton);
+        expect(handler).toHaveBeenCalledWith(mockEventId);
+    });
 
     //Invalid eventID brings user back to sign in page
 });
