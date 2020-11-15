@@ -8,8 +8,7 @@ import { useState } from 'react';
 
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
-export default function PlaylistPage({ setMode, OneList, setSongDetails }) {
-
+export default function PlaylistPage({ setMode, OneList, setSongDetails}) {
 
     //const [songsAdded, setSongsAdded] = useState(); songs added will hold list of songs added by the user 
    

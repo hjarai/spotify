@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-export default function PlayListSongDetail({songDetails,setSongDetails, removeSong}) {
+export default function PlayListSongDetail({songDetails, setSongDetails, removeSong}) {
 
   const [upvoteDisable,setUpvoteDisable] = useState();
   const [downvoteDisable,setDownvoteDisable] = useState();
@@ -19,7 +19,7 @@ export default function PlayListSongDetail({songDetails,setSongDetails, removeSo
 
   return (
     <div>
-      {songDetails.title} by {songDetails.artist}
+      {songDetails.title} by {songDetails.artist} <i>  added by {songDetails.user}</i>
       <button onClick={()=> {
           if (upvoteDisable === undefined) {
             setSongDetails([songDetails.id, 1, 0]);

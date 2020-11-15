@@ -8,14 +8,15 @@ import data from '../../data/songs.json';
 
 import SongResults from '../components/SongResults.js';
 
-export default function AddPage({setMode, OneList}) {
+export default function AddPage({setMode, OneList, user}) {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
   const currentOneList = {...OneList}; 
 
-  const addSong = (newSong) => {
-    if (currentOneList.playlist === undefined) {
+  const addSong = (newSong, thisUser) => {
+    newSong['user'] = thisUser;
+    if (currentOneList.playlist === undefined) {   
       currentOneList.playlist = [newSong];
     } else {
       if (currentOneList.playlist.includes(newSong) === false){
@@ -35,7 +36,7 @@ export default function AddPage({setMode, OneList}) {
     <>
         <h1 className="title">Final Project</h1>
         <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
-        <SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>
+        <SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong} user={user}/>
         <div>
           <button onClick = {()=>setMode(currentOneList)}>Back</button>
         </div>
@@ -45,6 +46,7 @@ export default function AddPage({setMode, OneList}) {
 
 AddPage.propTypes = {
     setMode : PropTypes.func,
-    OneList : PropTypes.object
+    OneList : PropTypes.object,
+    user: PropTypes.string
 }
 
