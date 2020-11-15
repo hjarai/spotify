@@ -1,3 +1,5 @@
+/* eslint-disable no-constant-condition */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -49,5 +51,6 @@ export default function PlayListSongDetail({songDetails,setSongDetails, removeSo
 
 PlayListSongDetail.propTypes = {
     songDetails : PropTypes.object,
-    setSongDetails: PropTypes.func
+    setSongDetails: PropTypes.func,
+    removeSong: PropTypes.func
 }

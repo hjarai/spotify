@@ -1,8 +1,10 @@
+/* eslint-disable no-undef, no-unused-vars */
+
 import PlayListSongDetail from './PlayListSongDetail';
 
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-/* eslint-disable no-undef, no-unused-vars */
+
 
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
@@ -11,7 +13,10 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails }) {
 
     //const [songsAdded, setSongsAdded] = useState(); songs added will hold list of songs added by the user 
    
-    
+    function removeSong(){
+        // deletes song from database   
+    }
+
     let currentPlaylist;
     if (OneList.playlist === undefined){
         currentPlaylist = <></>
@@ -23,9 +28,6 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails }) {
         )});
     }
     
-    function removeSong(){
-        // deletes song from database   
-    }
     return(
         //ADD LABELS TO EACH COMPONENT
         <div> 
