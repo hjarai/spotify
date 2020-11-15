@@ -2,9 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-export default function PlayListSongDetail({songDetails,setSongDetails}) {
-const [upvoteDisable,setUpvoteDisable] = useState();
-const [downvoteDisable,setDownvoteDisable] = useState();
+export default function PlayListSongDetail({songDetails,setSongDetails, removeSong}) {
+
+  const [upvoteDisable,setUpvoteDisable] = useState();
+  const [downvoteDisable,setDownvoteDisable] = useState();
+
+  let removeButton;
+ 
+  if( true /*if(songsAdded.contains(song)*/){ //songs added can be a state that holds a list of songs added by the user
+    removeButton = <button className="removeSongButton" onClick = {() => {removeSong()}}> Remove </button>
+  } else {
+    removeButton = <> </>
+  }
 
   return (
     <div>
@@ -19,7 +28,8 @@ const [downvoteDisable,setDownvoteDisable] = useState();
           setUpvoteDisable(true);
           setDownvoteDisable(false);
         }} 
-          disabled = {upvoteDisable === undefined ? false: upvoteDisable}>⬆{songDetails.upvote}</button>
+          disabled = {upvoteDisable === undefined ? false: upvoteDisable}> ⬆ {songDetails.upvote}</button>
+     
       <button onClick={()=> {
         if (downvoteDisable === undefined) {
           setSongDetails([songDetails.id, 0, -1]);
@@ -30,7 +40,9 @@ const [downvoteDisable,setDownvoteDisable] = useState();
         setUpvoteDisable(false);
       }}
       
-        disabled = {downvoteDisable === undefined ? false : downvoteDisable}>⬇{songDetails.downvote}</button>
+        disabled = {downvoteDisable === undefined ? false : downvoteDisable}> ⬇ {songDetails.downvote}</button>
+
+       {removeButton}
     </div>
   )
 }

@@ -1,21 +1,31 @@
 import PlayListSongDetail from './PlayListSongDetail';
 
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 /* eslint-disable no-undef, no-unused-vars */
+
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 export default function PlaylistPage({ setMode, OneList, setSongDetails }) {
+
+
+    //const [songsAdded, setSongsAdded] = useState(); songs added will hold list of songs added by the user 
+   
+    
     let currentPlaylist;
-    if (OneList.playlist===undefined){
+    if (OneList.playlist === undefined){
         currentPlaylist = <></>
     }
     else{
         currentPlaylist = OneList.playlist.map((song) => {
-            return (
-            <PlayListSongDetail key = {song.title} songDetails = {song} setSongDetails = {setSongDetails}/>
+            return ( 
+            <PlayListSongDetail key = {song.title} songDetails = {song} setSongDetails = {setSongDetails} removeSong = {removeSong}/> 
         )});
     }
-
+    
+    function removeSong(){
+        // deletes song from database   
+    }
     return(
         //ADD LABELS TO EACH COMPONENT
         <div> 
@@ -29,7 +39,6 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails }) {
 
             <button onClick={() => setMode('AddPage')}>Add Songs </button>
             <button>Export</button>
-       
         </div>
 
     );

@@ -7,7 +7,8 @@ import styles from './login.module.css'
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Login () {
-  const [ session] = useSession()
+
+  const [session] = useSession()
   
   return (
 
@@ -15,20 +16,16 @@ export default function Login () {
         <p >
           {!session && <>
             <span className={styles.notSignedInText}>You are not signed in</span>
-            <a
-                href={`/api/auth/signin`}
-                className = {styles.button}
-                onClick={(e) => {
-                  e.preventDefault()
-                  signIn()
-                }}
-              >
-                Sign in
+            <a href={`/api/auth/signin`}
+              className = {styles.button}
+              onClick={(e) => {
+              e.preventDefault()
+              signIn() }} >
+              Sign in
               </a>
           </>}
           {session && <>
-            
-            
+
             <span className={styles.signedInText}>
               <small>Signed in as</small><br/>
               <strong>{session.user.email || session.user.name}</strong>
