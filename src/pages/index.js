@@ -12,6 +12,7 @@ import styles from '../styles/Home.module.css';
 import SearchBar from '../components/SearchBar.js';
 
 import data from '../../data/songs.json';
+import onelistData from '../../data/onelists.json';
 
 import SongResults from '../components/SongResults.js';
 
@@ -38,6 +39,8 @@ export default function Home() {
     else if (typeof param === 'string') {
       //const serverdata = fetch OneList corresponsing with param from server
       //setOneList(serverdata)
+      const saved = onelistData.find(element=>element.id===param);
+      setOneList(saved);
       setView('OneList');
     }
     else {
