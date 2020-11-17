@@ -90,6 +90,9 @@ export default function Home() {
       <div>
         <button className="JoinOneListButton" onClick = {() => {setView('attendeeSignIn')}}>Join OneList</button> 
       </div>
+      <div>
+        <Login Host Login/>
+      </div>
     </div>
 
   return (
@@ -100,9 +103,6 @@ export default function Home() {
       <main>
       <div>
       {pageContent}
-      </div>
-      <div>
-        <Login Host Login/>
       </div>
         
       </main>
