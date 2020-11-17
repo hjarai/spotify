@@ -1,0 +1,55 @@
+[{
+    "id":"123456",
+    "title":"Halloween",
+    "description":"Some spooky halloween jams for hall 203's party",
+    "image_path":"../public/defaultimage",
+    "playlist" : [{
+        "title":"Heartless",
+        "artist":["The Weeknd"],
+        "id":2,
+        "upvote":0,
+        "downvote":0,
+        "user":"Bobthebuilder"
+      },
+      {
+        "title":"Intentions",
+        "artist":["Justin Bieber","Quavo"],
+        "id":3,
+        "upvote":2,
+        "downvote":0,
+        "user":"laurie"
+      }],
+    "date": "2020-12-25"
+},
+{
+    "id":"000000",
+    "title":"Christmas",
+    "description":"Let's spread some holiday cheer!",
+    "image_path":"../public/defaultimage",
+    "playlist" : [{
+        "title":"Better",
+        "artist":["Khalid"],
+        "id":5,
+        "upvote":2,
+        "downvote":0,
+        "user":"christmastree"
+        },
+        {
+        "title":"1950",
+        "artist":["King Princess"],
+        "id":6,
+        "upvote":5,
+        "downvote":9,
+        "user":"partytime"
+        },
+        {
+          "title":"Blueberry Faygo",
+          "artist":["Lil Mosey"],
+          "id":7,
+          "upvote":2,
+          "downvote":4,
+          "user":"iwantpresents"
+        }],
+    "date": "2020-12-25"
+}
+]
