@@ -26,7 +26,7 @@ export default function Home() {
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
   const [queue,setQueue] = useState([]);
-  const [user, setUser] = useState('anonymous');
+  const [user, setUser] = useState();
 
   const setMode = (param) => {
     //need another if statement to transition from home component to creation page
@@ -83,7 +83,7 @@ export default function Home() {
   
   const pageContent = (view === 'createOneList')? <CreationPage setMode = {setMode}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
-    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails}/>
+    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails} user={user}/>
     :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList} user={user}/>
     :<div> 
       <h1 className="title">Welcome to OneList</h1>
