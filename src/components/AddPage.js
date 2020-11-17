@@ -19,8 +19,9 @@ export default function AddPage({setMode, OneList, user}) {
     if (currentOneList.playlist === undefined) {   
       currentOneList.playlist = [newSong];
     } else {
-      const matchArray = currentOneList.playlist.filter((songD) => { return songD.title === newSong.title ;});
-      if (matchArray === []){
+      const matchArray = currentOneList.playlist.filter((songD) => {return songD.title === newSong.title ;});
+      console.log(matchArray);
+      if (matchArray.length === 0){
         currentOneList.playlist.push(newSong);
       }
     }
