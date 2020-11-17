@@ -1,4 +1,4 @@
-/* eslint-disable no-undef, no-unused-vars, no-use-before-define, prefer-const*/
+/* eslint-disable no-undef, no-unused-vars */
 
 import PlayListSongDetail from './PlayListSongDetail';
 
@@ -9,9 +9,7 @@ import { render } from 'react-dom';
 
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
-
-export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) {
-
+export default function PlaylistPage({ setMode, OneList, setSongDetails }) {
 
     //const [songsAdded, setSongsAdded] = useState(); songs added will hold list of songs added by the user 
    
@@ -41,7 +39,7 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
         // console.log("UPDATED LIST ->  ", updatedList);
 
         // currentPlaylist = [...updatedList];
-        let list = document.getElementById("Playlist");
+        var list = document.getElementById("Playlist");
             list.removeChild(list.childNodes[0]);
             
           
@@ -51,14 +49,13 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
     return(
         //ADD LABELS TO EACH COMPONENT
         <div> 
-            <h6 aria-label = "Event ID">Event ID: {OneList.id}</h6>
-            <h6> Signed in as: {user} </h6>
+            <h6 aria-label = "Event ID">{OneList.id}</h6>
             <h1 aria-label = "Title">{OneList.title}</h1>
             <h2 aria-label = "Description">{OneList.description}</h2>
             <h3 aria-label = "Date">{OneList.date}</h3>
             <img src = {OneList.image_path} width="150" height="150" />
-
             <ul aria-label = "Playlist" id = "Playlist">{currentPlaylist}</ul>
+            
 
             <button onClick={() => setMode('AddPage')}>Add Songs </button>
             <button>Export</button>
@@ -71,6 +68,5 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
 PlaylistPage.propTypes = {
     setMode : PropTypes.func,
     OneList : PropTypes.object.isRequired,
-    setSongDetails: PropTypes.func, 
-    user: PropTypes.string
+    setSongDetails: PropTypes.func
 }

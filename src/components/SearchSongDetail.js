@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function SearchSongDetail({details, addSong, user}) {
+export default function SearchSongDetail({details, addSong}) {
   //console.log('DETAILS');
   //console.log(details);
   const ignore = false;
@@ -11,13 +11,12 @@ export default function SearchSongDetail({details, addSong, user}) {
   return (
     <div>
       {details.title} by {details.artist}
-      <button onClick={()=> {addSong(details, user)}}>+</button>
+      <button onClick={()=> {addSong(details)}}>+</button>
     </div>
   )
 }
 
 SearchSongDetail.propTypes = {
     details : PropTypes.object,
-    addSong : PropTypes.func,
-    user: PropTypes.string
+    addSong : PropTypes.func
 }

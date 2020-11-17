@@ -4,7 +4,7 @@ import SearchSongDetail from './SearchSongDetail';
 
 import PropTypes from 'prop-types';
 
-export default function SongResults ({songs, searchTerm, sortType, addSong, user}) {
+export default function SongResults ({songs, searchTerm, sortType, addSong}) {
   let displayedSongs = songs; 
 
   if (searchTerm) {
@@ -35,7 +35,7 @@ export default function SongResults ({songs, searchTerm, sortType, addSong, user
   
   let songList = displayedSongs.map((song) => {
     return (
-    <SearchSongDetail key = {song.id} details = {song} addSong = {addSong} user = {user} />
+    <SearchSongDetail key = {song.id} details = {song} addSong = {addSong} />
   )});
 
   if (searchTerm===undefined || searchTerm==="") {
@@ -55,5 +55,4 @@ SongResults.propTypes = {
   searchTerm: PropTypes.string,
   addSong: PropTypes.func.isRequired,
   sortType: PropTypes.string.isRequired,
-  user: PropTypes.string,
 };
