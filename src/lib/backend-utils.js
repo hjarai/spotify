@@ -19,8 +19,8 @@ import knexConfig from '../../knexfile';
 import knexInitializer from 'knex';
 import { Model } from 'objection';
 import OneList from '../../models/OneList';
-import Song from '../../models/Song';
-import Host from '../../models/Host';
+//import Song from '../../models/Song';
+//import Host from '../../models/Host';
 
 export const knex = knexInitializer(
   knexConfig[process.env.TESTING || process.env.NODE_ENV || 'development']
@@ -36,7 +36,7 @@ Model.knex(knex);
  * returns relevant OneList
  */
 export async function getOneList(OneList_id) {
-  const OneList_data = await Article.query(OneList_id); //maybe??
+  const OneList_data = await OneList.query(OneList_id); //maybe??
 
   return OneList_data;
 }
