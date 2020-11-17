@@ -12,7 +12,6 @@ import styles from '../styles/Home.module.css';
 import SearchBar from '../components/SearchBar.js';
 
 import data from '../../data/songs.json';
-import onelistData from '../../data/onelists.json';
 
 import SongResults from '../components/SongResults.js';
 
@@ -39,8 +38,6 @@ export default function Home() {
     else if (typeof param === 'string') {
       //const serverdata = fetch OneList corresponsing with param from server
       //setOneList(serverdata)
-      const saved = onelistData.find(element=>element.id===param);
-      setOneList(saved);
       setView('OneList');
     }
     else {
@@ -83,8 +80,8 @@ export default function Home() {
   
   const pageContent = (view === 'createOneList')? <CreationPage setMode = {setMode}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
-    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails} user={user}/>
-    :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList} user={user}/>
+    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} user={user}/>
+    :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList}/>
     :<div> 
       <h1 className="title">Welcome to OneList</h1>
       <div>

@@ -1,21 +1,20 @@
-/* eslint-disable no-undef, no-unused-vars */
+/* eslint-disable no-undef, no-unused-vars, no-use-before-define, prefer-const*/
 
 import PlayListSongDetail from './PlayListSongDetail';
 
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { render } from 'react-dom';
 
 
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
+
 export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) {
+
 
     //const [songsAdded, setSongsAdded] = useState(); songs added will hold list of songs added by the user 
    
-    function removeSong(){
-        // deletes song from database   
-    }
-
     let currentPlaylist;
     if (OneList.playlist === undefined){
         currentPlaylist = <></>
@@ -26,6 +25,28 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
             <PlayListSongDetail key = {song.title} songDetails = {song} setSongDetails = {setSongDetails} removeSong = {removeSong}/> 
         )});
     }
+    function removeSong(songToRemoveTitle){
+
+        // console.log("hey im about to do stuff in removeSong");
+        // console.log("song to remove --> ", songToRemoveTitle);
+       
+        // console.log("CURRENT  ", currentPlaylist);
+        
+        //let element = OneList.playlist.indexOf(songToRemoveTitle);
+        // console.log("index --> ", OneList.playlist.indexOf((song) => {song.songToRemoveTitle}));
+        // const updatedList = currentPlaylist.filter((song)=>{
+        //     return song.key !== songToRemoveTitle;
+        // });
+        
+        // console.log("UPDATED LIST ->  ", updatedList);
+
+        // currentPlaylist = [...updatedList];
+        let list = document.getElementById("Playlist");
+            list.removeChild(list.childNodes[0]);
+            
+          
+    }
+
     
     return(
         //ADD LABELS TO EACH COMPONENT
@@ -36,7 +57,9 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
             <h2 aria-label = "Description">{OneList.description}</h2>
             <h3 aria-label = "Date">{OneList.date}</h3>
             <img src = {OneList.image_path} width="150" height="150" />
-            <ul aria-label = "Playlist">{currentPlaylist}</ul>
+
+            <ul aria-label = "Playlist" id = "Playlist">{currentPlaylist}</ul>
+
             <button onClick={() => setMode('AddPage')}>Add Songs </button>
             <button>Export</button>
         </div>
