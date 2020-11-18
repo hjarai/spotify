@@ -11,11 +11,14 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "knex": "^0.21.12",
     "next": "9.5.3",
     "next-auth": "^3.1.0",
+    "objection": "^2.2.3",
     "prop-types": "^15.7.2",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "sqlite3": "^5.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
