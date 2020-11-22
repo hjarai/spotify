@@ -47,6 +47,21 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
           
     }
 
+    const share = () => {
+        const shareText = "You are being invited to collaborate in the " +
+            OneList.title + 
+            " OneList! Use this link onelist.herokuapp.com with ID " +
+            OneList.id 
+
+        if (confirm(shareText)){
+            const component = document.createElement('textarea');
+            component.value = shareText;
+            document.body.appendChild(component);
+            component.select();
+            document.execCommand('copy');
+            document.body.removeChild(component);
+        }
+    }
     
     return(
         //ADD LABELS TO EACH COMPONENT
@@ -62,6 +77,7 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
 
             <button onClick={() => setMode('AddPage')}>Add Songs </button>
             <button>Export</button>
+            <button onClick={() => share()}>Copy Invitation Link</button>
         </div>
 
     );
