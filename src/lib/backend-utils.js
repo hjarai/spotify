@@ -57,12 +57,14 @@ export async function addOneList(onelist) {
 /**
  * Add new song to onelist in data store
  * 
- * returns number of songs added 
+ * returns new playlist
  */
 export async function addSong({song, onelistid}) {
   const songdata = await Song.query().insertAndFetch(song); 
-  const onelistdata = await OneList.query().patchAndFetchById(onelistid, {song: songdata.id}); //not correct, needs to add songdata to array in song
-  return onelistdata;
+  const onelistdata = await OneList.query().findById(onelistid).select('song_id');
+  const newonelist = [...onelistdata, songdata.id];
+  const newonelistdata = await OneList.query.patchAndFetchById(onelistid, {song_id: newonelist});
+  return newonelistdata;
 }
 
 
@@ -114,14 +116,15 @@ export async function removeDownvoteSong(songid) {
 /**
  * delete song in a onelist in data store
  * 
- * returns number of songs deleted 
+ * returns new playlist
  */
 export async function deleteSong({songid, onelistid}) {
   const songdata = await Song.query().deleteById(songid);
-  //const onelistdata = await OneList.query().... need to delete songid from onelist array
-  return songdata;
+  const onelistdata = await OneList.query().findById(onelistid);
+  const newonelist = onelistdata.filter(song => song !== songid);
+  const newonelistdata = await OneList.query.patchAndFetchById(onelistid, {song_id: newonelist});
+  return newonelistdata;
 }
-
 
 
 /**
