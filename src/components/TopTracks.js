@@ -5,7 +5,7 @@ import Track from './Track'
 import PropTypes from 'prop-types';
 import {getAccessToken, getSearch} from '../lib/spotify.js';
 
-function TopTracks ({ searchTerm, addSong }) {
+export default function TopTracks ({ searchTerm, addSong }) {
   if (searchTerm==='') {
     return null;
   }
@@ -22,5 +22,3 @@ function TopTracks ({ searchTerm, addSong }) {
     <Track key={track.songUrl} track = {track} addSong = {addSong}/>
   ));
 };
-
-export default TopTracks;
