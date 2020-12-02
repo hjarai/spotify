@@ -40,7 +40,7 @@ describe('Creation Page Tests', () => {
         //check if default image is rendered
         const defaultImage = screen.getByRole('img'); 
         expect(defaultImage).toBeVisible();
-        expect(defaultImage.src).toBe('http://localhost/defaultImage.png')
+        expect(defaultImage.src).toBe('http://localhost/OnelistLogo.png')
 
         //check that create button is rendered
         const createButton = screen.getByRole('button', { name: 'Create' });
