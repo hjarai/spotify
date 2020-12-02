@@ -15,6 +15,7 @@ class Song extends Model {
 
       properties: {
         id: { type: 'integer' },
+        onelist_id: { type: 'integer' },
         title: { type: 'string' },
         artist: { type: 'string' },
         up: { type: 'string' },
