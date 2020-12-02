@@ -22,7 +22,7 @@ exports.up = function(knex, Promise) {
         //host ID and song ID: needs to communicate with other tables
         table.integer('song_id');
         table.integer('host_id');
-        table.foreign('song_id').references('Song.id').onDelete('cascade');
+        table.foreign('song_id').references('Song.id').onDelete('cascade');//needs to be a list of song ids
         table.foreign('host_id').references('Host.id').onDelete('cascade');
         table.string('title');
         table.text('description').notNullable();

@@ -15,7 +15,7 @@ class OneList extends Model {
 
       properties: {
         id: { type: 'integer' },
-        song_id: { type: 'integer' },
+        song_id: ['integer'],//needs to hold an array of song ids
         host_id: { type: 'integer' },
         title: { type: 'string' },
         description: { type: 'text' },
