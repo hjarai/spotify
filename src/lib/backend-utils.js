@@ -16,6 +16,7 @@ all the functions needed
     removeUpvoteSong(songid) - removes downvote
     addHost(host) - adds new host
     getHostOneList - returns onelist id associated with given host id
+    getPlaylist(onelistid) - returns all the songs with the same OneList id
   
 */
 
@@ -57,14 +58,11 @@ export async function addOneList(onelist) {
 /**
  * Add new song to onelist in data store
  * 
- * returns new playlist
+ * returns song with new id attatched
  */
-export async function addSong({song, onelistid}) {
+export async function addSong(song) {
   const songdata = await Song.query().insertAndFetch(song); 
-  const onelistdata = await OneList.query().findById(onelistid).select('song_id');
-  const newonelist = [...onelistdata, songdata.id];
-  const newonelistdata = await OneList.query.patchAndFetchById(onelistid, {song_id: newonelist});
-  return newonelistdata;
+  return songdata;
 }
 
 
@@ -118,12 +116,9 @@ export async function removeDownvoteSong(songid) {
  * 
  * returns new playlist
  */
-export async function deleteSong({songid, onelistid}) {
+export async function deleteSong(songid) {
   const songdata = await Song.query().deleteById(songid);
-  const onelistdata = await OneList.query().findById(onelistid);
-  const newonelist = onelistdata.filter(song => song !== songid);
-  const newonelistdata = await OneList.query.patchAndFetchById(onelistid, {song_id: newonelist});
-  return newonelistdata;
+  return songdata;
 }
 
 
@@ -146,4 +141,14 @@ export async function addHost(host) {
 export async function getHostOneList(hostid) {
   const hostdata = await OneList.query().where({host_id: hostid}).select('id');
   return hostdata;
+}
+
+/**
+ * get songs associated with a single OneList
+ * 
+ * returns array of songs
+ */
+export async function getPlaylist(onelistid) {
+  const playlistdata = await Song.query().where({onelist_id: onelistid});
+  return playlistdata;
 }
