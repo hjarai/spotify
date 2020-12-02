@@ -48,10 +48,9 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
     }
 
     const share = () => {
-        const shareText = "You are being invited to collaborate in the " +
-            OneList.title + 
-            " OneList! Use this link onelist.herokuapp.com with ID " +
-            OneList.id 
+        const shareText = `You are being invited to collaborate in the 
+            ${OneList.title} OneList! Use this link onelist.herokuapp.com with ID
+            ${OneList.id}`
 
         if (confirm(shareText)){
             const component = document.createElement('textarea');
