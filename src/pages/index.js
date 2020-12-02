@@ -79,7 +79,6 @@ export default function Home() {
     })
     setOneList(currentOneList);
   }
-  console.log();
   
   const pageContent = (view === 'createOneList')? <CreationPage setMode = {setMode}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
