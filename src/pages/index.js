@@ -12,6 +12,7 @@ import styles from '../styles/Home.module.css';
 import SearchBar from '../components/SearchBar.js';
 
 import data from '../../data/songs.json';
+import onelistData from '../../data/onelists.json';
 
 import SongResults from '../components/SongResults.js';
 
@@ -38,6 +39,8 @@ export default function Home() {
     else if (typeof param === 'string') {
       //const serverdata = fetch OneList corresponsing with param from server
       //setOneList(serverdata)
+      const saved = onelistData.find(element=>element.id===param);
+      setOneList(saved);
       setView('OneList');
     }
     else {
@@ -76,19 +79,29 @@ export default function Home() {
     })
     setOneList(currentOneList);
   }
-  console.log();
   
   const pageContent = (view === 'createOneList')? <CreationPage setMode = {setMode}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
-    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} user={user}/>
-    :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList}/>
+    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails} user={user}/>
+    :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList} user={user}/>
     :<div> 
       <h1 className="title">Welcome to OneList</h1>
+      <h3 className="description">Snazzy description :)</h3>
+      <div className="rightcolumn">
       <div>
         <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> 
       </div>
       <div>
         <button className="JoinOneListButton" onClick = {() => {setView('attendeeSignIn')}}>Join OneList</button> 
+      </div>
+      
+      <div>
+        <p className="HostPrompt">Already a host?</p>
+        <Login Host Login/>
+      </div>
+      </div>
+      <div className="leftcolumn">
+        <img src= "OnelistLogo.png" width="300" height="300"></img>
       </div>
     </div>
 
@@ -101,9 +114,7 @@ export default function Home() {
       <div>
       {pageContent}
       </div>
-      <div>
-        <Login Host Login/>
-      </div>
+      
         
       </main>
       <footer> CS 312 Final Project: OneList</footer>

@@ -15,7 +15,7 @@ export default function Login () {
       <div >
         <p >
           {!session && <>
-            <span className={styles.notSignedInText}>You are not signed in</span>
+           
             <a href={`/api/auth/signin`}
               className = {styles.button}
               onClick={(e) => {

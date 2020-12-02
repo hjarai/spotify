@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 
 import SearchSongDetail from './SearchSongDetail';
@@ -56,3 +57,4 @@ SongResults.propTypes = {
   addSong: PropTypes.func.isRequired,
   sortType: PropTypes.string.isRequired,
 };
+*/

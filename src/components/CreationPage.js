@@ -8,7 +8,7 @@ import { useState } from 'react';
 //assume setMode is what changes state to OneList page and Home page
 //OneList is an object {title: , description:, image: , playlist:{}}
 export default function CreationPage({ setMode }){
-    const defaultImage = "/defaultImage.png";
+    const defaultImage = "/OnelistLogo.png";
     const [eventTitle, setEventTitle] = useState();
     const [eventDescription, setEventDescription] = useState();
     const [eventDate, setEventDate] = useState('2020-12-25');
@@ -46,17 +46,19 @@ export default function CreationPage({ setMode }){
                     <p className="ID">{currentID}</p>     
                 </div>
             </div>
+            <div className="leftcolumn">
 
                 <img
-                    src= {eventImage} width="150" height="150"/>
+                    src= {eventImage} width="200" height="200"/>
                 
-                <label htmlFor= "userImage">Choose a picture for your event: </label>
-                <input id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = {false} 
+                <label className = "photoLabel" htmlFor= "userImage"></label>
+                <input className = "photoLabel" id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = {false} 
                     onChange={()=>setEventImage( URL.createObjectURL(event.target.files[0]))}/>  
            
             
             </div>
-          
+            </div>
+            <div className="rightcolumn">
             <div>
                 <textarea 
                     id = "eventTitle"
@@ -90,6 +92,7 @@ export default function CreationPage({ setMode }){
         {/* //all the buttons here */}
         <button disabled={!eventTitle} onClick={() => setMode(OneList)}>Create</button>
         <button onClick={() => setMode()}>Cancel</button>
+        </div>
         </div>
     );
 }  
