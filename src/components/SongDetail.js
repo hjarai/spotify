@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 
 export default function SongDetail(details,deleteSong) {
@@ -12,3 +13,4 @@ export default function SongDetail(details,deleteSong) {
     </div>
   )
 }
+*/
