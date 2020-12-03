@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -20,3 +21,4 @@ SearchSongDetail.propTypes = {
     details : PropTypes.object,
     addSong : PropTypes.func
 }
+*/

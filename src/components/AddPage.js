@@ -8,6 +8,8 @@ import data from '../../data/songs.json';
 
 import SongResults from '../components/SongResults.js';
 
+import TopTracks from '../components/TopTracks.js';
+
 export default function AddPage({setMode, OneList}) {
   
   const [searchTerm, setSearchTerm] = useState('');
@@ -25,19 +27,12 @@ export default function AddPage({setMode, OneList}) {
       }
     }
   };
-  /*
-  const deleteSong = (deletedSong) => {
-    const newQueue = queue.filter((song)=>{
-      return song.id !== deletedSong.id;
-    });
-    setQueue(newQueue);
-  }
-  */
+
   return (
     <>
         <h1 className="title">Final Project</h1>
         <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
-        <SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>
+        <TopTracks searchTerm = {searchTerm} addSong = {addSong}/>
         <div>
           <button onClick = {()=>setMode(currentOneList)}>Back</button>
         </div>
@@ -50,3 +45,4 @@ AddPage.propTypes = {
     OneList : PropTypes.object
 }
 
+//<SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>
