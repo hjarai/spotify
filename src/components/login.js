@@ -16,7 +16,8 @@ export default function Login () {
         <p >
           {!session && <>
            
-            <a href={`/api/auth/signin`}
+            <a id = "signIn" 
+            href={`/api/auth/signin`}
               className = {styles.button}
               onClick={(e) => {
               e.preventDefault()

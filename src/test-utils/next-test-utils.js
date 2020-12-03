@@ -1,4 +1,4 @@
-
+/*eslint-disable no-shadow, no-use-before-define, no-undef*/
 /*
   Borrowed from the Next repo.
 https://github.com/vercel/next.js/blob/2e8068fcbea427bf50dd464c5565e676e4685ff0/test/lib/next-test-utils.js
@@ -40,14 +40,14 @@ export function runNextCommand(argv, options = {}) {
 
     let stderrOutput = "";
     if (options.stderr) {
-      instance.stderr.on("data", function (chunk) {
+      instance.stderr.on("data", (chunk) => {
         stderrOutput += chunk;
       });
     }
 
     let stdoutOutput = "";
     if (options.stdout) {
-      instance.stdout.on("data", function (chunk) {
+      instance.stdout.on("data", (chunk) => {
         stdoutOutput += chunk;
       });
     }

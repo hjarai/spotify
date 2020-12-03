@@ -11,7 +11,7 @@ export default function CreationPage({ setMode }){
     const defaultImage = "/OnelistLogo.png";
     const [eventTitle, setEventTitle] = useState();
     const [eventDescription, setEventDescription] = useState();
-    const [eventDate, setEventDate] = useState('2020-12-25');
+    const [eventDate, setEventDate] = useState(new Date());
     const [eventImage, setEventImage] = useState(defaultImage);
    
   
@@ -51,7 +51,7 @@ export default function CreationPage({ setMode }){
                 <img
                     src= {eventImage} width="200" height="200"/>
                 
-                <label className = "photoLabel" htmlFor= "userImage"></label>
+                <label className = "photoLabel" htmlFor= "userImage" />
                 <input className = "photoLabel" id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = {false} 
                     onChange={()=>setEventImage( URL.createObjectURL(event.target.files[0]))}/>  
            
@@ -83,15 +83,15 @@ export default function CreationPage({ setMode }){
 
             </div>
 
-            <div>
+            <div >
                 <label htmlFor="Date" />
-                <input type="date" value = {eventDate} name = "Date" aria-label = "Date"
+                <input type="date" id ="eventDate" value = {eventDate} name = "Date" aria-label = "Date"
                     onChange={(event) => setEventDate(event.target.value)} />
             </div>
 
         {/* //all the buttons here */}
-        <button disabled={!eventTitle} onClick={() => setMode(OneList)}>Create</button>
-        <button onClick={() => setMode()}>Cancel</button>
+        <button id = "CreateDateButton" disabled={!eventTitle} onClick={() => setMode(OneList)}>Create</button>
+        <button id = "CancelDateButton" onClick={() => setMode()}>Cancel</button>
         </div>
         </div>
     );
