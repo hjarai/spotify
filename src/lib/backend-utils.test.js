@@ -85,4 +85,39 @@ describe.skip("Tests of the database functions", () => {
         expect(removedDownvoteSong.downvote).toBe(0);
     })
 
+    test("delete song functionality", async () => {
+        const sampleSong = sampleOneLists[0].playlist[0];
+        const count = await deleteSong(sampleSong.id);
+        expect(count).toBe(1);
+        const rows = await knex('Song').where({title:sampleSong.title}).select();
+        expect(rows).toHaveLength(0);
+
+
+    });
+
+    test("add host functionality", async () => {
+        //what does the host data entry look like? 
+        const sampleHost = {
+            "id" : 5678,
+            "spotify" : "arbitraryUsernameOrToken"
+        }
+        const returnedHost = await addHost(sampleHost);
+        expect(returnedHost.id).toBe(sampleHost.id);
+        expect(returnedHost.spotify).toBe(sampleHost.spotify);
+       
+    }); 
+
+    test("get OneList host functionality", async () => {
+        const sampleOneListHost = sampleOneLists[0].host;
+        const returnedHost = await getHostOneList(sampleOneListHost.id)
+        expect(returnedHost.id).toBe(sampleOneListHost.id);
+        expect(returnedHost.spotify).toBe(sampleOneListHost.spotify);
+    });
+
+    test("getPlaylist functionality", async () => {
+        const samplePlaylist= sampleOneLists[0].playlist;
+        const returnedPlaylist = await getPlaylist(sampleOneLists[0].id);
+        expect(returnedPlaylist[0]).toBe(samplePlaylist[0]);
+    })
+
 });
