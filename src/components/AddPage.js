@@ -30,11 +30,11 @@ export default function AddPage({setMode, OneList}) {
 
   return (
     <>
-        <h1 className="title">Song Searcher </h1>
+        <h1 className="title">Search Spotify: </h1>
         <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
         <TopTracks searchTerm = {searchTerm} addSong = {addSong}/>
         <div>
-          <button onClick = {()=>setMode(currentOneList)}>Back</button>
+          <button className = "backButton" onClick = {()=>setMode(currentOneList)}>Back</button>
         </div>
     </>
   );
