@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import Head from 'next/head';
 
 /* eslint-disable no-undef, no-unused-vars */
 
@@ -39,8 +40,12 @@ export default function CreationPage({ setMode }){
     
     return(
         <div>
+            <Head>
+        <title>Event Creation Page</title>
+      </Head>
             <div>
             <div>
+            <h1 className="titleCreationPage">Create Your Event Here </h1>
                 <div className="EventID">
                     <p className="EventText"> Event ID:</p>
                     <p className="ID">{currentID}</p>     

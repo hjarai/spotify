@@ -85,13 +85,12 @@ export default function Home() {
     :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails} user={user}/>
     :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList} user={user}/>
     :<div> 
-      <div className="topDescription">
-      <h1 className="description"> Need music for an event?</h1>
-      <p className="description"> Your friends and guests can collaborate with you.</p>
-      <p className="description"> Create a onelist where everyone can add songs and choose the best ones!</p>
-      </div>
-   
-      <div className="buttonsHome">
+      <div className="mainDescriptionAndButtonsHome">
+
+        <h1 className="title">Welcome to OneList: The Perfect Playlist For Social Events</h1>
+        <h1 className="description"> Need music for an event?</h1>
+        <p className="description"> Your friends and guests can collaborate with you.</p>
+        <p className="description"> Create a onelist where everyone can add songs and choose the best ones!</p>
         <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> 
         <h1 className="description"> Invited to an event?</h1>
         <p className="description">  Add your own music to the onelist of that event using your EventID.</p>
@@ -99,18 +98,18 @@ export default function Home() {
         <h1 className="description"> Already a host?</h1>
         <p className="description">  Continue modifying your onelists for your events.</p>
         <Login Host Login/>
+        
       </div>
     </div>
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Welcome Page</title>
+        <title>OneList Home</title>
       </Head>
       <main>
       <div className="mainHeader">
         <img className = "headerLogo" src= "OnelistLogoSmall.png"/>
-        <h1 className="title">Welcome to OneList: The Perfect Playlist For Social Events</h1>
         </div>
 
       <div>

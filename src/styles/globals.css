@@ -39,12 +39,28 @@ main {
 
 }
 .title{
-  margin-top:40px;
-  margin-left: 270px;
   position: absolute;
   top: 0;
-
+  left: 20%;
 }
+.titleCreationPage{
+  position: absolute;
+  top: 2%;
+  left: 40%;
+}
+
+.rightcolumn {
+  float: right;
+  width: 50%;
+  padding-left: 50px;
+}
+
+.leftcolumn{
+  float: left;
+  width: 50%;
+  padding-left: 50px;
+}
+
 .headerLogo{
   margin-left: 50px;
   margin-top: 20px;
@@ -57,22 +73,12 @@ main {
   width: 50%;
 }
 
-/* .rightcolumn {
-  float: right;
-  width: 50%;
-  padding-left: 50px;
-} */
-
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
-.topDescription{
-  text-align: center;
- 
-}
-.buttonsHome{
+.mainDescriptionAndButtonsHome{
   text-align: center;
 
 }
