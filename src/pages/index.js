@@ -85,19 +85,18 @@ export default function Home() {
     :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails} user={user}/>
     :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList} user={user}/>
     :<div> 
-      <div className="fullDescription">
+      <div className="topDescription">
       <h1 className="description"> Need music for an event?</h1>
       <p className="description"> Your friends and guests can collaborate with you.</p>
-     
-      <div className="rightcolumn">
+      </div>
+   
       <div className="buttonsHome">
         <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> 
         <button className="JoinOneListButton" onClick = {() => {setView('attendeeSignIn')}}>Join OneList</button> 
         <p className="HostPrompt">Already a host?</p>
         <Login Host Login/>
-        </div>
       </div>
-      </div>
+      
       <div className="leftcolumn">
         {/* <img src= "OnelistLogo.png" width="300" height="300" /> */}
       </div>
