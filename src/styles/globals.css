@@ -34,7 +34,7 @@ main {
 .rightcolumn {
   float: right;
   width: 50%;
-  padding-left: 10px;
+  padding-left: 50px;
 }
 
 .row:after {
