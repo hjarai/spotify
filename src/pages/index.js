@@ -85,23 +85,21 @@ export default function Home() {
     :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails} user={user}/>
     :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList} user={user}/>
     :<div> 
-      <h1 className="title">Welcome to OneList</h1>
-      <h3 className="description">Snazzy description :)</h3>
+      <div className="fullDescription">
+      <h1 className="description"> Need music for an event?</h1>
+      <p className="description"> Your friends and guests can collaborate with you.</p>
+     
       <div className="rightcolumn">
-      <div>
+      <div className="buttonsHome">
         <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> 
-      </div>
-      <div>
         <button className="JoinOneListButton" onClick = {() => {setView('attendeeSignIn')}}>Join OneList</button> 
-      </div>
-      
-      <div>
         <p className="HostPrompt">Already a host?</p>
         <Login Host Login/>
+        </div>
       </div>
       </div>
       <div className="leftcolumn">
-        <img src= "OnelistLogo.png" width="300" height="300" />
+        {/* <img src= "OnelistLogo.png" width="300" height="300" /> */}
       </div>
     </div>
 
@@ -111,6 +109,11 @@ export default function Home() {
         <title>Welcome Page</title>
       </Head>
       <main>
+      <div className="mainHeader">
+        <img className = "headerLogo" src= "OnelistLogoSmall.png"/>
+        <h1 className="title">Welcome to OneList: The Perfect Playlist For Social Events</h1>
+        </div>
+
       <div>
       {pageContent}
       </div>

@@ -26,25 +26,56 @@ main {
   justify-content: top;
   align-items: center;
 }
+
+.mainHeader{
+
+  background-color: #FFBC93;
+  width: 100%;
+  position:absolute;
+  height: 125px;
+  top:0px;
+  border-style: none none solid none;
+ /* height: 100px;*/
+
+}
+.title{
+  margin-top:40px;
+  margin-left: 270px;
+  position: absolute;
+  top: 0;
+
+}
+.headerLogo{
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom:20px;
+  height: 100px;
+ 
+}
 .leftcolumn {   
   float: left;
   width: 50%;
 }
 
-.rightcolumn {
+/* .rightcolumn {
   float: right;
   width: 50%;
   padding-left: 50px;
-}
+} */
 
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
-
+.topDescription{
+  text-align: center;
+}
+.buttonsHome{
+  text-align: center;
+}
 .CreateOneListButton{
-
+  
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #FFBC93;
@@ -59,8 +90,10 @@ main {
   width: fit-content;
 
 }
+
 .JoinOneListButton{
-  font-weight: bold;
+
+  font-weight: bold;  
   font-family: Arial, Helvetica, sans-serif;
   background-color: #FFBC93;
   font-size: 16px;
@@ -71,6 +104,8 @@ main {
   margin-bottom: 10px;
   border: 1px solid;
   cursor: pointer;
+  display: block;
+  width: fit-content;
 
 }
 
