@@ -4,17 +4,12 @@ import PropTypes from 'prop-types';
 
 import SearchBar from '../components/SearchBar.js';
 
-import data from '../../data/songs.json';
-
-import SongResults from '../components/SongResults.js';
-
 import TopTracks from '../components/TopTracks.js';
 
 export default function AddPage({setMode, OneList}) {
   
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('title');
-  const [songs] = useState(data);
   const currentOneList = {...OneList}; 
 
   const addSong = (newSong) => {
