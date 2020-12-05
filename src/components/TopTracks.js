@@ -3,7 +3,7 @@ import useSWR from 'swr';
 import fetcher from '../lib/fetcher';
 import Track from './Track'
 import PropTypes from 'prop-types';
-import {getAccessToken, getSearch} from '../lib/spotify.js';
+//import {getAccessToken, getSearch} from '../lib/spotify.js';
 
 export default function TopTracks ({ searchTerm, addSong }) {
   if (searchTerm==='') {
