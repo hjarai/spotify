@@ -11,12 +11,11 @@ export default function Login () {
   const [session] = useSession()
   
   return (
-
-      <div >
-        <p >
+    
+    <div>
+        <button className="signInButton">
           {!session && <>
-           
-            <a id = "signIn" 
+            <a id= "signInLink"
             href={`/api/auth/signin`}
               className = {styles.button}
               onClick={(e) => {
@@ -25,6 +24,10 @@ export default function Login () {
               Sign in
               </a>
           </>}
+          </button>
+      
+    
+            <p>
           {session && <>
 
             <span className={styles.signedInText}>
@@ -43,6 +46,7 @@ export default function Login () {
               </a>
           </>}
         </p>
+      
       </div>
 
   )

@@ -88,17 +88,17 @@ export default function Home() {
       <div className="topDescription">
       <h1 className="description"> Need music for an event?</h1>
       <p className="description"> Your friends and guests can collaborate with you.</p>
+      <p className="description"> Create a onelist where everyone can add songs and choose the best ones!</p>
       </div>
    
       <div className="buttonsHome">
         <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> 
+        <h1 className="description"> Invited to an event?</h1>
+        <p className="description">  Add your own music to the onelist of that event using your EventID.</p>
         <button className="JoinOneListButton" onClick = {() => {setView('attendeeSignIn')}}>Join OneList</button> 
-        <p className="HostPrompt">Already a host?</p>
+        <h1 className="description"> Already a host?</h1>
+        <p className="description">  Continue modifying your onelists for your events.</p>
         <Login Host Login/>
-      </div>
-      
-      <div className="leftcolumn">
-        {/* <img src= "OnelistLogo.png" width="300" height="300" /> */}
       </div>
     </div>
 
