@@ -1,11 +1,6 @@
 import nc from 'next-connect';
-import { getSession } from 'next-auth/client';
 import { onError, cors } from '../../../lib/middleware'; 
 import { getHostOneList, 
-         getPlaylist, 
-         addHost, 
-         addOneList, 
-         addSong
        } from '../../../lib/backend-utils'; 
 
        //gets the host's onelists, returns in form of an array containing oneList IDs 

@@ -15,6 +15,6 @@ export default function Track({track, addSong}) {
 }
 
 Track.propTypes = {
-  details : PropTypes.object,
+  track : PropTypes.object,
   addSong : PropTypes.func
 }

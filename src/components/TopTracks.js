@@ -21,4 +21,4 @@ export default function TopTracks ({ searchTerm, addSong }) {
     track.downvote = 0,
     <Track key={track.songUrl} track = {track} addSong = {addSong}/>
   ));
-};
+}
