@@ -101,7 +101,7 @@ export default function Home() {
       </div>
       </div>
       <div className="leftcolumn">
-        <img src= "OnelistLogo.png" width="300" height="300"></img>
+        <img src= "OnelistLogo.png" width="300" height="300" />
       </div>
     </div>
 

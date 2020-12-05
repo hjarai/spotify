@@ -3,6 +3,10 @@
     "title":"Halloween",
     "description":"Some spooky halloween jams for hall 203's party",
     "image_path":"../public/defaultimage",
+    "host" : [{
+      "id": 56789,
+      "spotify" : "arbitraryUserTokent"
+    }],
     "playlist" : [{
         "title":"Heartless",
         "artist":["The Weeknd"],
