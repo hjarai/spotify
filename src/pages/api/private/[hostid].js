@@ -8,7 +8,7 @@ import { getHostOneList,
          addSong
        } from '../../../lib/backend-utils'; 
 
-       // get the host's user name from the data base with all its associated data, the onelists. 
+       //gets the host's onelists, returns in form of an array containing oneList IDs 
 const handler = nc({ onError }).use(cors)
 .get(async (req, res) => {
     const { hostid } = req.query;
