@@ -19,7 +19,7 @@
     "emotion-theming": "^11.0.0",
     "knex": "^0.21.12",
     "next": "9.5.3",
-    "next-auth": "^3.1",
+    "next-auth": "^3.1.0",
     "next-connect": "^0.9.1",
     "objection": "^2.2.3",
     "prop-types": "^15.7.2",

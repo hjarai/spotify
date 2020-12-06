@@ -1,11 +1,9 @@
+
+
 import nc from 'next-connect';
-import { getSession } from 'next-auth/client';
+//import { getSession } from 'next-auth/client';
 import { onError, cors } from '../../../lib/middleware'; 
-import { getHostOneList, 
-         getPlaylist, 
-         addHost, 
-         addOneList, 
-         addSong
+import { getHostOneList
        } from '../../../lib/backend-utils'; 
 
        //gets the host's onelists, returns in form of an array containing oneList IDs 
@@ -25,15 +23,22 @@ const handler = nc({ onError }).use(cors)
 
 
 /*
-    if(session){
-        const host = await getHostOneList()
-        res.statusCode(200).json(getHostOneList(hostid)); // get all onelists
-       
-    }
-    else{
-        res.status(401)// not signed in, reject
-    }
-    res.end(); 
+Sample Code index.js Home()
+
+const hostid = 1; 
+ 
+  const gethost = async ( someID ) => {
+  const response = await fetch(
+    `/api/private/${someID}`,
+  );
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  const newhost = await response.json();
+
+}
+
+gethost(hostid);
 
 */
 
