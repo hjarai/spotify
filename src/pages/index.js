@@ -90,13 +90,13 @@ export default function Home() {
         <h1 className="title">Welcome to OneList: The Perfect Playlist For Social Events</h1>
         <h1 className="description"> Need music for an event?</h1>
         <p className="description"> Your friends and guests can collaborate with you.</p>
-        <p className="description"> Create a onelist where everyone can add songs and choose the best ones!</p>
+        <p className="description"> Create a OneList where everyone can add songs and choose the best ones!</p>
         <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> 
         <h1 className="description"> Invited to an event?</h1>
-        <p className="description">  Add your own music to the onelist of that event using your EventID.</p>
+        <p className="description">  Add your own music to the OneList of that event using your EventID.</p>
         <button className="JoinOneListButton" onClick = {() => {setView('attendeeSignIn')}}>Join OneList</button> 
         <h1 className="description"> Already a host?</h1>
-        <p className="description">  Continue modifying your onelists for your events.</p>
+        <p className="description">  Continue modifying your OneLists for your events.</p>
         <Login Host Login/>
         
       </div>
@@ -115,8 +115,7 @@ export default function Home() {
       <div>
       {pageContent}
       </div>
-      
-        
+         
       </main>
       <footer> CS 312 Final Project: OneList</footer>
     </div>
