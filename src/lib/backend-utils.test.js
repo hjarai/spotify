@@ -16,7 +16,7 @@ import {
     knex,
   } from "./backend-utils";
   
-describe.skip("Tests of the database functions", () => {
+describe("Tests of the database functions", () => {
 
     beforeEach(async () => {
         await knex.migrate.rollback();
@@ -56,11 +56,11 @@ describe.skip("Tests of the database functions", () => {
         // addsong(song), takes a song as the only argument
         const sampleSong = {
             "title":"Heartless",
-        "artist":["The Weeknd"]}
+        "artist": "The Weeknd"}
         const returnedSong = await addSong(sampleSong);
         expect(returnedSong.title).toBe(sampleSong.title);
         expect(returnedSong.artist).toBe(sampleSong.artist);
-        expect(returnedSong.id).tobBeGreaterThanOrEqual(0);
+        expect(returnedSong.id).toBeGreaterThanOrEqual(0);
     })
 
     test("remove and upvote song associated with given song ID and return updated song object", async () => {
