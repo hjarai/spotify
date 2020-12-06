@@ -1,22 +1,14 @@
 
 /* eslint-disable no-undef, no-unused-vars */
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CreationPage from '../components/CreationPage.js'
 import AddPage from '../components/AddPage.js'
 import PlaylistPage from '../components/PlaylistPage.js';
 import Login from '../components/login.js'
-
 import styles from '../styles/Home.module.css';
-
-import SearchBar from '../components/SearchBar.js';
-
 import data from '../../data/songs.json';
 import onelistData from '../../data/onelists.json';
-
-import SongResults from '../components/SongResults.js';
-
-import Queue from '../components/Queue.js';
 import AttendeeSignInPage from '../components/AttendeeSignInPage.js';
 
 export default function Home() {

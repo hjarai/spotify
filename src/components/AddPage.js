@@ -9,7 +9,7 @@ import TopTracks from '../components/TopTracks.js';
 export default function AddPage({setMode, OneList}) {
   
   const [searchTerm, setSearchTerm] = useState('');
-  const [sortType, setSortType] = useState('title');
+  const [sortType, setSortType] = useState("track");
   const currentOneList = {...OneList}; 
 
   const addSong = (newSong) => {
@@ -31,7 +31,7 @@ export default function AddPage({setMode, OneList}) {
     <>
         <h1 className="title">Search Spotify: </h1>
         <SearchBar searchTerm = {searchTerm} sortType = {sortType} setTerm = {setSearchTerm} setType = {setSortType}/>
-        <TopTracks searchTerm = {searchTerm} addSong = {addSong}/>
+        <TopTracks searchTerm = {searchTerm} addSong = {addSong} sortType={sortType}/>
         <div>
           <button className = "backButton" onClick = {()=>setMode(currentOneList)}>Back</button>
         </div>
