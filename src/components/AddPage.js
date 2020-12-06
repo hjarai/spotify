@@ -15,10 +15,14 @@ export default function AddPage({setMode, OneList}) {
   const addSong = (newSong) => {
     if (currentOneList.playlist === undefined) {
       currentOneList.playlist = [newSong];
+      alert(`${newSong.title} is now added to your OneList!`);
     } else {
       const matchArray = currentOneList.playlist.filter((songD) => {return songD.title === newSong.title ;});
       if (matchArray.length === 0){
         currentOneList.playlist.push(newSong);
+        alert(`${newSong.title} is now added to your OneList!`);
+      } else {
+        alert(`${newSong.title} has already been added to your OneList!`);
       }
     }
   };
