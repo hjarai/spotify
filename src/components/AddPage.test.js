@@ -31,7 +31,7 @@ describe('Top level integration tests', () => {
     const dropdownInput = screen.getByRole('combobox', { name: 'dropdown' });
     //grab the selct itself like the above, and then change the value like above
     expect(searchInput).toHaveValue("");
-    expect(dropdownInput).toHaveValue("title");
+    expect(dropdownInput).toHaveValue("track");
 
     fireEvent.change(dropdownInput, { target: { value: "artist" } });  
     fireEvent.change(searchInput, { target: { value: "Sheck Wes" } });
@@ -41,11 +41,20 @@ describe('Top level integration tests', () => {
     //expect(screen.getByDisplayValue(song.title)).toBeInTheDocument();
   });
   
-  test("When Search Bar is non-matching term, output is 'No Results Found'",()=>{
+  test("When Search Bar is non-matching term, output is 'No Results Found'", async()=>{
     render(<AddPage />);
     const searchInput = screen.getByRole('textbox', { name: 'title' });
     expect(searchInput).toHaveValue("");
-    fireEvent.change(searchInput, { target: { value: "12345" } });
-    expect(screen.getByText("No Results Found")).toBeInTheDocument();
+    fireEvent.change(searchInput, { target: { value: "pppqqq" } });
+    setTimeout(() => {
+      expect(screen.getByText("No Results Found")).toBeInTheDocument();}, 1000);
+  });
+
+  test("When Search Bar looking up results, output is 'Searching. . .'", ()=>{
+    render(<AddPage />);
+    const searchInput = screen.getByRole('textbox', { name: 'title' });
+    expect(searchInput).toHaveValue("");
+    fireEvent.change(searchInput, { target: { value: "Mo Bamb" } });
+    expect(screen.getByText('Searching. . .')).toBeInTheDocument();
   });
 });

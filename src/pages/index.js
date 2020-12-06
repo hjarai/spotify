@@ -1,22 +1,14 @@
 
 /* eslint-disable no-undef, no-unused-vars */
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CreationPage from '../components/CreationPage.js'
 import AddPage from '../components/AddPage.js'
 import PlaylistPage from '../components/PlaylistPage.js';
 import Login from '../components/login.js'
-
 import styles from '../styles/Home.module.css';
-
-import SearchBar from '../components/SearchBar.js';
-
 import data from '../../data/songs.json';
 import onelistData from '../../data/onelists.json';
-
-import SongResults from '../components/SongResults.js';
-
-import Queue from '../components/Queue.js';
 import AttendeeSignInPage from '../components/AttendeeSignInPage.js';
 
 export default function Home() {
@@ -85,37 +77,37 @@ export default function Home() {
     :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails} user={user}/>
     :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList} user={user}/>
     :<div> 
-      <h1 className="title">Welcome to OneList</h1>
-      <h3 className="description">Snazzy description :)</h3>
-      <div className="rightcolumn">
-      <div>
+      <div className="mainDescriptionAndButtonsHome">
+
+        <h1 className="title">Welcome to OneList: The Perfect Playlist For Social Events</h1>
+        <h1 className="description"> Need music for an event?</h1>
+        <p className="description"> Your friends and guests can collaborate with you.</p>
+        <p className="description"> Create a OneList where everyone can add songs and choose the best ones!</p>
         <button className="CreateOneListButton" onClick = {() => {setView('createOneList')}}>Create OneList</button> 
-      </div>
-      <div>
+        <h1 className="description"> Invited to an event?</h1>
+        <p className="description">  Add your own music to the OneList of that event using your EventID.</p>
         <button className="JoinOneListButton" onClick = {() => {setView('attendeeSignIn')}}>Join OneList</button> 
-      </div>
-      
-      <div>
-        <p className="HostPrompt">Already a host?</p>
+        <h1 className="description"> Already a host?</h1>
+        <p className="description">  Continue modifying your OneLists for your events.</p>
         <Login Host Login/>
-      </div>
-      </div>
-      <div className="leftcolumn">
-        <img src= "OnelistLogo.png" width="300" height="300" />
+        
       </div>
     </div>
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Welcome Page</title>
+        <title>OneList Home</title>
       </Head>
       <main>
+      <div className="mainHeader">
+        <img className = "headerLogo" src= "OnelistLogoSmall.png"/>
+        </div>
+
       <div>
       {pageContent}
       </div>
-      
-        
+         
       </main>
       <footer> CS 312 Final Project: OneList</footer>
     </div>

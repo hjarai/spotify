@@ -18,12 +18,12 @@ Sample Method in index.js Home()
 
 
    const sample = { 
-     host_id: 2000, 
+     host_id: 1, 
      title: "Yellow Yabby",
      description: "Testing database",
      date : "12/07/2020",
      imagesrc: "someUrl", 
-     spotify: "mkocheko@middlebury.edu",
+     spotify: "yellow@middlebury.edu",
    }
 
 const addOneList = async (newlist) => {
