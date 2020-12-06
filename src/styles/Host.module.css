@@ -1,0 +1,120 @@
+
+.body {
+    padding: 0;
+    margin: 0;
+    border-style: solid;
+    border-color: #FFBC93;
+    border-width: 30px;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  }
+  
+  .a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .main {
+    padding: 5rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+  }
+  
+  .leftcolumn {   
+    float: left;
+    width: 50%;
+  }
+  
+  .rightcolumn {
+    float: right;
+    width: 50%;
+    padding-left: 60px;
+  }
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .CreateOneListButton{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFBC93;
+    font-size: 16px;
+    padding: 16px 40px;
+    border-radius: 8px;
+    border: 4px solid #FFBC93;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    cursor: pointer;
+  
+  }
+  .JoinOneListButton{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFBC93;
+    font-size: 16px;
+    padding: 16px 40px;
+    border-radius: 8px;
+    border: 4px solid #FFBC93;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    cursor: pointer;
+  
+  }
+  .EventID{
+    text-align:right;
+    display: inline-block;
+    width: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+  }
+  .EventText{
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .ID{
+    float: left;
+    width: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 4px;
+  
+  }
+  .HostPrompt{
+    text-align:left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+  }
+  
+  .photoLabel{
+    text-align:left;
+    font-size: 14px;
+    padding: 10px;
+  }
+  
+  .footer {
+    width: 100%;
+    height: 100px;
+    border-top: 1px solid #eaeaea;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer img {
+    margin-left: 0.5rem;
+  }
+  
+  .footer a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  
+  
