@@ -29,7 +29,7 @@ function SearchBar({
         setType(event.target.value);
       }}
     >
-      <option value="title">Title</option>
+      <option value="track">Track</option>
       <option value="artist">Artist</option>
     </select>
   );

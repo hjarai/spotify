@@ -26,7 +26,7 @@ const getAccessToken = async () => {
 const getSearch = async (searchTerm) => {
     const access_token  = await getAccessToken();
 
-    return await fetch(`https://api.spotify.com/v1/search?q=${searchTerm.search}%20b&type=track`, {
+    return await fetch(`https://api.spotify.com/v1/search?q=artist:${searchTerm.search}%20&type=track`, {
         method:'GET',
       headers: {
         Authorization: `Bearer ${access_token.access_token}`

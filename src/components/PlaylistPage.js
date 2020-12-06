@@ -14,37 +14,24 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
 
 
     //const [songsAdded, setSongsAdded] = useState(); songs added will hold list of songs added by the user 
-   
-    let currentPlaylist;
-    if (OneList.playlist === undefined){
-        currentPlaylist = <></>
+    const currentOneList = {...OneList};
+
+    let currentPlaylistView;
+    if (currentOneList.playlist === undefined){
+        currentPlaylistView = <></>
     }
     else{
-        currentPlaylist = OneList.playlist.map((song) => {
+        currentPlaylistView = currentOneList.playlist.map((song) => {
             return ( 
             <PlayListSongDetail key = {song.title} songDetails = {song} setSongDetails = {setSongDetails} removeSong = {removeSong}/> 
         )});
     }
-    function removeSong(songToRemoveTitle){
-
-        // console.log("hey im about to do stuff in removeSong");
-        // console.log("song to remove --> ", songToRemoveTitle);
-       
-        // console.log("CURRENT  ", currentPlaylist);
-        
-        //let element = OneList.playlist.indexOf(songToRemoveTitle);
-        // console.log("index --> ", OneList.playlist.indexOf((song) => {song.songToRemoveTitle}));
-        // const updatedList = currentPlaylist.filter((song)=>{
-        //     return song.key !== songToRemoveTitle;
-        // });
-        
-        // console.log("UPDATED LIST ->  ", updatedList);
-
-        // currentPlaylist = [...updatedList];
-        let list = document.getElementById("Playlist");
-            list.removeChild(list.childNodes[0]);
-            
-          
+    function removeSong(removedSongTitle){
+        const updatedPlaylist = currentOneList.playlist.filter((song)=> {
+            return song.title !== removedSongTitle;
+        });
+        currentOneList.playlist = updatedPlaylist
+        setMode(currentOneList);
     }
 
     const share = () => {
@@ -81,7 +68,7 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
             <button id = "ExportSongsButton"> Export</button>
             <button id = "InvitationLinkButton" onClick={() => share()}>Invite friends!</button>
             </div>
-            <ul aria-label = "Playlist" id = "Playlist">{currentPlaylist}</ul>
+            <ul aria-label = "Playlist" id = "Playlist">{currentPlaylistView}</ul>
         </div>
 
     );
