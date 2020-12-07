@@ -2,7 +2,10 @@
 /* eslint-disable no-undef, no-unused-vars */
 import Head from 'next/head';
 import { useState } from 'react';
-import CreationPage from '../components/CreationPage.js'
+
+import CreationPage from '../components/CreationPage.js';
+//changed from CreationPage to Host Page
+import HostPage from './HostPage.js';
 import AddPage from '../components/AddPage.js'
 import PlaylistPage from '../components/PlaylistPage.js';
 import Login from '../components/login.js'
@@ -20,6 +23,17 @@ export default function Home() {
   const [queue,setQueue] = useState([]);
   const [user, setUser] = useState();
 
+  const getOneList = async ( someID ) => {
+    const response = await fetch(
+      `/api/onelists/${someID}`,
+    );
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const myOneList = await response.json();
+    setOneList(myOneList); 
+  }
+  
   const setMode = (param) => {
     //need another if statement to transition from home component to creation page
     if (param === undefined) {
@@ -31,11 +45,17 @@ export default function Home() {
     else if (typeof param === 'string') {
       //const serverdata = fetch OneList corresponsing with param from server
       //setOneList(serverdata)
-      const saved = onelistData.find(element=>element.id===param);
-      setOneList(saved);
+      // const saved = onelistData.find(element=>element.id===param);
+      // setOneList(saved);
+      // setView('OneList');
+      
+      //IF PARAMETER IS THE ID
+      getOneList(param);
       setView('OneList');
+    
     }
     else {
+      //param is the OneList made in HostPage
       setOneList(param);
       setView('OneList');    
     }
@@ -72,7 +92,7 @@ export default function Home() {
     setOneList(currentOneList);
   }
   
-  const pageContent = (view === 'createOneList')? <CreationPage setMode = {setMode}/>
+  const pageContent = (view === 'createOneList')? <HostPage setMode = {setMode}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
     :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails} user={user}/>
     :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList} user={user}/>

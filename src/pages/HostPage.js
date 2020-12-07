@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/Host.module.css';
-import Home from './index.js'; 
+//import Home from './index.js'; 
 import Head from 'next/head';
 
 import { 
@@ -12,11 +13,11 @@ import {
   } from 'next-auth/client'
  // import { useRouter } from 'next/router'; 
 
-/* eslint-disable no-undef, no-unused-vars */
+/* eslint-disable no-undef, no-unused-vars, react/self-closing-comp */
 
 //assume setMode is what changes state to OneList page and Home page
 //OneList is an object {title: , description:, image: , playlist:{}}
-export default function HostPage(){
+export default function HostPage({setMode}){
     const defaultImage = "./OnelistLogo.png";
     const [eventTitle, setEventTitle] = useState();
     const [eventDescription, setEventDescription] = useState();
@@ -24,24 +25,14 @@ export default function HostPage(){
     const [eventImage, setEventImage] = useState(defaultImage);
     const [session, loading] = useSession();
     const [currentID, setID] = useState();
-    //const router = useRouter(); 
-   
-    //don't need, since db should create unique event id
-    //   function makeEventID(){
-    //     const S4 = function() {
-    //       return ((Math.floor(Math.random()*10).toString())); 
-    //     };
-    //    return (S4()+S4()+S4()+S4()+S4()+S4());
-    //   }
-  
-    
+       
     const OneList = {
         id : currentID,
         title : eventTitle,
 //      hostid : host should be logged in
         description : eventDescription,
         imagesrc: eventImage,
-        playlist: [],
+        //playlist: [],
         date : eventDate,   
 //      spotify : spotify playlist id
     }
@@ -61,9 +52,10 @@ export default function HostPage(){
         setID(response.id);
       }
 
-    const setMode = function (item){
-      console.log(item); 
+    const complete = function (){
+      setMode(OneList); 
       addOneList(OneList);
+      
       //change view to playlistpage with return value of addOneList??
     }
 
@@ -77,6 +69,7 @@ export default function HostPage(){
               <img className = "headerLogo" src= "OnelistLogoSmall.png"/>
            </div>
                <h1 className="titleCreationPage">Create Your Event Here</h1>
+            
           </main>
             <div className={styles.leftcolumn}>
                   {/* <div className={styles.EventID}>
@@ -139,11 +132,15 @@ export default function HostPage(){
                   </div>
 
                   {/* //all the buttons here */}
-                  <button className={styles.EventButton} disabled={!eventTitle} onClick={() => setMode(OneList)}>Create Event</button>
+                  <button className={styles.EventButton} disabled={!eventTitle} onClick={() => complete()}>Create Event</button>
                   <button className={styles.EventButton} onClick={() => setMode()}>Cancel</button>
               </div>
           <footer className={styles.footer}> CS 312 Final Project: OneList</footer>
     </div>
     );
+}
+
+HostPage.propTypes = {
+  setMode : PropTypes.func
 }
 
