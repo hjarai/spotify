@@ -18,8 +18,8 @@ class Song extends Model {
         onelist_id: { type: 'integer' },
         title: { type: 'string' },
         artist: { type: 'string' },
-        up: { type: 'string' },
-        down: { type: 'string' },
+        up: { type: 'integer' },
+        down: { type: 'integer' },
         spotify_id: { type: 'string' },
         songUrl: { type: 'string' },
         uri: { type: 'string' }

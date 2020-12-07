@@ -5,7 +5,8 @@
     "image_path":"../public/defaultimage",
     "host" : [{
       "id": 56789,
-      "spotify" : "arbitraryUserTokent"
+      "spotify" : "arbitraryUserTokent",
+      "email" : "yellow@yabby.com"
     }],
     "playlist" : [{
         "title":"Heartless",
@@ -30,6 +31,11 @@
     "title":"Christmas",
     "description":"Let's spread some holiday cheer!",
     "image_path":"../public/defaultimage",
+    "host" : [{
+      "id": 56777,
+      "spotify" : "arbitraryUserTokent",
+      "email" : "yabbyw@yabby.com"
+    }],
     "playlist" : [{
         "title":"Better",
         "artist":["Khalid"],
