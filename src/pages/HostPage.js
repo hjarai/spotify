@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/Host.module.css';
 //import Home from './index.js'; 
 import Head from 'next/head';
