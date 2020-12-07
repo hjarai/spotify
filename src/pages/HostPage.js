@@ -26,7 +26,7 @@ export default function HostPage(){
     const [currentID, setID] = useState();
     //const router = useRouter(); 
    
-  
+    //don't need, since db should create unique event id
     //   function makeEventID(){
     //     const S4 = function() {
     //       return ((Math.floor(Math.random()*10).toString())); 
