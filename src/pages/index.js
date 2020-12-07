@@ -23,6 +23,17 @@ export default function Home() {
   const [queue,setQueue] = useState([]);
   const [user, setUser] = useState();
 
+  const getOneList = async ( someID ) => {
+    const response = await fetch(
+      `/api/onelists/${someID}`,
+    );
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const myOneList = await response.json();
+    setOneList(myOneList); 
+  }
+  
   const setMode = (param) => {
     //need another if statement to transition from home component to creation page
     if (param === undefined) {
@@ -34,11 +45,17 @@ export default function Home() {
     else if (typeof param === 'string') {
       //const serverdata = fetch OneList corresponsing with param from server
       //setOneList(serverdata)
-      const saved = onelistData.find(element=>element.id===param);
-      setOneList(saved);
+      // const saved = onelistData.find(element=>element.id===param);
+      // setOneList(saved);
+      // setView('OneList');
+      
+      //IF PARAMETER IS THE ID
+      getOneList(param);
       setView('OneList');
+    
     }
     else {
+      //param is the OneList made in HostPage
       setOneList(param);
       setView('OneList');    
     }

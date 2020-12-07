@@ -55,6 +55,7 @@ export default function HostPage({setMode}){
     const complete = function (){
       setMode(OneList); 
       addOneList(OneList);
+      
       //change view to playlistpage with return value of addOneList??
     }
 
@@ -68,6 +69,7 @@ export default function HostPage({setMode}){
               <img className = "headerLogo" src= "OnelistLogoSmall.png"/>
            </div>
                <h1 className="titleCreationPage">Create Your Event Here</h1>
+            
           </main>
             <div className={styles.leftcolumn}>
                   {/* <div className={styles.EventID}>
