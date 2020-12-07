@@ -24,14 +24,13 @@
   }
   
   .leftcolumn {   
-    float: left;
-    width: 50%;
+    margin: auto;
+    width: 75%;
   }
   
   .rightcolumn {
-    float: right;
-    width: 50%;
-    padding-left: 60px;
+    width:80%;
+    margin-left:200px;
   }
   
   .row:after {
@@ -40,67 +39,120 @@
     clear: both;
   }
   
-  .CreateOneListButton{
+ 
+  #eventTitle:focus{
+    background-color: white;
+    border-color:#FFBC93;
+    border: 2px solid;
+  }
+ 
+  #eventTitle{
+    border-radius: 5px;
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #FFBC93;
     font-size: 16px;
-    padding: 16px 40px;
-    border-radius: 8px;
-    border: 4px solid #FFBC93;
-    margin-top: 10px;
+    border: 2px solid;
+    background-color:  #FFBC93;
+    border-color: black;
+    padding-left: 7px;
+    padding-top: 6px;
     margin-bottom: 10px;
-    border: 1px solid;
-    cursor: pointer;
-  
+    margin-top: 15px;
   }
-  .JoinOneListButton{
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #FFBC93;
-    font-size: 16px;
-    padding: 16px 40px;
-    border-radius: 8px;
-    border: 4px solid #FFBC93;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid;
-    cursor: pointer;
-  
-  }
-  .EventID{
-    text-align:right;
-    display: inline-block;
-    width: fit-content;
+
+  #eventDescription{
+
+    border-radius: 5px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
+    border: 2px solid;
+    background-color:  #FFBC93;
+    border-color: black;
+    padding-left: 7px;
+    padding-top: 6px;
+    width: 50%;
   }
-  .EventText{
-    float: left;
-    font-family: Arial, Helvetica, sans-serif;
+  #eventDescription:focus{
+    background-color: white;
+    border-color:#FFBC93;
+    border: 2px solid;
   }
-  .ID{
-    float: left;
-    width: fit-content;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-left: 4px;
   
-  }
-  .HostPrompt{
-    text-align:left;
+  #eventDate{
+
+    margin-top: 5px;
+    border-radius: 7px;
+    border: 2px solid;
+    width: fit-content;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
-  }
+    border-color: #FFBC93;
   
+  }
+
+  .EventID{
+
+    margin: 5px 20px;
+    text-align: left;
+    border-radius: 6px;
+    font-weight: bold;
+    width: fit-content;
+    height: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    background-color: #FFBC93;
+    padding: 5px 10px;
+  }
+
+  .currentUser{
+    text-align: left;
+    width: fit-content;
+    float: right;
+  }
+  #eventImage{
+    float: left;
+    margin-top: 10px;
+    text-align: center;
+    display: block;
+  }
+
   .photoLabel{
-    text-align:left;
+    
+    text-align: center;
+    border-radius: 8px;
+    display: block;
+    color: black;
+    background-color: #FFBC93;;
     font-size: 14px;
-    padding: 10px;
+    width: fit-content;
+    padding: 4px 4px;
+  }
+
+  .EventButton{
+
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFBC93;
+    font-size: 16px;
+    border: 4px solid;
+    border-radius: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 6px;
+    border: 1px solid;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 6px 6px;
+    
+   
+  
   }
   
   .footer {
+    
     width: 100%;
     height: 100px;
-    border-top: 1px solid #eaeaea;
+    border-top: 1px solid black;
     display: flex;
+    margin-top: 50px;
     justify-content: center;
     align-items: center;
   }

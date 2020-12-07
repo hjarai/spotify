@@ -47,8 +47,7 @@ export default function CreationPage({ setMode }){
             <div>
             <h1 className="titleCreationPage">Create Your Event Here </h1>
                 <div className="EventID">
-                    <p className="EventText"> Event ID:</p>
-                    <p className="ID">{currentID}</p>     
+                <p> Your Event ID: {currentID}</p>    
                 </div>
             </div>
             <div className="leftcolumn">
