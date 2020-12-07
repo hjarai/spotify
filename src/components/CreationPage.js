@@ -6,8 +6,8 @@ import Head from 'next/head';
 
 /* eslint-disable no-undef, no-unused-vars */
 
-//assume setMode is what changes state to OneList page and Home page
-//OneList is an object {title: , description:, image: , playlist:{}}
+/*this page will not be used, has turned into hostpage in pages directory*/
+
 export default function CreationPage({ setMode }){
     const defaultImage = "/OnelistLogo.png";
     const [eventTitle, setEventTitle] = useState();
