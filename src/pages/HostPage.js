@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import styles from '../styles/Host.module.css';
-import Home from './index.js'; 
+//import Home from './index.js'; 
 import Head from 'next/head';
 
 import { 
@@ -12,7 +12,7 @@ import {
   } from 'next-auth/client'
  // import { useRouter } from 'next/router'; 
 
-/* eslint-disable no-undef, no-unused-vars */
+/* eslint-disable no-undef, no-unused-vars, react/self-closing-comp */
 
 //assume setMode is what changes state to OneList page and Home page
 //OneList is an object {title: , description:, image: , playlist:{}}
@@ -135,5 +135,9 @@ export default function HostPage({setMode}){
           <footer className={styles.footer}> CS 312 Final Project: OneList</footer>
     </div>
     );
+}
+
+HostPage.propTypes = {
+  setMode : PropTypes.func
 }
 

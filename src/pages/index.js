@@ -2,7 +2,9 @@
 /* eslint-disable no-undef, no-unused-vars */
 import Head from 'next/head';
 import { useState } from 'react';
+
 import CreationPage from '../components/CreationPage.js';
+//changed from CreationPage to Host Page
 import HostPage from './HostPage.js';
 import AddPage from '../components/AddPage.js'
 import PlaylistPage from '../components/PlaylistPage.js';
