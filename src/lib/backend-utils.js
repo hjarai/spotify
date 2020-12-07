@@ -13,7 +13,7 @@ all the functions needed
     changeupvote(songid, value) - change upvote count to value
     changedownvote(songid, value) - change downvote count to value
     addHost(host) - adds new host
-    getHostOneList - returns onelist id associated with given host id
+    getHostOneList(email) - returns onelist id associated with given host id
     getPlaylist(onelistid) - returns all the songs with the same OneList id
   
 */
@@ -111,8 +111,20 @@ export async function addHost(host) {
  * 
  * returns array of onelist ids
  */
+/*
 export async function getHostOneList(hostid) {
   const hostdata = await OneList.query().where({host_id: hostid}).select('id');
+  return hostdata;
+} */
+
+/**
+ * get onelist ids associated with host emai;
+ * 
+ * returns array of onelist ids
+ */
+export async function getHostOneList(email) {
+  const hostemail = await Host.query().where({spotify: email}).select('id')
+  const hostdata = await OneList.query().where({host_id: hostemail[0]}).select('id');
   return hostdata;
 }
 
