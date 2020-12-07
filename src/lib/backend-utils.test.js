@@ -15,8 +15,20 @@ import {
   } from "./backend-utils";
 
 //create sample one list and host data that matches the migration tables!
+const sampleHost = {
+ 
+    "spotify" : "yellow@yabby.com"
+}
+const sampleOnelist = {
+    "id" : 5678,
+    "title" : "Halloween",
+    "description":"Some spooky halloween jams for hall 203's party",
+    "imagesrc":"../public/defaultimage",
+    
+}
   
 describe("Tests of the database functions", () => {
+    
 
     beforeEach(async () => {
         await knex.migrate.rollback();
@@ -26,30 +38,25 @@ describe("Tests of the database functions", () => {
       });
 
     test("getOneList, gets OneList based on id", async () => {
-        const sampleOneList = sampleOneLists[0];
-        const returnedOneList = await getOneList(sampleOneList.id);
+        const addedList = await addOneList(sampleOnelist);
         
-        expect(returnedOneList.id).toBe(sampleOneList.id);
-        expect(returnedOneList.title).toBe(sampleOneList.title);
-        expect(returnedOneList.description).toBe(sampleOneList.description);
-        expect(returnedOneList.playlist).toBe(sampleOneList.playlist);
-        expect(returnedOneList.date).toBe(sampleOneList.date);
+        const returnedOneList = await getOneList(addedList.id);
+        
+        expect(returnedOneList.title).toBe(sampleOnelist.title);
+        expect(returnedOneList.description).toBe(sampleOnelist.description);
+      
 
     });
 
     test("add new OneList to database and return newly added OneList with new id", async () => {
-        const sampleOneList = {
-            "title":"Fall Road Trip",
-            "description":"Some pop jams for the roadtrip to Florida",
-            "imagesrc":"../../public/defaultimage",
-            "date": "2020-10-05"};
+       
         
-        const returnedOneList = await addOneList(sampleOneList);
+        const returnedOneList = await addOneList(sampleOnelist);
 
-        expect(returnedOneList.title).toBe(sampleOneList.title);
-        expect(returnedOneList.description).toBe(sampleOneList.description);
-        expect(returnedOneList.imagesrc).toBe(sampleOneList.imagesrc);
-        expect(returnedOneList.date).toBe(sampleOneList.date);
+        expect(returnedOneList.title).toBe(sampleOnelist.title);
+        expect(returnedOneList.description).toBe(sampleOnelist.description);
+        expect(returnedOneList.imagesrc).toBe(sampleOnelist.imagesrc);
+       
         expect(returnedOneList.id).toBeGreaterThanOrEqual(0);
     })
 
@@ -98,25 +105,18 @@ describe("Tests of the database functions", () => {
 
     test("add host functionality", async () => {
         //what does the host data entry look like? 
-        const sampleHost = {
-            "id" : 5678,
-            "spotify" : "yellow@yabby.com"
-        }
+       
         const returnedHost = await addHost(sampleHost);
-        expect(returnedHost.id).toBe(sampleHost.id);
+        
         expect(returnedHost.spotify).toBe(sampleHost.spotify);
        
     }); 
 
     test("get OneList host functionality", async () => {
-        const sampleHost = {
-            "id" : 5678,
-            "spotify" : "yellow@yabby.com"
-        }
-        addHost(sampleHost);
-        const sampleHostEmail = sampleHost.spotify;
-        const returnedHost = await getHostOneList(sampleHostEmail)
-        expect(returnedHost).toBe(sampleHostEmail);
+        
+        const currentHost = await addHost(sampleHost);
+        const returnedHost = await getHostOneList(currentHost.spotify);
+        expect(returnedHost.spotify).toBe(currentHost.spotify);
         
     });
 
