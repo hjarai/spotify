@@ -2,7 +2,8 @@
 /* eslint-disable no-undef, no-unused-vars */
 import Head from 'next/head';
 import { useState } from 'react';
-import CreationPage from '../components/CreationPage.js'
+import CreationPage from '../components/CreationPage.js';
+import HostPage from './HostPage.js';
 import AddPage from '../components/AddPage.js'
 import PlaylistPage from '../components/PlaylistPage.js';
 import Login from '../components/login.js'
@@ -72,7 +73,7 @@ export default function Home() {
     setOneList(currentOneList);
   }
   
-  const pageContent = (view === 'createOneList')? <CreationPage setMode = {setMode}/>
+  const pageContent = (view === 'createOneList')? <HostPage setMode = {setMode}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
     :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails} user={user}/>
     :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList} user={user}/>
