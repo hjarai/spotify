@@ -13,7 +13,7 @@
  * @param {object} res - the response object associated with the route
  */
 
-import Cors from 'cors'; 
+import Cors from 'cors';
 
 export function onError (error, req, res){
     console.error(error); 
