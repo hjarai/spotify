@@ -24,6 +24,7 @@ const sampleOnelist = {
     "title" : "Halloween",
     "description":"Some spooky halloween jams for hall 203's party",
     "imagesrc":"../public/defaultimage",
+    "host_spotify" : "yellow@yabby.com"
     
 }
   
@@ -112,19 +113,20 @@ describe("Tests of the database functions", () => {
        
     }); 
 
-    test("get OneList host functionality", async () => {
+    test("get Host OneList functionality", async () => {
         
         const currentHost = await addHost(sampleHost);
-        const returnedHost = await getHostOneList(currentHost.spotify);
-        expect(returnedHost.spotify).toBe(currentHost.spotify);
+        await addOneList(sampleOnelist);
+        const returnedOneLists = await getHostOneList(currentHost.spotify);
+        expect(returnedOneLists[0].host_spotify).toBe(currentHost.spotify);
         
     });
 
     test("getPlaylist functionality", async () => {
-        const samplePlaylist= sampleOneLists[0].playlist;
-        addOneList(sampleOneLists[0]);
-        const returnedPlaylist = await getPlaylist(sampleOneLists[0].id);
-        expect(returnedPlaylist[0]).toBe(samplePlaylist[0]);
+        const currentOneList = await addOneList(sampleOnelist);
+       
+        const returnedPlaylist = await getPlaylist(currentOneList.id);
+        expect(returnedPlaylist).toBeDefined();
     })
 
 });

@@ -23,6 +23,8 @@ exports.up = function(knex, Promise) {
         table.increments('id');
         table.integer('host_id');
         table.foreign('host_id').references('Host.id').onDelete('cascade');
+        table.string('host_spotify');
+        table.foreign('host_spotify').references('Host.spotify').onDelete('cascade');
         table.string('title');
         table.text('description').notNullable();
         table.string('date');
