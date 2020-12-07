@@ -26,27 +26,43 @@ export default function HostPage(){
     //const router = useRouter(); 
    
   
-      function makeEventID(){
-        const S4 = function() {
-          return ((Math.floor(Math.random()*10).toString())); 
-        };
-       return (S4()+S4()+S4()+S4()+S4()+S4());
-      }
+    //   function makeEventID(){
+    //     const S4 = function() {
+    //       return ((Math.floor(Math.random()*10).toString())); 
+    //     };
+    //    return (S4()+S4()+S4()+S4()+S4()+S4());
+    //   }
     
     const [currentID, setID] = useState(makeEventID());
 
     
     const OneList = {
-        id : currentID,
+//        id : currentID,
         title : eventTitle,
+//      hostid : host should be logged in
         description : eventDescription,
-        image_path: eventImage,
+        imagesrc: eventImage,
         playlist: [],
         date : eventDate,   
+//      spotify : spotify playlist id
     }
 
+    const addOneList = async (newlist) => {
+      const response = await fetch(`/api/onelists`,{
+        method:'POST',
+        body: JSON.stringify(newlist),
+        headers: new Headers({'Content-type': 'application/json'}),
+        });
+      //error handling 
+      if(!response.ok){
+        throw new Error(response.statusText);
+        }
+      }
+
     const setMode = function (item){
-        console.log(item); 
+      console.log(item); 
+      addOneList(OneList);
+      //change view to playlistpage with return value of addOneList??
     }
 
     return(
@@ -61,9 +77,9 @@ export default function HostPage(){
                <h1 className="titleCreationPage">Create Your Event Here</h1>
           </main>
             <div className={styles.leftcolumn}>
-                  <div className={styles.EventID}>
+                  {/* <div className={styles.EventID}>
                     <p> Your Event ID: {currentID}</p>     
-                  </div>
+                  </div> */}
 
                   <div id={styles.eventImage}>
                     <img src= {eventImage} width="200" height="200"/>
