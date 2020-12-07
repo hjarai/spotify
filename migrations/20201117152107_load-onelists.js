@@ -11,7 +11,7 @@ exports.up = function(knex, Promise) {
         table.string('up');
         table.string('down');
         table.string('username');
-        table.string('spotify').unique(); 
+        table.string('songUrl');
       })
       
       .createTable('Host', (table) => {
@@ -27,7 +27,9 @@ exports.up = function(knex, Promise) {
         table.text('description').notNullable();
         table.string('date');
         table.string('imagesrc');
-        table.string('spotify').unique(); // this should not be restricted to unique cos one person can have multiple oneLists, otherwise I get an error while submitting a new onelist. 
+        table.string('spotify_id');
+        table.string('songUrl');
+        table.string('uri');
       });
 
 };
