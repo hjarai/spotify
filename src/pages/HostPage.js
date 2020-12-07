@@ -23,6 +23,7 @@ export default function HostPage(){
     const [eventDate, setEventDate] = useState(new Date());
     const [eventImage, setEventImage] = useState(defaultImage);
     const [session, loading] = useSession();
+    const [currentID, setID] = useState();
     //const router = useRouter(); 
    
   
@@ -32,12 +33,10 @@ export default function HostPage(){
     //     };
     //    return (S4()+S4()+S4()+S4()+S4()+S4());
     //   }
-    
-    const [currentID, setID] = useState(makeEventID());
-
+  
     
     const OneList = {
-//        id : currentID,
+        id : currentID,
         title : eventTitle,
 //      hostid : host should be logged in
         description : eventDescription,
@@ -57,6 +56,9 @@ export default function HostPage(){
       if(!response.ok){
         throw new Error(response.statusText);
         }
+
+        const onelistwithid = await response.json();
+        setID(response.id);
       }
 
     const setMode = function (item){
