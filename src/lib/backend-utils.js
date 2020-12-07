@@ -123,8 +123,8 @@ export async function getHostOneList(hostid) {
  * returns array of onelist ids
  */
 export async function getHostOneList(email) {
-  const hostemail = await Host.query().where({spotify: email}).select('id')
-  const hostdata = await OneList.query().where({host_id: hostemail[0]}).select('id');
+  //const hostemail = await Host.query().where({spotify: email});
+  const hostdata = await OneList.query().where({host_spotify: email});
   return hostdata;
 }
 

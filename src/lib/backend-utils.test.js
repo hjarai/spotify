@@ -13,40 +13,51 @@ import {
     getPlaylist,
     knex,
   } from "./backend-utils";
+
+//create sample one list and host data that matches the migration tables!
+const sampleHost = {
+ 
+    "spotify" : "yellow@yabby.com"
+}
+const sampleOnelist = {
+    "id" : 5678,
+    "title" : "Halloween",
+    "description":"Some spooky halloween jams for hall 203's party",
+    "imagesrc":"../public/defaultimage",
+    "host_spotify" : "yellow@yabby.com"
+    
+}
   
-describe.skip("Tests of the database functions", () => {
+describe("Tests of the database functions", () => {
+    
 
     beforeEach(async () => {
         await knex.migrate.rollback();
         await knex.migrate.latest();
-        await knex.seed.run();
+       
+        
       });
 
     test("getOneList, gets OneList based on id", async () => {
-        const sampleOneList = sampleOneLists[0];
-        const returnedOneList = await getOneList(sampleOneList.id);
-        expect(returnedOneList.id).toBe(sampleOneList.id);
-        expect(returnedOneList.title).toBe(sampleOneList.title);
-        expect(returnedOneList.description).toBe(sampleOneList.description);
-        expect(returnedOneList.image_path).toBe(sampleOneList.image_path);
-        expect(returnedOneList.playlist).toBe(sampleOneList.playlist);
-        expect(returnedOneList.date).toBe(sampleOneList.date);
+        const addedList = await addOneList(sampleOnelist);
+        
+        const returnedOneList = await getOneList(addedList.id);
+        
+        expect(returnedOneList.title).toBe(sampleOnelist.title);
+        expect(returnedOneList.description).toBe(sampleOnelist.description);
+      
 
     });
 
     test("add new OneList to database and return newly added OneList with new id", async () => {
-        const sampleOneList = {
-            "title":"Fall Road Trip",
-            "description":"Some pop jams for the roadtrip to Florida",
-            "image_path":"../../public/defaultimage",
-            "date": "2020-10-05"};
+       
         
-        const returnedOneList = await addOneList(sampleOneList);
+        const returnedOneList = await addOneList(sampleOnelist);
 
-        expect(returnedOneList.title).toBe(sampleOneList.title);
-        expect(returnedOneList.description).toBe(sampleOneList.description);
-        expect(returnedOneList.image_path).toBe(sampleOneList.image_path);
-        expect(returnedOneList.date).toBe(sampleOneList.date);
+        expect(returnedOneList.title).toBe(sampleOnelist.title);
+        expect(returnedOneList.description).toBe(sampleOnelist.description);
+        expect(returnedOneList.imagesrc).toBe(sampleOnelist.imagesrc);
+       
         expect(returnedOneList.id).toBeGreaterThanOrEqual(0);
     })
 
@@ -64,24 +75,27 @@ describe.skip("Tests of the database functions", () => {
     test("upvote functionality", async () => {
         const samplePlaylist = sampleOneLists[0].playlist;
         const sampleSong = samplePlaylist[0];
-        expect(sampleSong.upvote).toBe(0);
+        expect(sampleSong.up).toBe(0);
+        addSong(sampleSong);
 
         const returnedSong = await changeupvote(sampleSong.id, 1);      
-        expect(returnedSong.upvote).toBe(1);
+        expect(returnedSong.up).toBe(1);
 
     })
 
     test("downvote functionality", async () => {
         const samplePlaylist= sampleOneLists[0].playlist;
         const sampleSong = samplePlaylist[0];
-        expect(sampleSong.downvote).toBe(0);
+        expect(sampleSong.down).toBe(0);
+        addSong(sampleSong);
 
         const returnedSong = await changedownvote(sampleSong.id, -1);      
-        expect(returnedSong.downvote).toBe(-1);
+        expect(returnedSong.down).toBe(-1);
     })
 
     test("delete song functionality", async () => {
         const sampleSong = sampleOneLists[0].playlist[0];
+        addSong(sampleSong);
         const count = await deleteSong(sampleSong.id);
         expect(count).toBe(1);
         const rows = await knex('Song').where({title:sampleSong.title}).select();
@@ -92,28 +106,27 @@ describe.skip("Tests of the database functions", () => {
 
     test("add host functionality", async () => {
         //what does the host data entry look like? 
-        const sampleHost = {
-            "id" : 5678,
-            "spotify" : "arbitraryUsernameOrToken"
-        }
+       
         const returnedHost = await addHost(sampleHost);
-        expect(returnedHost.id).toBe(sampleHost.id);
+        
         expect(returnedHost.spotify).toBe(sampleHost.spotify);
        
     }); 
 
-    test("get OneList host functionality", async () => {
-        const sampleOneListHost = sampleOneLists[0].host;
-        const sampleHostEmail = sampleOneListHost.email;
-        const returnedHost = await getHostOneList(sampleHostEmail)
-        expect(returnedHost).toBe(sampleHostEmail);
+    test("get Host OneList functionality", async () => {
+        
+        const currentHost = await addHost(sampleHost);
+        await addOneList(sampleOnelist);
+        const returnedOneLists = await getHostOneList(currentHost.spotify);
+        expect(returnedOneLists[0].host_spotify).toBe(currentHost.spotify);
         
     });
 
     test("getPlaylist functionality", async () => {
-        const samplePlaylist= sampleOneLists[0].playlist;
-        const returnedPlaylist = await getPlaylist(sampleOneLists[0].id);
-        expect(returnedPlaylist[0]).toBe(samplePlaylist[0]);
+        const currentOneList = await addOneList(sampleOnelist);
+       
+        const returnedPlaylist = await getPlaylist(currentOneList.id);
+        expect(returnedPlaylist).toBeDefined();
     })
 
 });
