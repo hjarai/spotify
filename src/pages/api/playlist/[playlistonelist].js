@@ -7,7 +7,6 @@ import { getPlaylist } from '../../../lib/backend-utils';
 const handler = nc({ onError }).use(cors)
 .get(async (req, res) => {
     const { playlistonelist } = req.query;
-    console.log("This is onelist ID  " + playlistonelist);
     const data = await getPlaylist(playlistonelist);
     // if(data.length === 0){
     //     //console.log("In if ");

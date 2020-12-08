@@ -5,19 +5,20 @@ import AddPage from './AddPage.js'
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
-import {getSession} from 'next-auth/client';
+import {useSession} from 'next-auth/client';
 import {addSongToPlaylist} from '../pages/api/Export.js';
 
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
 export default function PlaylistPage({ setMode, OneListID, user}) {
-    const [session, setSession] = useState();
+    const [session] = useSession();
     const [OneList, setOneList] = useState({id:'', title:'', date: undefined, image_path:"/OnelistLogo.png"});
     const [playlist, setPlaylist] = useState();
     const [songsAdded, setSongsAdded] = useState([]); //songs added will hold list of songs added by the user 
     const [addMode, setAddMode] = useState(false);
     
+    /* causing lots of errors in test
     //session management
     useEffect(() => {
         const checkSession = async ()=>{
@@ -28,12 +29,12 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
         checkSession();
         }
     });
+    */
 
    //fetch OneList details         
    useEffect(() => {
     const getOneList = async ( someID ) => {
-        const response = await fetch(
-          `/api/onelists/${someID}`);
+        const response = await fetch(`/api/onelists/${someID}`);
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -41,7 +42,7 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
         setOneList(myOneList); 
     };
     getOneList(OneListID); 
-    }, []);
+    }, [addMode, songsAdded]);
 
     //fetch playlist content
     useEffect(() => {
@@ -66,7 +67,6 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
         }
         const updatedPlaylist = songsAdded.filter(id=> id !== someID);
         setSongsAdded(updatedPlaylist);
-        console.log(someID+'deleted');
     };
 
     const updateSong = async ( updatedSong ) => {
@@ -161,7 +161,6 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
             {(addMode)?
             <AddPage    setAddMode = {setAddMode} 
                         OneListID={OneListID} 
-                        user={user} 
                         playlist={playlist} 
                         SongsAdded={songsAdded} 
                         setSongsAdded = {setSongsAdded} 
@@ -169,7 +168,7 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
             <div>
             <h1 className="titlePlaylistPage"> Make Your Playlist Here </h1>
             <h4 aria-label = "Event ID" className="EventID">Event ID: {OneList.id}</h4>
-            <h4 aria-label = "Event ID" className="EventID">Signed in as: {user}</h4>
+            <h4 className="EventID">Signed in as: {user}</h4>
         <div className = "rightcolumn">
             <h1 aria-label = "Title">{OneList.title}</h1>
             <h2 aria-label = "Description">{OneList.description}</h2>

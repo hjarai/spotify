@@ -36,8 +36,8 @@ describe('Attendee Sign in Page Tests', () => {
     });
           
 
-    //Sign In button disabled unless 6 digit eventId
-    test('Sign in button is disabled without 6 digit event id', () => {
+    //Sign In button disabled unless 6 digit eventId, not necessary if database gives unique smaller ID
+    test.skip('Sign in button is disabled without event id', () => {
         render(<AttendeeSignInPage setMode={handler} />);
       
         const eventIdInput = screen.getByRole('textbox', { name: 'EventId' }); 

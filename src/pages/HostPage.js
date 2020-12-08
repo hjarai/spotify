@@ -7,8 +7,6 @@ import styles from '../styles/Host.module.css';
 import Head from 'next/head';
 
 import { 
-   
-    signOut,
     useSession
   } from 'next-auth/client'
  // import { useRouter } from 'next/router'; 
@@ -17,14 +15,15 @@ import {
 
 //assume setMode is what changes state to OneList page and Home page
 //OneList is an object {title: , description:, image: , playlist:{}}
-export default function HostPage({setMode, setUser}){
+export default function HostPage({setMode, setUser, setOneListID}){
     const defaultImage = "./OnelistLogo.png";
     const [eventTitle, setEventTitle] = useState();
     const [eventDescription, setEventDescription] = useState();
-    const [eventDate, setEventDate] = useState(new Date());
+    const [eventDate, setEventDate] = useState(new Date().toDateString());
     const [eventImage, setEventImage] = useState(defaultImage);
-    const [session, loading] = useSession();
-    const [currentID, setID] = useState();
+    const [session] = useSession();
+    const [currentID] = useState();
+    const [dateChanged, setDateChanged]  = useState(false); 
        
     const OneList = {
         id : currentID,
@@ -37,26 +36,27 @@ export default function HostPage({setMode, setUser}){
 //      spotify : spotify playlist id
     }
 
-    const addOneList = async (newlist) => {
+    const addOneList = async () => {
+      if (dateChanged) {
+        const dates = eventDate.split('-');
+        const formattedD = new Date(dates[0], dates[1] - 1, dates[2]).toDateString(); 
+        OneList.date = formattedD;
+      }
+
       const response = await fetch(`/api/onelists`,{
         method:'POST',
-        body: JSON.stringify(newlist),
+        body: JSON.stringify(OneList),
         headers: new Headers({'Content-type': 'application/json'}),
         });
       //error handling 
       if(!response.ok){
         throw new Error(response.statusText);
-        }
-
-        const onelistwithid = await response.json();
-        setID(onelistwithid.id);
       }
-
-    const complete = function (){
-      setUser('Host');
-      addOneList(OneList);
-      setMode(currentID); 
-    }
+      const onelistwithid = await response.json();
+      // sets user with Spotify name if logged in or Host if not
+      setUser(session ? session.user.name : 'Host');
+      setMode((onelistwithid.id.toString()));
+      }
 
     return(
      <div className={styles}>
@@ -79,22 +79,13 @@ export default function HostPage({setMode, setUser}){
                   </div>
 
                   <div className={styles.currentUser}>
-                  <p> {session && <>
-                <span>
+                  <p> {session && (<>
                  <small>Signed in as</small><br/>
                  <strong>{session.user.email || session.user.name}</strong>
-                </span>
-                <a
-                  href={`/api/auth/signout`}
-                  onClick={(e) => {
-                  e.preventDefault()
-                  signOut()
-                  }} > Sign out 
-                  </a>
-                </>}
-                  {!session && <>
-                  {`/index`}
-                </>}
+                </>)}
+                {!session && (<>
+                {`Not signed in`}
+              </>)}
               </p>
           </div>
 
@@ -123,19 +114,20 @@ export default function HostPage({setMode, setUser}){
                   <div>
                     <label htmlFor="Date" />
                     <input type="date" id = {styles.eventDate} value = {eventDate} name = "Date" aria-label = "Date"
-                      onChange={(event) => setEventDate(event.target.value)} />
+                      onChange={(event) => {setEventDate(event.target.value); setDateChanged(true);}} />
                   </div>
 
                   {/* //all the buttons here */}
-                  <button className={styles.EventButton} disabled={!eventTitle} onClick={() => complete()}>Create Event</button>
+                  <button className={styles.EventButton} disabled={!eventTitle} onClick={() => {addOneList();}}>Create Event</button>
                   <button className={styles.EventButton} onClick={() => setMode()}>Cancel</button>
               </div>
-          <footer className={styles.footer}> CS 312 Final Project: OneList</footer>
     </div>
     );
 }
 
 HostPage.propTypes = {
-  setMode : PropTypes.func
+  setMode : PropTypes.func,
+  setUser: PropTypes.func,
+  setOneListID: PropTypes.func
 }
 
