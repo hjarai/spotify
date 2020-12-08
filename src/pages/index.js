@@ -3,25 +3,25 @@
 import Head from 'next/head';
 import { useState } from 'react';
 
-import CreationPage from '../components/CreationPage.js';
+//import CreationPage from '../components/CreationPage.js';
 //changed from CreationPage to Host Page
 import HostPage from './HostPage.js';
-import AddPage from '../components/AddPage.js'
+//import AddPage from '../components/AddPage.js'
 import PlaylistPage from '../components/PlaylistPage.js';
 import Login from '../components/login.js'
 import styles from '../styles/Home.module.css';
-import data from '../../data/songs.json';
-import onelistData from '../../data/onelists.json';
+//import data from '../../data/songs.json';
+//import onelistData from '../../data/onelists.json';
 import AttendeeSignInPage from '../components/AttendeeSignInPage.js';
-import OneList from '../../models/OneList.js';
+//import OneList from '../../models/OneList.js';
 
 export default function Home() {
   const [view, setView] = useState('home');
   const [oneListID, setOneListID] = useState();
-  const [searchTerm, setSearchTerm] = useState('');
-  const [sortType, setSortType] = useState('title');
-  const [songs] = useState(data);
-  const [queue,setQueue] = useState([]);
+  // const [searchTerm, setSearchTerm] = useState('');
+  // const [sortType, setSortType] = useState('title');
+  // const [songs] = useState(data);
+  // const [queue,setQueue] = useState([]);
   const [user, setUser] = useState();
   
   const setMode = (param) => {
@@ -38,7 +38,6 @@ export default function Home() {
     }
   };
 
-  const setSongDetails =()=>{return;};
   // const setSongDetails = (voteA) => {
   //   const currentPlaylist = oneList.playlist.map((song) => 
   //     {
@@ -72,7 +71,7 @@ export default function Home() {
   
   const pageContent = (view === 'createOneList')? <HostPage setMode = {setMode} setUser={setUser}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
-    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneListID = {oneListID} setSongDetails={setSongDetails} user={user}/>
+    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneListID = {oneListID} user={user}/>
     // :(view === 'AddPage')? <AddPage setMode = {setMode} OneListID={oneListID} user={user}/>
     :<div> 
       <div className="mainDescriptionAndButtonsHome">

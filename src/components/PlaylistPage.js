@@ -11,7 +11,7 @@ import {addSongToPlaylist} from '../pages/api/Export.js';
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
-export default function PlaylistPage({ setMode, OneListID, setSongDetails, user}) {
+export default function PlaylistPage({ setMode, OneListID, user}) {
     const [session, setSession] = useState();
     const [OneList, setOneList] = useState({id:'', title:'', date: undefined, image_path:"/OnelistLogo.png"});
     const [playlist, setPlaylist] = useState();
@@ -55,21 +55,76 @@ export default function PlaylistPage({ setMode, OneListID, setSongDetails, user}
             setPlaylist(myPlaylist); 
         };
         getPlaylist(OneListID);
-    }, [addMode]);
-   
-    //needs to use actual functions, don't call setmode
-    function removeSong(removedSongTitle){
-    const updatedPlaylist = OneList.playlist.filter((song)=> {
-        return song.title !== removedSongTitle;
-    });
-    OneList.playlist = updatedPlaylist
-    setMode(OneListID);
-    }
+    }, [addMode, songsAdded]);
+
+
+    const removeSong = async ( someID ) => {
+        const response = await fetch(
+            `/api/songs/${someID}`,{method: 'DELETE'});
+        if (!response.ok) {
+        throw new Error(response.statusText);
+        }
+        const updatedPlaylist = songsAdded.filter(id=> id !== someID);
+        setSongsAdded(updatedPlaylist);
+        console.log(someID+'deleted');
+    };
+
+    const updateSong = async ( updatedSong ) => {
+        const response = await fetch(
+          `api/songs/${updatedSong.id}`,
+          {
+            method: 'POST',
+            body: JSON.stringify(updatedSong),
+            headers: new Headers({ 'Content-type': 'application/json' }),
+          }
+        );
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+      };
+    
+    //no idea how setSongDetails works..... but should use updateSong
+    const setSongDetails=() => {return;}
+    /* 
+    const setSongDetails = (voteA) => {
+        const currentPlaylist = oneList.playlist.map((song) => 
+        {
+            if (song.id===voteA[0]){
+            song.upvote += voteA[1];
+            song.downvote += voteA[2];
+            return song;
+            }
+            else{
+            return song;
+            } 
+        }
+        );
+        const currentOneList = {...oneList};
+        currentOneList.playlist = currentPlaylist;
+        currentOneList.playlist = currentOneList.playlist.sort((song1,song2)=>{
+        const song1sum = (song1.upvote) + (song1.downvote);
+        const song2sum = (song2.upvote) + (song2.downvote);
+        if (song1sum > song2sum){
+            return -1;
+        }
+        else if (song1sum === song2sum){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+        })
+        setOneList(currentOneList);
+    } */
 
     const currentPlaylistView = (playlist)? 
         playlist.map((song) => {
-            return (<PlayListSongDetail key = {song.title} songDetails = {song} setSongDetails = {setSongDetails} removeSong = {removeSong}/> )
-        }):<></>;
+            return (<PlayListSongDetail key = {song.title} 
+                                        songDetails = {song} 
+                                        setSongDetails = {setSongDetails} 
+                                        removeSong = {removeSong}
+                                        songsAdded = {songsAdded}/> )})
+        :<></>;
 
 
   /*   const AddPageView = (addMode)?
