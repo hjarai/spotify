@@ -70,10 +70,10 @@ export default function Home() {
   //   setOneList(currentOneList);
   // }
   
-  const pageContent = (view === 'createOneList')? <HostPage setMode = {setMode}/>
+  const pageContent = (view === 'createOneList')? <HostPage setMode = {setMode} setUser={setUser}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
     :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneListID = {oneListID} setSongDetails={setSongDetails} user={user}/>
-    :(view === 'AddPage')? <AddPage setMode = {setMode} OneListID={oneListID} user={user}/>
+    // :(view === 'AddPage')? <AddPage setMode = {setMode} OneListID={oneListID} user={user}/>
     :<div> 
       <div className="mainDescriptionAndButtonsHome">
 

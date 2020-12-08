@@ -17,7 +17,7 @@ import {
 
 //assume setMode is what changes state to OneList page and Home page
 //OneList is an object {title: , description:, image: , playlist:{}}
-export default function HostPage({setMode}){
+export default function HostPage({setMode, setUser}){
     const defaultImage = "./OnelistLogo.png";
     const [eventTitle, setEventTitle] = useState();
     const [eventDescription, setEventDescription] = useState();
@@ -53,6 +53,7 @@ export default function HostPage({setMode}){
       }
 
     const complete = function (){
+      setUser('Host');
       addOneList(OneList);
       setMode(currentID); 
     }

@@ -20,6 +20,7 @@ class Song extends Model {
         artist: { type: 'string' },
         up: { type: 'integer' },
         down: { type: 'integer' },
+        username: { type: 'string' },
         spotify_id: { type: 'string' },
         songUrl: { type: 'string' },
         uri: { type: 'string' }

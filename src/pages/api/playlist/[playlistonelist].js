@@ -7,17 +7,18 @@ import { getPlaylist } from '../../../lib/backend-utils';
 const handler = nc({ onError }).use(cors)
 .get(async (req, res) => {
     const { playlistonelist } = req.query;
-    //console.log("This is onelist ID  " + playlistonelist);
+    console.log("This is onelist ID  " + playlistonelist);
     const data = await getPlaylist(playlistonelist);
-    if(data.length === 0){
-        //console.log("In if ");
-        res.status(404).end(`There are no songs associated with OneList ${ playlistonelist }`);  
-    }
-    else{
+    // if(data.length === 0){
+    //     //console.log("In if ");
+    //     //res.status(404).end(`There are no songs associated with OneList ${ playlistonelist }`);  
+    //     res.status(200).json([]);
+    // }
+    // else{
         //console.log("In else ");
         //console.log(data[0]);
        res.status(200).json(data); 
-    }
+    // }
 }); 
 
 export default handler; 
@@ -30,7 +31,7 @@ Sample usage index.js (Home)
 const onelistID = 1; 
      const getOneList = async ( someID ) => {
      const response = await fetch(
-       `/api/playlistonelist/${someID}`,
+       `/api/playlist/${someID}`,
      );
      if (!response.ok) {
        throw new Error(response.statusText);
