@@ -26,15 +26,51 @@ main {
   justify-content: top;
   align-items: center;
 }
-.leftcolumn {   
-  float: left;
-  width: 50%;
+
+.mainHeader{
+
+  background-color: #FFBC93;
+  width: 100%;
+  position:absolute;
+  height: 125px;
+  top:0px;
+  border-style: none none solid none;
+ /* height: 100px;*/
+
+}
+.title{
+  position: absolute;
+  top: 0;
+  left: 20%;
+}
+.titleCreationPage{
+  position: absolute;
+  top: 2%;
+  left: 40%;
 }
 
 .rightcolumn {
   float: right;
   width: 50%;
-  padding-left: 60px;
+  padding-left: 50px;
+}
+
+.leftcolumn{
+  float: left;
+  width: 50%;
+  padding-left: 50px;
+}
+
+.headerLogo{
+  margin-left: 50px;
+  margin-top: 20px;
+  margin-bottom:20px;
+  height: 100px;
+ 
+}
+.leftcolumn {   
+  float: left;
+  width: 50%;
 }
 
 .row:after {
@@ -42,8 +78,18 @@ main {
   display: table;
   clear: both;
 }
+.mainDescriptionAndButtonsHome{
+  text-align: center;
 
+}
+
+.CreateOneListButton:hover{
+  background-color:black;
+  color: #FFBC93;
+}
 .CreateOneListButton{
+  margin: auto;
+  font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #FFBC93;
   font-size: 16px;
@@ -52,11 +98,19 @@ main {
   border: 4px solid #FFBC93;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 1px solid;
+  border: 2px solid;
   cursor: pointer;
+  width: fit-content;
 
+}
+.JoinOneListButton:hover{
+    background-color:black;
+    color: #FFBC93;
 }
 .JoinOneListButton{
+
+  margin: auto;
+  font-weight: bold;  
   font-family: Arial, Helvetica, sans-serif;
   background-color: #FFBC93;
   font-size: 16px;
@@ -65,38 +119,197 @@ main {
   border: 4px solid #FFBC93;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: 1px solid;
+  border: 2px solid;
   cursor: pointer;
-
-}
-.EventID{
-  text-align:right;
-  display: inline-block;
+  display: block;
   width: fit-content;
+}
+
+.HostPrompt{
+
+  text-align:center;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
-}
-.EventText{
-  float: left;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.ID{
-  float: left;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-weight: bold;
   width: fit-content;
+  
+}
+
+.signInButton{
+  
+  margin: auto;  
   font-family: Arial, Helvetica, sans-serif;
-  margin-left: 4px;
+  background-color: #FFBC93;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 2px solid #FFBC93;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border: 2px solid;
+  cursor: pointer;
+  display: block;
+  width: fit-content;
+
 
 }
-.HostPrompt{
-  text-align:left;
+.signInButton:hover{
+  background-color:black;
+  color: #FFBC93;
+}
+#signInLink:hover{
+  color: #FFBC93;
+}
+#signInLink{
+  font-weight: bold;
+  color: black;
+  
+}
+
+#eventDescription{
+
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid;
+  border-color: #FFBC93;
+  padding-left: 7px;
+  padding-top: 6px;
+
+}
+#eventTitle{
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid;
+  border-color: #FFBC93;
+  padding-left: 7px;
+  padding-top: 6px;
+}
+
+.EventID{
+  
+  margin-bottom: 10px;
+  text-align: left;
+  border-radius: 6px;
+  font-weight: bold;
+  width: fit-content;
+  height: fit-content;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  background-color: #FFBC93;
+  padding: 6px 6px;
+
+}
+
+
+#eventDate{
+  margin-top: 5px;
+  border-radius: 7px;
+  border: 2px solid;
+  width: 100%;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
+  border-color: #FFBC93;
+
 }
 
 .photoLabel{
   text-align:left;
   font-size: 14px;
   padding: 10px;
+}
+
+#CreateDateButton{
+
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFBC93;
+  font-size: 16px;
+  border: 4px solid;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border: 1px solid;
+  cursor: pointer;
+  font-weight: bold;
+  padding-left:6px;
+  padding-right:6px;
+  padding-top:6px;
+  padding-bottom:6px;
+
+}
+
+
+#CancelDateButton{
+
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFBC93;
+  font-size: 16px;
+  border: 4px solid;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: 6px;
+  border: 1px solid;
+  cursor: pointer;
+  font-weight: bold;
+  padding-left:6px;
+  padding-right:6px;
+  padding-top:6px;
+  padding-bottom:6px;
+
+}
+
+#AddSongsButton{
+
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFBC93;
+  font-size: 16px;
+  border-radius: 6px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  cursor: pointer;
+  padding-left:6px;
+  padding-right:6px;
+  padding-top:6px;
+  padding-bottom:6px;
+}
+
+#ExportSongsButton{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFBC93;
+  font-size: 16px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 4px solid #FFBC93;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid;
+  cursor: pointer;
+  margin-left: 5px;
+
+}
+
+#InvitationLinkButton{
+
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #FFBC93;
+  font-size: 16px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 4px solid #FFBC93;
+
+  margin-bottom: 10px;
+  border: 1px solid;
+  cursor: pointer;
+  
+
 }
 
 footer {

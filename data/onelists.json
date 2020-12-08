@@ -1,54 +1,59 @@
 [{
-    "id":"123456",
+    
     "title":"Halloween",
     "description":"Some spooky halloween jams for hall 203's party",
-    "image_path":"../public/defaultimage",
+    "imagesrc":"../public/defaultimage",
     "playlist" : [{
         "title":"Heartless",
-        "artist":["The Weeknd"],
+        "artist":"The Weeknd",
         "id":2,
-        "upvote":0,
-        "downvote":0,
-        "user":"Bobthebuilder"
+        "up":0,
+        "down":0,
+        "username":"Bobthebuilder"
       },
       {
         "title":"Intentions",
-        "artist":["Justin Bieber","Quavo"],
+        "artist":"Justin Bieber",
         "id":3,
-        "upvote":2,
-        "downvote":0,
-        "user":"laurie"
+        "up":2,
+        "down":0,
+        "username":"laurie"
       }],
     "date": "2020-12-25"
 },
 {
-    "id":"000000",
+    
     "title":"Christmas",
     "description":"Let's spread some holiday cheer!",
-    "image_path":"../public/defaultimage",
+    "imagesrc":"../public/defaultimage",
+    "host" : [{
+      "id": 56777,
+      "spotify" : "arbitraryUserTokent",
+      "email" : "yabbyw@yabby.com"
+    }],
     "playlist" : [{
         "title":"Better",
-        "artist":["Khalid"],
+        "artist":"Khalid",
         "id":5,
-        "upvote":2,
-        "downvote":0,
-        "user":"christmastree"
+        "up":2,
+        "down":0,
+        "username":"christmastree"
         },
         {
         "title":"1950",
-        "artist":["King Princess"],
+        "artist":"King Princess",
         "id":6,
-        "upvote":5,
-        "downvote":9,
-        "user":"partytime"
+        "up":5,
+        "down":9,
+        "username":"partytime"
         },
         {
           "title":"Blueberry Faygo",
-          "artist":["Lil Mosey"],
+          "artist":"Lil Mosey",
           "id":7,
-          "upvote":2,
-          "downvote":4,
-          "user":"iwantpresents"
+          "up":2,
+          "down":4,
+          "username":"iwantpresents"
         }],
     "date": "2020-12-25"
 }

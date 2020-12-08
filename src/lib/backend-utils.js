@@ -10,12 +10,10 @@ all the functions needed
     addOneList(onelist)
     addSong(song) - adds song to list of songs, adds song id to associated onelist
     removeSong(songid) - removes song associated with onelist id
-    upvoteSong(songid) - adds upvote
-    removeUpvoteSong(songid) - removes upvote
-    downvoteSong(songid) - adds downvote
-    removeUpvoteSong(songid) - removes downvote
+    changeupvote(songid, value) - change upvote count to value
+    changedownvote(songid, value) - change downvote count to value
     addHost(host) - adds new host
-    getHostOneList - returns onelist id associated with given host id
+    getHostOneList(email) - returns onelist id associated with given host id
     getPlaylist(onelistid) - returns all the songs with the same OneList id
   
 */
@@ -65,51 +63,26 @@ export async function addSong(song) {
   return songdata;
 }
 
-
 /**
- * Add new upvote to onelist in data store
+ * Change value of upvote to onelist in data store
  * 
  * returns new upvote count
  */
-export async function upvoteSong(songid) {
-  const songdata = await Song.query().findById(songid); 
-  const votedata = await Song.query().patchAndFetchById(songid, {up: 1+(songdata.up)});
+export async function changeupvote(songid, value) {
+  const votedata = await Song.query().patchAndFetchById(songid, {up: value});
   return votedata;
 }
 
 /**
- * Add new downvote to onelist in data store
+ * Change value of downvote to onelist in data store
  * 
  * returns new downvote count
  */
-export async function downvoteSong(songid) {
-  const songdata = await Song.query().findById(songid); 
-  const votedata = await Song.query().patchAndFetchById(songid, {down: 1+(songdata.down)});
+export async function changedownvote(songid, value) {
+  const votedata = await Song.query().patchAndFetchById(songid, {down: value});
   return votedata;
 }
 
-
-/**
- * Remove one upvote to onelist in data store
- * 
- * returns new of upvote count
- */
-export async function removeUpvoteSong(songid) {
-  const songdata = await Song.query().findById(songid); 
-  const votedata = await Song.query().patchAndFetchById(songid, {up: 0+(songdata.up)-1});
-  return votedata;
-}
-
-/**
- * Remove one downvote to onelist in data store
- * 
- * returns new of downvote count
- */
-export async function removeDownvoteSong(songid) {
-  const songdata = await Song.query().findById(songid); 
-  const votedata = await Song.query().patchAndFetchById(songid, {down: 0+(songdata.down)-1});
-  return votedata;
-}
 
 /**
  * delete song in a onelist in data store
@@ -138,8 +111,20 @@ export async function addHost(host) {
  * 
  * returns array of onelist ids
  */
+/*
 export async function getHostOneList(hostid) {
   const hostdata = await OneList.query().where({host_id: hostid}).select('id');
+  return hostdata;
+} */
+
+/**
+ * get onelist ids associated with host emai;
+ * 
+ * returns array of onelist ids
+ */
+export async function getHostOneList(email) {
+  //const hostemail = await Host.query().where({spotify: email});
+  const hostdata = await OneList.query().where({host_spotify: email});
   return hostdata;
 }
 

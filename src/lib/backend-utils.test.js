@@ -1,98 +1,132 @@
 
-import data from "../../data/onelists.json";
+import sampleOneLists from "../../data/onelists.json";
 
 import {
     getOneList,
     addOneList,
     addSong,
-    //removeSong,
-    upvoteSong,
-    downvoteSong,
+    changeupvote,
+    changedownvote,
+    deleteSong,
+    addHost,
+    getHostOneList,
+    getPlaylist,
     knex,
   } from "./backend-utils";
+
+//create sample one list and host data that matches the migration tables!
+const sampleHost = {
+ 
+    "spotify" : "yellow@yabby.com"
+}
+const sampleOnelist = {
+    "id" : 5678,
+    "title" : "Halloween",
+    "description":"Some spooky halloween jams for hall 203's party",
+    "imagesrc":"../public/defaultimage",
+    "host_spotify" : "yellow@yabby.com"
+    
+}
   
-describe.skip("Tests of the database functions", () => {
+describe("Tests of the database functions", () => {
+    
 
     beforeEach(async () => {
         await knex.migrate.rollback();
         await knex.migrate.latest();
-        await knex.seed.run();
+       
+        
       });
 
-    // this test asssumes that the database is seeded with the default two onelists in data
-    test("retrieve OneList associated with given ID", async () => {
-        const returnedList = await getOneList('123456');
-        expect(returnedList).toEqual(data[0]);
-
-        const returnedList2 = await getOneList('000000');
-        expect(returnedList2).toEqual(data[1]);
-
-        const returnedList3 = await getOneList('111111');
-        expect(returnedList3).toEqual(false);
-    })
-
-    test("add new OneList to database and return newly added OneList", async () => {
-        const sampleOneList = {
-            "id":"111111",
-            "title":"Fall Road Trip",
-            "description":"Some pop jams for the roadtrip to Florida",
-            "image_path":"../../public/defaultimage",
-            "playlist" : [{
-                "title":"boyfriend",
-                "artist":["Ariana Grande","Social House"],
-                "id":4,
-                "upvote":0,
-                "downvote":0,
-                "user": "scrum master"
-               },
-               {
-               "title":"Better",
-               "artist":["Khalid"],
-               "id":5,
-               "upvote":0,
-               "downvote":0,
-               "user": "product owner"
-               }],
-            "date": "2020-10-05"};
+    test("getOneList, gets OneList based on id", async () => {
+        const addedList = await addOneList(sampleOnelist);
         
-        const returnedOneList = await addOneList(sampleOneList);
+        const returnedOneList = await getOneList(addedList.id);
+        
+        expect(returnedOneList.title).toBe(sampleOnelist.title);
+        expect(returnedOneList.description).toBe(sampleOnelist.description);
+      
 
-        expect(returnedOneList.id).toBe(sampleOneList.id);
-        expect(returnedOneList.title).toBe(sampleOneList.title);
-        expect(returnedOneList.description).toBe(sampleOneList.description);
-        expect(returnedOneList.image_path).toBe(sampleOneList.image_path);
-        expect(returnedOneList.playlist).toBe(sampleOneList.playlist);
-        expect(returnedOneList.date).toBe(sampleOneList.date);
+    });
+
+    test("add new OneList to database and return newly added OneList with new id", async () => {
+       
+        
+        const returnedOneList = await addOneList(sampleOnelist);
+
+        expect(returnedOneList.title).toBe(sampleOnelist.title);
+        expect(returnedOneList.description).toBe(sampleOnelist.description);
+        expect(returnedOneList.imagesrc).toBe(sampleOnelist.imagesrc);
+       
+        expect(returnedOneList.id).toBeGreaterThanOrEqual(0);
     })
 
-    test("add song to OneList and return newly updated OneList", async () => {
-        // first arg is OneList id, second arg is song id
-        const returnedOneList = await addSong("123456", 5);
-        expect(returnedOneList.playlist[2].title).toBe("Better");
-        expect(returnedOneList.playlist[2].artist).toBe(["Khalid"]);
-        expect(returnedOneList.playlist[2].id).toBe(5);
+    test("add song to OneList", async () => {
+        // addsong(song), takes a song as the only argument
+        const sampleSong = {
+            "title":"Heartless",
+        "artist": "The Weeknd"}
+        const returnedSong = await addSong(sampleSong);
+        expect(returnedSong.title).toBe(sampleSong.title);
+        expect(returnedSong.artist).toBe(sampleSong.artist);
+        expect(returnedSong.id).toBeGreaterThanOrEqual(0);
     })
 
-    test("remove song from OneList and return newly updated OneList", async () => {
-        // not sure how to implement this test ??
-        //const returnedOneList = await removeSong('000000', 6);
+    test("upvote functionality", async () => {
+        const samplePlaylist = sampleOneLists[0].playlist;
+        const sampleSong = samplePlaylist[0];
+        expect(sampleSong.up).toBe(0);
+        addSong(sampleSong);
 
-        return true;
+        const returnedSong = await changeupvote(sampleSong.id, 1);      
+        expect(returnedSong.up).toBe(1);
+
     })
 
-    test("upvote song associated with given song ID and return updated song object", async () => {
-        const samplePlaylist = data[0].playlist;
-        expect(samplePlaylist[0].upvote).toBe(0);
+    test("downvote functionality", async () => {
+        const samplePlaylist= sampleOneLists[0].playlist;
+        const sampleSong = samplePlaylist[0];
+        expect(sampleSong.down).toBe(0);
+        addSong(sampleSong);
 
-        const returnedSong = upvoteSong(samplePlaylist[0].id);      
-        expect(returnedSong.upvote).toBe(1);
+        const returnedSong = await changedownvote(sampleSong.id, -1);      
+        expect(returnedSong.down).toBe(-1);
     })
 
-    test("downvote song associated with given song ID", async () => {
-        const samplePlaylist= data[0].playlist;
-        expect(samplePlaylist[0].downvote).toBe(0);
+    test("delete song functionality", async () => {
+        const sampleSong = sampleOneLists[0].playlist[0];
+        addSong(sampleSong);
+        const count = await deleteSong(sampleSong.id);
+        expect(count).toBe(1);
+        const rows = await knex('Song').where({title:sampleSong.title}).select();
+        expect(rows).toHaveLength(0);
 
-        const returnedSong = downvoteSong(samplePlaylist[0].id);      
-        expect(returnedSong.downvote).toBe(-1);
+
+    });
+
+    test("add host functionality", async () => {
+        //what does the host data entry look like? 
+       
+        const returnedHost = await addHost(sampleHost);
+        
+        expect(returnedHost.spotify).toBe(sampleHost.spotify);
+       
+    }); 
+
+    test("get Host OneList functionality", async () => {
+        
+        const currentHost = await addHost(sampleHost);
+        await addOneList(sampleOnelist);
+        const returnedOneLists = await getHostOneList(currentHost.spotify);
+        expect(returnedOneLists[0].host_spotify).toBe(currentHost.spotify);
+        
+    });
+
+    test("getPlaylist functionality", async () => {
+        const currentOneList = await addOneList(sampleOnelist);
+       
+        const returnedPlaylist = await getPlaylist(currentOneList.id);
+        expect(returnedPlaylist).toBeDefined();
     })
+
 });

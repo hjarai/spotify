@@ -2,16 +2,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import Head from 'next/head';
 
 /* eslint-disable no-undef, no-unused-vars */
 
-//assume setMode is what changes state to OneList page and Home page
-//OneList is an object {title: , description:, image: , playlist:{}}
+/*this page will not be used, has turned into hostpage in pages directory*/
+
 export default function CreationPage({ setMode }){
     const defaultImage = "/OnelistLogo.png";
     const [eventTitle, setEventTitle] = useState();
     const [eventDescription, setEventDescription] = useState();
-    const [eventDate, setEventDate] = useState('2020-12-25');
+    const [eventDate, setEventDate] = useState(new Date());
     const [eventImage, setEventImage] = useState(defaultImage);
    
   
@@ -39,11 +40,14 @@ export default function CreationPage({ setMode }){
     
     return(
         <div>
+            <Head>
+        <title>Event Creation Page</title>
+      </Head>
             <div>
             <div>
+            <h1 className="titleCreationPage">Create Your Event Here </h1>
                 <div className="EventID">
-                    <p className="EventText"> Event ID:</p>
-                    <p className="ID">{currentID}</p>     
+                <p> Your Event ID: {currentID}</p>    
                 </div>
             </div>
             <div className="leftcolumn">
@@ -51,7 +55,7 @@ export default function CreationPage({ setMode }){
                 <img
                     src= {eventImage} width="200" height="200"/>
                 
-                <label className = "photoLabel" htmlFor= "userImage"></label>
+                <label className = "photoLabel" htmlFor= "userImage" />
                 <input className = "photoLabel" id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = {false} 
                     onChange={()=>setEventImage( URL.createObjectURL(event.target.files[0]))}/>  
            
@@ -83,15 +87,15 @@ export default function CreationPage({ setMode }){
 
             </div>
 
-            <div>
+            <div >
                 <label htmlFor="Date" />
-                <input type="date" value = {eventDate} name = "Date" aria-label = "Date"
+                <input type="date" id ="eventDate" value = {eventDate} name = "Date" aria-label = "Date"
                     onChange={(event) => setEventDate(event.target.value)} />
             </div>
 
         {/* //all the buttons here */}
-        <button disabled={!eventTitle} onClick={() => setMode(OneList)}>Create</button>
-        <button onClick={() => setMode()}>Cancel</button>
+        <button id = "CreateDateButton" disabled={!eventTitle} onClick={() => setMode(OneList)}>Create</button>
+        <button id = "CancelDateButton" onClick={() => setMode()}>Cancel</button>
         </div>
         </div>
     );

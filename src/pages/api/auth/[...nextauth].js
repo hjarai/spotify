@@ -3,11 +3,14 @@ import Providers from 'next-auth/providers'
 
  // scopes get permission to modify user playlist ( we will use to export songs)
 
+ // The code is updated according to the new changes in nextauth to enable us get access to a user's spotify account and add
+ // a new playlist, specifically, the access Token. 
+
 const options = {
   providers: [
 
     Providers.Spotify({
-      scope: 'user-read-email playlist-modify-public playlist-modify-private',
+      scope: ' user-read-private user-read-email playlist-modify-public playlist-modify-private',
       clientId: process.env.SPOTIFY_CLIENT_ID,
       clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
       debug: true,
@@ -21,22 +24,27 @@ const options = {
       }
     }),
   ],
-  session: {
+  session:{
     jwt: true,
-  },
-  callbacks:{
-    jwt: async ( token, profile) => {
-      if(profile){
-        token.uid = profile.id;
+  }, 
+  callbacks: {
+    async jwt(token, _, account) {
+      if(account){
+        token.id = account.id;
+        token.accessToken = account.accessToken;   // get access token to modify user's playlist 
+        //console.log("This is token.accessToken" +   token.accessToken );
       }
-      return Promise.resolve(token);
+      return token 
     },
-    session: async (session, profile) => {
-      session.user.id = profile.id;
-      return Promise.resolve(session);
+    async session(session, user) {
+      session.user = user;  // get user information i.e id, email, name and profile picture
+      //console.log("This is user" +   user); 
+     
+      return session 
     }
-  }
+  }, 
 };
+
 
 
 
