@@ -11,7 +11,7 @@ import {addSongToPlaylist} from '../pages/api/Export.js';
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
-export default function PlaylistPage({ setMode, OneListID, user}) {
+export default function PlaylistPage({ OneListID, user}) {
     const [session] = useSession();
     const [OneList, setOneList] = useState({id:'', title:'', date: undefined, imagesrc:"/OnelistLogo.png"});
     const [playlist, setPlaylist] = useState();
@@ -69,22 +69,8 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
         setSongsAdded(updatedPlaylist);
     };
 
-    const updateSong = async ( updatedSong ) => {
-        const response = await fetch(
-          `api/songs/${updatedSong.id}`,
-          {
-            method: 'POST',
-            body: JSON.stringify(updatedSong),
-            headers: new Headers({ 'Content-type': 'application/json' }),
-          }
-        );
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-      };
-    
-    //no idea how setSongDetails works..... but should use updateSong
-    const setSongDetails=() => {return;}
+
+
     /* 
     const setSongDetails = (voteA) => {
         const currentPlaylist = oneList.playlist.map((song) => 
@@ -119,21 +105,12 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
 
     const currentPlaylistView = (playlist)? 
         playlist.map((song) => {
-            return (<PlayListSongDetail key = {song.title} 
+            return (<PlayListSongDetail key = {song.spotify_id} 
                                         songDetails = {song} 
-                                        setSongDetails = {setSongDetails} 
                                         removeSong = {removeSong}
                                         songsAdded = {songsAdded}/> )})
         :<></>;
 
-
-  /*   const AddPageView = (addMode)?
-    <AddPage setAddMode = {setAddMode} OneListID={OneListID} user={user}/>
-    :<div className="PlaylistButtons">
-    <button id = "AddSongsButton" onClick={() => setAddMode(true)}>Add Songs </button>
-    <button id = "ExportSongsButton" onClick = {handleClickExport}> Export</button>
-    <button id = "InvitationLinkButton" onClick={() => share()}>Invite friends!</button>
-    </div>; */
 
     const share = () => {
         const shareText = `You are being invited to collaborate in the 
