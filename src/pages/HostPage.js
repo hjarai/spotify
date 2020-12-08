@@ -118,7 +118,7 @@ export default function HostPage({setMode, setUser, setOneListID}){
                   </div>
 
                   {/* //all the buttons here */}
-                  <button className={styles.EventButton} disabled={!eventTitle} onClick={() => {addOneList();}}>Create Event</button>
+                  <button className={styles.EventButton} disabled={!eventTitle} onClick={() => addOneList()}>Create Event</button>
                   <button className={styles.EventButton} onClick={() => setMode()}>Cancel</button>
               </div>
     </div>
