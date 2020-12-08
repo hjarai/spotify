@@ -12,7 +12,7 @@ function SearchBar({
     <input
       aria-label="title"
       type="text"
-      placeholder="Search"
+      placeholder="Search songs"
       value={searchTerm}
       onChange={(event) => {
         setTerm(event.target.value);

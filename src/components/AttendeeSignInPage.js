@@ -10,34 +10,36 @@ export default function AttendeeSignInPage({ setMode, user, setUser }){
     const [eventId, seteventId] = useState();
     
     return(
-        <div>
-            <h1> Sign in to your OneList! </h1>
-            <div>
+        <div className="AttendeeMain">
+            <h1 className="AttendeePageTitle"> Sign in to your OneList! </h1>
+            
                 <h2> Event ID </h2>
                 <textarea 
+                    className= "Attendee"
                     aria-label = "EventId"
                     placeholder = "Enter 6-digit Event ID"
                     value={eventId} 
                     onChange={(event)=>seteventId(event.target.value)}
                     />
-            </div>
-            <div>
+            
+            
                 <h2> Username </h2>
                 <textarea 
+                    className= "Attendee"
                     aria-label = "User"
                     placeholder = "Enter a username"
                     value={user} 
                     onChange={(event)=>setUser(event.target.value)}
                     />
-            </div>
+        
 
         {/* //all the buttons here */}
-        <button
+        <button className="AttendeeButton"
             disabled={!eventId || eventId.length!==6} 
             onClick={() => setMode(eventId)}>
                 Sign In
             </button>
-        <button 
+        <button className="AttendeeButton"
             onClick={() => setMode()}>
                 Cancel
             </button>
