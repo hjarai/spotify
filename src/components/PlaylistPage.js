@@ -3,16 +3,24 @@
 import PlayListSongDetail from './PlayListSongDetail';
 
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
-
-
+import {getSession} from 'next-auth/client';
+import {addSongToPlaylist} from '../pages/api/Export.js';
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
 export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) {
-
-
+    const [session, setSession] = useState();
+    useEffect(() => {
+        const checkSession = async ()=>{
+            const newSession = await getSession();
+            setSession(newSession)
+        }
+        if (!session){
+        checkSession();
+                }
+            });
     //const [songsAdded, setSongsAdded] = useState(); songs added will hold list of songs added by the user 
     const currentOneList = {...OneList};
 
@@ -48,6 +56,11 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
             document.body.removeChild(component);
         }
     }
+    const handleClickExport = () => {
+        exporter.id = session.user.id;
+        exporter.token = session.user.accessToken;
+        addSongToPlaylist(exporter);
+    }
     
     return(
         //ADD LABELS TO EACH COMPONENT
@@ -64,7 +77,7 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
         </div>
             <div className="PlaylistButtons">
             <button id = "AddSongsButton" onClick={() => setMode('AddPage')}>Add Songs </button>
-            <button id = "ExportSongsButton"> Export</button>
+            <button id = "ExportSongsButton" onClick = {handleClickExport}> Export</button>
             <button id = "InvitationLinkButton" onClick={() => share()}>Invite friends!</button>
             </div>
             <ul aria-label = "Playlist" id = "Playlist">{currentPlaylistView}</ul>
