@@ -72,7 +72,7 @@ describe("Tests of the database functions", () => {
         expect(returnedSong.id).toBeGreaterThanOrEqual(0);
     })
 
-    test("upvote functionality", async () => {
+    test.skip("upvote functionality", async () => {
         const samplePlaylist = sampleOneLists[0].playlist;
         const sampleSong = samplePlaylist[0];
         expect(sampleSong.up).toBe(0);
@@ -83,7 +83,7 @@ describe("Tests of the database functions", () => {
 
     })
 
-    test("downvote functionality", async () => {
+    test.skip("downvote functionality", async () => {
         const samplePlaylist= sampleOneLists[0].playlist;
         const sampleSong = samplePlaylist[0];
         expect(sampleSong.down).toBe(0);

@@ -7,7 +7,6 @@ const handler = nc ({onError})
 .post(async (req, res) => { // creates a new OneList 
     const newOneList = req.body; 
     const aOneList = await addOneList(newOneList);
-    console.log("Just added " + aOneList.id)
     res.status(200).json(aOneList); 
 });
 

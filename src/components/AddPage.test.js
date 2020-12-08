@@ -12,13 +12,13 @@ describe('Top level integration tests', () => {
   });
 
   test("Search bar is visible and empty when rendered", ()=>{
-    render(<AddPage />);
+    render(<AddPage OneListID="0"/>);
     const searchInput = screen.getByRole('textbox', { name: 'title' });
     expect(searchInput).toHaveValue("");
   });
 
   test("Search Bar displays song when given keywords by title",()=>{
-    render(<AddPage />);
+    render(<AddPage OneListID="0"/>);
     const searchInput = screen.getByRole('textbox', { name: 'title' });
     expect(searchInput).toHaveValue("");
     fireEvent.change(searchInput, { target: { value: "Mo Bamba" } });
@@ -26,7 +26,7 @@ describe('Top level integration tests', () => {
   });
   
   test("Search Bar displays song when given keywords by artist",()=>{
-    render(<AddPage />);
+    render(<AddPage OneListID="0" />);
     const searchInput = screen.getByRole('textbox', { name: 'title' });
     const dropdownInput = screen.getByRole('combobox', { name: 'dropdown' });
     //grab the selct itself like the above, and then change the value like above
@@ -42,7 +42,7 @@ describe('Top level integration tests', () => {
   });
   
   test("When Search Bar is non-matching term, output is 'No Results Found'", async()=>{
-    render(<AddPage />);
+    render(<AddPage OneListID="0"/>);
     const searchInput = screen.getByRole('textbox', { name: 'title' });
     expect(searchInput).toHaveValue("");
     fireEvent.change(searchInput, { target: { value: "pppqqq" } });
@@ -51,7 +51,7 @@ describe('Top level integration tests', () => {
   });
 
   test("When Search Bar looking up results, output is 'Searching. . .'", ()=>{
-    render(<AddPage />);
+    render(<AddPage OneListID="0" />);
     const searchInput = screen.getByRole('textbox', { name: 'title' });
     expect(searchInput).toHaveValue("");
     fireEvent.change(searchInput, { target: { value: "Mo Bamb" } });

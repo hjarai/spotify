@@ -17,7 +17,7 @@ export default function AttendeeSignInPage({ setMode, user, setUser }){
                 <textarea 
                     className= "Attendee"
                     aria-label = "EventId"
-                    placeholder = "Enter 6-digit Event ID"
+                    placeholder = "Enter Event ID"
                     value={eventId} 
                     onChange={(event)=>seteventId(event.target.value)}
                     />
