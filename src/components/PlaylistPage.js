@@ -11,7 +11,7 @@ import {addSongToPlaylist} from '../pages/api/Export.js';
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
-export default function PlaylistPage({ setMode, OneListID, user}) {
+export default function PlaylistPage({ OneListID, user}) {
     const [session] = useSession();
     const [OneList, setOneList] = useState({id:'', title:'', date: undefined, image_path:"/OnelistLogo.png"});
     const [playlist, setPlaylist] = useState();
@@ -70,8 +70,7 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
     };
 
 
-    //no idea how setSongDetails works..... but should use updateSong
-    const setSongDetails=() => {return;}
+
     /* 
     const setSongDetails = (voteA) => {
         const currentPlaylist = oneList.playlist.map((song) => 
@@ -108,7 +107,6 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
         playlist.map((song) => {
             return (<PlayListSongDetail key = {song.spotify_id} 
                                         songDetails = {song} 
-                                        setSongDetails = {setSongDetails} 
                                         removeSong = {removeSong}
                                         songsAdded = {songsAdded}/> )})
         :<></>;

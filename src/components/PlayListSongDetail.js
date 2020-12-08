@@ -4,10 +4,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-export default function PlayListSongDetail({songDetails, setSongDetails, removeSong, songsAdded}) {
+export default function PlayListSongDetail({songDetails, removeSong, songsAdded}) {
 
   const [upvoteDisable,setUpvoteDisable] = useState();
   const [downvoteDisable,setDownvoteDisable] = useState();
+  //need votes as states independent of what is in DB, because updating the DB is asynchronous and not immediate
   const [up, setUp] = useState(+songDetails.up);
   const [down, setDown] = useState(+songDetails.down);
   
@@ -38,7 +39,7 @@ export default function PlayListSongDetail({songDetails, setSongDetails, removeS
         setUp(1+up);
         setDown(down-1);
       }
-      updateSong({...songDetails, up: up, down: down, uri:''});
+      updateSong({...songDetails, up: up, down: down});
       setUpvoteDisable(true);
       setDownvoteDisable(false);
     } else {
@@ -48,7 +49,7 @@ export default function PlayListSongDetail({songDetails, setSongDetails, removeS
         setUp(up-1);
         setDown(1+down);
       }
-      updateSong({...songDetails, up: up, down: down, uri:''});
+      updateSong({...songDetails, up: up, down: down});
       setDownvoteDisable(true);
       setUpvoteDisable(false);
       }
@@ -68,7 +69,6 @@ export default function PlayListSongDetail({songDetails, setSongDetails, removeS
 
 PlayListSongDetail.propTypes = {
     songDetails : PropTypes.object,
-    setSongDetails: PropTypes.func,
     removeSong: PropTypes.func,
     songsAdded: PropTypes.array
 }

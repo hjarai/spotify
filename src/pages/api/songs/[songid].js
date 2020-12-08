@@ -9,10 +9,9 @@
 import nc from 'next-connect';
 import { onError, cors } from '../../../lib/middleware'; 
 import { deleteSong,
-         //updateSong,
+         updateSong,
        } from '../../../lib/backend-utils'; 
-
-       //gets the host's onelists, returns in form of an array containing oneList IDs 
+ 
 const handler = nc({ onError }).use(cors)
 .put(async (req, res) => {
     const { id } = req.query;
