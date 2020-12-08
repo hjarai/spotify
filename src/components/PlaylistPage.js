@@ -149,6 +149,7 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
             document.body.removeChild(component);
         }
     }
+    let exporter = {};
     const handleClickExport = () => {
         exporter.id = session.user.id;
         exporter.token = session.user.accessToken;
