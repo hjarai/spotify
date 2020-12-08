@@ -69,20 +69,7 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
         console.log(someID+'deleted');
     };
 
-    const updateSong = async ( updatedSong ) => {
-        const response = await fetch(
-          `api/songs/${updatedSong.id}`,
-          {
-            method: 'POST',
-            body: JSON.stringify(updatedSong),
-            headers: new Headers({ 'Content-type': 'application/json' }),
-          }
-        );
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-      };
-    
+
     //no idea how setSongDetails works..... but should use updateSong
     const setSongDetails=() => {return;}
     /* 
@@ -126,14 +113,6 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
                                         songsAdded = {songsAdded}/> )})
         :<></>;
 
-
-  /*   const AddPageView = (addMode)?
-    <AddPage setAddMode = {setAddMode} OneListID={OneListID} user={user}/>
-    :<div className="PlaylistButtons">
-    <button id = "AddSongsButton" onClick={() => setAddMode(true)}>Add Songs </button>
-    <button id = "ExportSongsButton" onClick = {handleClickExport}> Export</button>
-    <button id = "InvitationLinkButton" onClick={() => share()}>Invite friends!</button>
-    </div>; */
 
     const share = () => {
         const shareText = `You are being invited to collaborate in the 

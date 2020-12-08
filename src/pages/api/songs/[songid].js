@@ -19,15 +19,15 @@ import { deleteSong,
        //gets the host's onelists, returns in form of an array containing oneList IDs 
 const handler = nc({ onError }).use(cors)
 .put(async (req, res) => {
-    const { song } = req.query;
-    const upadatedsong = await updateSong(song);
-    if(data.length === 0){
-        res.status(404).end(`There is no song associated with ${ songid }`);  
+    const { id } = req.query;
+    const newSong = req.body;
+    const count = await updateSong(newSong);
+    if (count === 0) {
+      res.status(404).end(`song with id ${id} not found`);
+    } else {
+      res.status(200).end();
     }
-    else{
-       res.status(200).end(); 
-    }
-})
+  })
 .delete(async (req, res) => {
   const { songid } = req.query;
   const count = await deleteSong(songid);
