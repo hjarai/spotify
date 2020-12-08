@@ -37,6 +37,5 @@ yarn-error.log*
 #testing
 gradescope.zip
 
-#localdatabase
-/OneList.sqlite3
+
 
