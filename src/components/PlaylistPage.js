@@ -130,7 +130,7 @@ export default function PlaylistPage({ OneListID, user}) {
     const handleClickExport = () => {
         exporter.id = session.user.id;
         exporter.token = session.user.accessToken;
-        addSongToPlaylist(exporter);
+        addSongToPlaylist(exporter, OneListID);
     }
     
     return(
