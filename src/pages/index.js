@@ -13,26 +13,16 @@ import styles from '../styles/Home.module.css';
 import data from '../../data/songs.json';
 import onelistData from '../../data/onelists.json';
 import AttendeeSignInPage from '../components/AttendeeSignInPage.js';
+import OneList from '../../models/OneList.js';
 
 export default function Home() {
   const [view, setView] = useState('home');
-  const [oneList, setOneList] = useState();
+  const [oneListID, setOneListID] = useState();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('title');
   const [songs] = useState(data);
   const [queue,setQueue] = useState([]);
   const [user, setUser] = useState();
-
-  const getOneList = async ( someID ) => {
-    const response = await fetch(
-      `/api/onelists/${someID}`,
-    );
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    const myOneList = await response.json();
-    setOneList(myOneList); 
-  }
   
   const setMode = (param) => {
     //need another if statement to transition from home component to creation page
@@ -41,61 +31,49 @@ export default function Home() {
       }
     else if (param === 'AddPage') {
       setView('AddPage');
-    }
-    else if (typeof param === 'string') {
-      //const serverdata = fetch OneList corresponsing with param from server
-      //setOneList(serverdata)
-      // const saved = onelistData.find(element=>element.id===param);
-      // setOneList(saved);
-      // setView('OneList');
-      
-      //IF PARAMETER IS THE ID
-      getOneList(param);
-      setView('OneList');
-    
-    }
-    else {
-      //param is the OneList made in HostPage
-      setOneList(param);
+    } else {
+      //param is OneListID
+      setOneListID(param);
       setView('OneList');    
     }
   };
 
-  const setSongDetails = (voteA) => {
-    const currentPlaylist = oneList.playlist.map((song) => 
-      {
-        if (song.id===voteA[0]){
-          song.upvote += voteA[1];
-          song.downvote += voteA[2];
-          return song;
-        }
-        else{
-          return song;
-        } 
-      }
-    );
-    const currentOneList = {...oneList};
-    currentOneList.playlist = currentPlaylist;
-    currentOneList.playlist = currentOneList.playlist.sort((song1,song2)=>{
-      const song1sum = (song1.upvote) + (song1.downvote);
-      const song2sum = (song2.upvote) + (song2.downvote);
-      if (song1sum > song2sum){
-        return -1;
-      }
-      else if (song1sum === song2sum){
-        return 0;
-      }
-      else{
-        return 1;
-      }
-    })
-    setOneList(currentOneList);
-  }
+  const setSongDetails =()=>{return;};
+  // const setSongDetails = (voteA) => {
+  //   const currentPlaylist = oneList.playlist.map((song) => 
+  //     {
+  //       if (song.id===voteA[0]){
+  //         song.upvote += voteA[1];
+  //         song.downvote += voteA[2];
+  //         return song;
+  //       }
+  //       else{
+  //         return song;
+  //       } 
+  //     }
+  //   );
+  //   const currentOneList = {...oneList};
+  //   currentOneList.playlist = currentPlaylist;
+  //   currentOneList.playlist = currentOneList.playlist.sort((song1,song2)=>{
+  //     const song1sum = (song1.upvote) + (song1.downvote);
+  //     const song2sum = (song2.upvote) + (song2.downvote);
+  //     if (song1sum > song2sum){
+  //       return -1;
+  //     }
+  //     else if (song1sum === song2sum){
+  //       return 0;
+  //     }
+  //     else{
+  //       return 1;
+  //     }
+  //   })
+  //   setOneList(currentOneList);
+  // }
   
   const pageContent = (view === 'createOneList')? <HostPage setMode = {setMode}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
-    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneList = {oneList} setSongDetails={setSongDetails} user={user}/>
-    :(view === 'AddPage')? <AddPage setMode = {setMode} OneList={oneList} user={user}/>
+    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneListID = {oneListID} setSongDetails={setSongDetails} user={user}/>
+    :(view === 'AddPage')? <AddPage setMode = {setMode} OneListID={oneListID} user={user}/>
     :<div> 
       <div className="mainDescriptionAndButtonsHome">
 

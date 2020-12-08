@@ -3,35 +3,46 @@
 import PlayListSongDetail from './PlayListSongDetail';
 
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { render } from 'react-dom';
 
 
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
-export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) {
-
+export default function PlaylistPage({ setMode, OneListID, setSongDetails, user}) {
+    const [OneList, setOneList] = useState({id:'', title:'', date: undefined, image_path:"/OnelistLogo.png"});
 
     //const [songsAdded, setSongsAdded] = useState(); songs added will hold list of songs added by the user 
-    const currentOneList = {...OneList};
+    //const currentOneList = {...OneList};
+   useEffect(() => {
+    const getOneList = async ( someID ) => {
+        const response = await fetch(
+          `/api/onelists/${someID}`);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const myOneList = await response.json();
+        setOneList(myOneList); 
+        console.log("myonelist is" + myOneList);
+        console.log("current is" + OneList);
+    };
+    getOneList(OneListID); 
+   }, []);
 
-    let currentPlaylistView;
-    if (currentOneList.playlist === undefined){
-        currentPlaylistView = <></>
-    }
-    else{
-        currentPlaylistView = currentOneList.playlist.map((song) => {
+
+    const currentPlaylistView = (OneList.playlist)?
+        OneList.playlist.map((song) => {
             return ( 
             <PlayListSongDetail key = {song.title} songDetails = {song} setSongDetails = {setSongDetails} removeSong = {removeSong}/> 
-        )});
-    }
+        )}): <></>;
+    //needs to use actual functions, don't call setmode
     function removeSong(removedSongTitle){
-        const updatedPlaylist = currentOneList.playlist.filter((song)=> {
+        const updatedPlaylist = OneList.playlist.filter((song)=> {
             return song.title !== removedSongTitle;
         });
-        currentOneList.playlist = updatedPlaylist
-        setMode(currentOneList);
+        OneList.playlist = updatedPlaylist
+        setMode(OneListID);
     }
 
     const share = () => {
@@ -76,7 +87,7 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
 
 PlaylistPage.propTypes = {
     setMode : PropTypes.func,
-    OneList : PropTypes.object.isRequired,
+    OneList : PropTypes.string.isRequired,
     setSongDetails: PropTypes.func, 
     user: PropTypes.string
 }
