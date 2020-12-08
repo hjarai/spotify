@@ -52,18 +52,17 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
     return(
         //ADD LABELS TO EACH COMPONENT
         <div> 
+            <h1 className="titlePlaylistPage"> Make Your Playlist Here </h1>
             <h4 aria-label = "Event ID" className="EventID">Event ID: {OneList.id}</h4>
-            <div className = "rightcolumn">
+        <div className = "rightcolumn">
             <h1 aria-label = "Title">{OneList.title}</h1>
             <h2 aria-label = "Description">{OneList.description}</h2>
             <h3 aria-label = "Date">{OneList.date}</h3>
-            </div>
-            <div className = "leftcolumn">
+         </div>
+        <div className = "leftcolumn">
             <img src = {OneList.image_path} width="200" height="200" />
-            </div>
-            <div>
-            
-
+        </div>
+            <div className="PlaylistButtons">
             <button id = "AddSongsButton" onClick={() => setMode('AddPage')}>Add Songs </button>
             <button id = "ExportSongsButton"> Export</button>
             <button id = "InvitationLinkButton" onClick={() => share()}>Invite friends!</button>

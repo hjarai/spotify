@@ -7,9 +7,9 @@ export default function Track({track, addSong}) {
     addSong();
   }
   return (
-    <div>
+    <div className="ResultSearch">
       {track.title} by {track.artist}
-      <button onClick={()=> {addSong(track)}}>+</button>
+      <button className="PlusButton" onClick={()=> {addSong(track)}}>+</button>
     </div>
   )
 }
