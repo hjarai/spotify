@@ -9,22 +9,20 @@
 import nc from 'next-connect';
 import { onError, cors } from '../../../lib/middleware'; 
 import { deleteSong,
-         //updateSong,
+         updateSong,
        } from '../../../lib/backend-utils'; 
-
-       //gets the host's onelists, returns in form of an array containing oneList IDs 
+ 
 const handler = nc({ onError }).use(cors)
-.put(async () => {
-    //const { songid } = req.query;
-    /* const upadatedsong = await updateSong(song);
-    if (data.length === 0){
-        res.status(404).end(`There is no song associated with ${ songid }`);  
+.put(async (req, res) => {
+    const { id } = req.query;
+    const newSong = req.body;
+    const count = await updateSong(newSong);
+    if (count === 0) {
+      res.status(404).end(`song with id ${id} not found`);
+    } else {
+      res.status(200).end();
     }
-    else{
-       res.status(200).end(); 
-    }
-    commented out due to linter errors */
-})
+  })
 .delete(async (req, res) => {
   const { songid } = req.query;
   const count = await deleteSong(songid);
