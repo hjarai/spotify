@@ -12,15 +12,15 @@ export default function PlayListSongDetail({songDetails,setSongDetails,removeSon
   let removeButton;
  
   if( true /*if(songsAdded.contains(song)*/){ //songs added can be a state that holds a list of songs added by the user
-    removeButton = <button className="removeSongButton" onClick = {() => {removeSong(songDetails.title)}}> Remove </button>
+    removeButton = <button className= "removeSongButton" onClick = {() => {removeSong(songDetails.title)}}> Remove </button>
   } else {
     removeButton = <> </>
   }
 
   return (
-    <div>
+    <div className="ButtonsSongDetail">
       {songDetails.title} by {songDetails.artist}
-      <button onClick={()=> {
+      <button className="VoteButton" onClick={()=> {
           if (upvoteDisable === undefined) {
             setSongDetails([songDetails.id, 1, 0]);
           } else {
@@ -32,7 +32,7 @@ export default function PlayListSongDetail({songDetails,setSongDetails,removeSon
         }} 
           disabled = {upvoteDisable === undefined ? false: upvoteDisable}> ⬆ {songDetails.upvote}</button>
      
-      <button onClick={()=> {
+      <button  className="VoteButton" onClick={()=> {
         if (downvoteDisable === undefined) {
           setSongDetails([songDetails.id, 0, -1]);
         } else {
