@@ -35,7 +35,7 @@ export default function AttendeeSignInPage({ setMode, user, setUser }){
 
         {/* //all the buttons here */}
         <button className="AttendeeButton"
-            disabled={!eventId || eventId.length!==6} 
+            disabled={!eventId} 
             onClick={() => setMode(eventId)}>
                 Sign In
             </button>

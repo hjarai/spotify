@@ -17,7 +17,7 @@ import {
 
 //assume setMode is what changes state to OneList page and Home page
 //OneList is an object {title: , description:, image: , playlist:{}}
-export default function HostPage({setMode}){
+export default function HostPage({setMode, setUser}){
     const defaultImage = "./OnelistLogo.png";
     const [eventTitle, setEventTitle] = useState();
     const [eventDescription, setEventDescription] = useState();
@@ -49,14 +49,13 @@ export default function HostPage({setMode}){
         }
 
         const onelistwithid = await response.json();
-        setID(response.id);
+        setID(onelistwithid.id);
       }
 
     const complete = function (){
-      setMode(OneList); 
+      setUser('Host');
       addOneList(OneList);
-      
-      //change view to playlistpage with return value of addOneList??
+      setMode(currentID); 
     }
 
     return(
@@ -72,10 +71,6 @@ export default function HostPage({setMode}){
             
           </main>
             <div className={styles.leftcolumn}>
-                  {/* <div className={styles.EventID}>
-                    <p> Your Event ID: {currentID}</p>     
-                  </div> */}
-
                   <div id={styles.eventImage}>
                     <img src= {eventImage} width="200" height="200"/>
                     <label className = "photoLabel" htmlFor= "userImage"></label>

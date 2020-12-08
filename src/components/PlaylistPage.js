@@ -1,17 +1,24 @@
 /* eslint-disable no-undef, no-unused-vars, no-use-before-define, prefer-const*/
 
 import PlayListSongDetail from './PlayListSongDetail';
-
+import AddPage from './AddPage.js'
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import {getSession} from 'next-auth/client';
 import {addSongToPlaylist} from '../pages/api/Export.js';
 
+
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
-export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) {
+export default function PlaylistPage({ setMode, OneListID, setSongDetails, user}) {
     const [session, setSession] = useState();
+    const [OneList, setOneList] = useState({id:'', title:'', date: undefined, image_path:"/OnelistLogo.png"});
+    const [playlist, setPlaylist] = useState();
+    const [songsAdded, setSongsAdded] = useState([]); //songs added will hold list of songs added by the user 
+    const [addMode, setAddMode] = useState(false);
+    
+    //session management
     useEffect(() => {
         const checkSession = async ()=>{
             const newSession = await getSession();
@@ -19,28 +26,59 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
         }
         if (!session){
         checkSession();
-                }
-            });
-    //const [songsAdded, setSongsAdded] = useState(); songs added will hold list of songs added by the user 
-    const currentOneList = {...OneList};
+        }
+    });
 
-    let currentPlaylistView;
-    if (currentOneList.playlist === undefined){
-        currentPlaylistView = <></>
-    }
-    else{
-        currentPlaylistView = currentOneList.playlist.map((song) => {
-            return ( 
-            <PlayListSongDetail key = {song.title} songDetails = {song} setSongDetails = {setSongDetails} removeSong = {removeSong}/> 
-        )});
-    }
+   //fetch OneList details         
+   useEffect(() => {
+    const getOneList = async ( someID ) => {
+        const response = await fetch(
+          `/api/onelists/${someID}`);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const myOneList = await response.json();
+        setOneList(myOneList); 
+    };
+    getOneList(OneListID); 
+    }, []);
+
+    //fetch playlist content
+    useEffect(() => {
+        const getPlaylist = async ( someID ) => {
+            const response = await fetch(
+                `/api/playlist/${someID}`, );
+            if (!response.ok) {
+            throw new Error(response.statusText);
+            }
+            const myPlaylist = await response.json();
+            setPlaylist(myPlaylist); 
+        };
+        getPlaylist(OneListID);
+    }, [addMode]);
+   
+    //needs to use actual functions, don't call setmode
     function removeSong(removedSongTitle){
-        const updatedPlaylist = currentOneList.playlist.filter((song)=> {
-            return song.title !== removedSongTitle;
-        });
-        currentOneList.playlist = updatedPlaylist
-        setMode(currentOneList);
+    const updatedPlaylist = OneList.playlist.filter((song)=> {
+        return song.title !== removedSongTitle;
+    });
+    OneList.playlist = updatedPlaylist
+    setMode(OneListID);
     }
+
+    const currentPlaylistView = (playlist)? 
+        playlist.map((song) => {
+            return (<PlayListSongDetail key = {song.title} songDetails = {song} setSongDetails = {setSongDetails} removeSong = {removeSong}/> )
+        }):<></>;
+
+
+  /*   const AddPageView = (addMode)?
+    <AddPage setAddMode = {setAddMode} OneListID={OneListID} user={user}/>
+    :<div className="PlaylistButtons">
+    <button id = "AddSongsButton" onClick={() => setAddMode(true)}>Add Songs </button>
+    <button id = "ExportSongsButton" onClick = {handleClickExport}> Export</button>
+    <button id = "InvitationLinkButton" onClick={() => share()}>Invite friends!</button>
+    </div>; */
 
     const share = () => {
         const shareText = `You are being invited to collaborate in the 
@@ -65,8 +103,18 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
     return(
         //ADD LABELS TO EACH COMPONENT
         <div> 
+            {(addMode)?
+            <AddPage    setAddMode = {setAddMode} 
+                        OneListID={OneListID} 
+                        user={user} 
+                        playlist={playlist} 
+                        SongsAdded={songsAdded} 
+                        setSongsAdded = {setSongsAdded} 
+                        user={user}/>:
+            <div>
             <h1 className="titlePlaylistPage"> Make Your Playlist Here </h1>
             <h4 aria-label = "Event ID" className="EventID">Event ID: {OneList.id}</h4>
+            <h4 aria-label = "Event ID" className="EventID">Signed in as: {user}</h4>
         <div className = "rightcolumn">
             <h1 aria-label = "Title">{OneList.title}</h1>
             <h2 aria-label = "Description">{OneList.description}</h2>
@@ -76,11 +124,13 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
             <img src = {OneList.image_path} width="200" height="200" />
         </div>
             <div className="PlaylistButtons">
-            <button id = "AddSongsButton" onClick={() => setMode('AddPage')}>Add Songs </button>
+            <button id = "AddSongsButton" onClick={() => setAddMode(true)}>Add Songs </button>
             <button id = "ExportSongsButton" onClick = {handleClickExport}> Export</button>
             <button id = "InvitationLinkButton" onClick={() => share()}>Invite friends!</button>
             </div>
             <ul aria-label = "Playlist" id = "Playlist">{currentPlaylistView}</ul>
+            </div>
+        }
         </div>
 
     );
@@ -89,7 +139,7 @@ export default function PlaylistPage({ setMode, OneList, setSongDetails, user}) 
 
 PlaylistPage.propTypes = {
     setMode : PropTypes.func,
-    OneList : PropTypes.object.isRequired,
+    OneListID : PropTypes.string.isRequired,
     setSongDetails: PropTypes.func, 
     user: PropTypes.string
 }
