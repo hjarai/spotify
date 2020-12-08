@@ -13,7 +13,7 @@ import {addSongToPlaylist} from '../pages/api/Export.js';
 
 export default function PlaylistPage({ setMode, OneListID, user}) {
     const [session] = useSession();
-    const [OneList, setOneList] = useState({id:'', title:'', date: undefined, image_path:"/OnelistLogo.png"});
+    const [OneList, setOneList] = useState({id:'', title:'', date: undefined, imagesrc:"/OnelistLogo.png"});
     const [playlist, setPlaylist] = useState();
     const [songsAdded, setSongsAdded] = useState([]); //songs added will hold list of songs added by the user 
     const [addMode, setAddMode] = useState(false);
@@ -175,7 +175,7 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
             <h3 aria-label = "Date">{OneList.date}</h3>
          </div>
         <div className = "leftcolumn">
-            <img src = {OneList.image_path} width="200" height="200" />
+            <img src = {OneList.imagesrc} width="200" height="200" />
         </div>
             <div className="PlaylistButtons">
             <button id = "AddSongsButton" onClick={() => setAddMode(true)}>Add Songs </button>
