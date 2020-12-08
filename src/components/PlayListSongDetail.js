@@ -15,7 +15,7 @@ export default function PlayListSongDetail({songDetails, setSongDetails, removeS
 
   return (
     <div className="ButtonsSongDetail">
-      {songDetails.title} by {songDetails.artist}
+      {songDetails.title} by {songDetails.artist} added by {songDetails.username}
       <button className="VoteButton" onClick={()=> {
           if (upvoteDisable === undefined) {
             setSongDetails([songDetails.id, 1, 0]);

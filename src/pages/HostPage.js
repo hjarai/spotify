@@ -49,13 +49,12 @@ export default function HostPage({setMode, setUser}){
         }
 
         const onelistwithid = await response.json();
-        setID(onelistwithid.id);
+        setMode(onelistwithid.id); 
       }
 
     const complete = function (){
       setUser('Host');
       addOneList(OneList);
-      setMode(currentID); 
     }
 
     return(

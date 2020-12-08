@@ -119,7 +119,7 @@ export default function PlaylistPage({ setMode, OneListID, user}) {
 
     const currentPlaylistView = (playlist)? 
         playlist.map((song) => {
-            return (<PlayListSongDetail key = {song.title} 
+            return (<PlayListSongDetail key = {song.spotify_id} 
                                         songDetails = {song} 
                                         setSongDetails = {setSongDetails} 
                                         removeSong = {removeSong}
