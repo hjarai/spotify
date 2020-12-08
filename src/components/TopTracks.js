@@ -2,8 +2,8 @@ import React from 'react';
 import useSWR from 'swr';
 import fetcher from '../lib/fetcher';
 import Track from './Track'
-//import PropTypes from 'prop-types';
-//import {getAccessToken, getSearch} from '../lib/spotify.js';
+import PropTypes from 'prop-types';
+
 
 export default function TopTracks ({ searchTerm, addSong, sortType}) {
   if (searchTerm==='') {
@@ -32,4 +32,9 @@ export default function TopTracks ({ searchTerm, addSong, sortType}) {
   }
 
   
+}
+TopTracks.propTypes = {
+  searchTerm: PropTypes.string,
+  addSong: PropTypes.func,
+  sortType: PropTypes.string
 }

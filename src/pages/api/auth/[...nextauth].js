@@ -12,7 +12,16 @@ const options = {
     Providers.Spotify({
       scope: ' user-read-private user-read-email playlist-modify-public playlist-modify-private',
       clientId: process.env.SPOTIFY_CLIENT_ID,
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+      debug: true,
+      profile: (profile) => {
+        return {
+          id: profile.id,
+          name: profile.display_name,
+          email: profile.email,
+          image: profile.images.length > 0 ? profile.images[0].url : undefined
+        }
+      }
     }),
   ],
   session:{
