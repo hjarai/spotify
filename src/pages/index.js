@@ -18,10 +18,6 @@ import AttendeeSignInPage from '../components/AttendeeSignInPage.js';
 export default function Home() {
   const [view, setView] = useState('home');
   const [oneListID, setOneListID] = useState();
-  // const [searchTerm, setSearchTerm] = useState('');
-  // const [sortType, setSortType] = useState('title');
-  // const [songs] = useState(data);
-  // const [queue,setQueue] = useState([]);
   const [user, setUser] = useState();
   
   const setMode = (param) => {
@@ -37,42 +33,10 @@ export default function Home() {
       setView('OneList');    
     }
   };
-
-  // const setSongDetails = (voteA) => {
-  //   const currentPlaylist = oneList.playlist.map((song) => 
-  //     {
-  //       if (song.id===voteA[0]){
-  //         song.upvote += voteA[1];
-  //         song.downvote += voteA[2];
-  //         return song;
-  //       }
-  //       else{
-  //         return song;
-  //       } 
-  //     }
-  //   );
-  //   const currentOneList = {...oneList};
-  //   currentOneList.playlist = currentPlaylist;
-  //   currentOneList.playlist = currentOneList.playlist.sort((song1,song2)=>{
-  //     const song1sum = (song1.upvote) + (song1.downvote);
-  //     const song2sum = (song2.upvote) + (song2.downvote);
-  //     if (song1sum > song2sum){
-  //       return -1;
-  //     }
-  //     else if (song1sum === song2sum){
-  //       return 0;
-  //     }
-  //     else{
-  //       return 1;
-  //     }
-  //   })
-  //   setOneList(currentOneList);
-  // }
   
   const pageContent = (view === 'createOneList')? <HostPage setMode = {setMode} setUser={setUser}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
-    :(view === 'OneList')? <PlaylistPage setMode = {setMode} OneListID = {oneListID} user={user}/>
-    // :(view === 'AddPage')? <AddPage setMode = {setMode} OneListID={oneListID} user={user}/>
+    :(view === 'OneList')? <PlaylistPage OneListID = {oneListID} user={user}/>
     :<div> 
       <div className="mainDescriptionAndButtonsHome">
 

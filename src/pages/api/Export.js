@@ -23,10 +23,10 @@ const makePlaylist = async (exporter) => {
     return id;
 }
 
-export const addSongToPlaylist = async (exporter) => {
+export const addSongToPlaylist = async (exporter, oneListID) => {
     console.log(exporter);
     
-    const playlistID = await makePlaylist(exporter);
+    const playlistID = await makePlaylist(exporter, oneListID);
     console.log
     const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`,{
         method: 'POST',
