@@ -11,7 +11,9 @@ exports.up = function(knex, Promise) {
         table.integer('up');
         table.integer('down');
         table.string('username');
+        table.string('spotify_id');
         table.string('songUrl');
+        table.string('uri');
       })
       
       .createTable('Host', (table) => {

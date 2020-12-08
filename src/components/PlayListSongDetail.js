@@ -30,7 +30,7 @@ export default function PlayListSongDetail({songDetails,setSongDetails,removeSon
           setUpvoteDisable(true);
           setDownvoteDisable(false);
         }} 
-          disabled = {upvoteDisable === undefined ? false: upvoteDisable}> ⬆ {songDetails.upvote}</button>
+          disabled = {upvoteDisable === undefined ? false: upvoteDisable}> ⬆ {songDetails.up}</button>
      
       <button  className="VoteButton" onClick={()=> {
         if (downvoteDisable === undefined) {
@@ -42,7 +42,7 @@ export default function PlayListSongDetail({songDetails,setSongDetails,removeSon
         setUpvoteDisable(false);
       }}
       
-        disabled = {downvoteDisable === undefined ? false : downvoteDisable}> ⬇ {songDetails.downvote}</button>
+        disabled = {downvoteDisable === undefined ? false : downvoteDisable}> ⬇ {songDetails.down}</button>
 
        {removeButton}
     </div>
