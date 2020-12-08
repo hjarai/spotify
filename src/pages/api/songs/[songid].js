@@ -1,7 +1,3 @@
-
-
-
-
 // This portion to be updated after talking to the people who made the data base 
 // to see how this functions that seem similar can be implimented. 
 
@@ -13,7 +9,7 @@
 import nc from 'next-connect';
 import { onError, cors } from '../../../lib/middleware'; 
 import { deleteSong,
-         updateSong,
+         //updateSong,
        } from '../../../lib/backend-utils'; 
 
        //gets the host's onelists, returns in form of an array containing oneList IDs 

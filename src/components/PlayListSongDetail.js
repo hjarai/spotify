@@ -69,5 +69,6 @@ export default function PlayListSongDetail({songDetails, setSongDetails, removeS
 PlayListSongDetail.propTypes = {
     songDetails : PropTypes.object,
     setSongDetails: PropTypes.func,
-    removeSong: PropTypes.func
+    removeSong: PropTypes.func,
+    songsAdded: PropTypes.array
 }

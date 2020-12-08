@@ -28,18 +28,6 @@ export default function AddPage({setAddMode, OneListID, playlist, SongsAdded, se
     }
   }; */
 
-  const addSong = (newSong) => {
-    if (playlist.find(song => song.songUrl === newSong.songUrl) || 
-      addedRecently.find(url => url === newSong.songUrl)){
-      alert(`${newSong.title} by ${newSong.artist} has already been added to your OneList!`);
-    } else {
-      const songwithid = {...newSong, id: undefined, spotify_id:newSong.id, onelist_id:+OneListID, username:user };
-      addSongDB(songwithid);
-      setAddedRecently([...addedRecently, newSong.songUrl]);
-      alert(`${newSong.title} by ${newSong.artist} is now added to your OneList!`);
-      console.log(SongsAdded);
-    }
-  }
 
   const addSongDB = async (newSong) => {
     const response = await fetch(`/api/songs`,{
@@ -55,6 +43,19 @@ export default function AddPage({setAddMode, OneListID, playlist, SongsAdded, se
     setSongsAdded([...SongsAdded, newSongwithId.id]);
     }
 
+  const addSong = (newSong) => {
+    if (playlist.find(song => song.songUrl === newSong.songUrl) || 
+      addedRecently.find(url => url === newSong.songUrl)){
+      alert(`${newSong.title} by ${newSong.artist} has already been added to your OneList!`);
+    } else {
+      const songwithid = {...newSong, id: undefined, spotify_id:newSong.id, onelist_id:+OneListID, username:user };
+      addSongDB(songwithid);
+      setAddedRecently([...addedRecently, newSong.songUrl]);
+      alert(`${newSong.title} by ${newSong.artist} is now added to your OneList!`);
+      console.log(SongsAdded);
+    }
+  }
+
   return (
     <>
         <h1 className="title">Search Spotify: </h1>
@@ -69,7 +70,11 @@ export default function AddPage({setAddMode, OneListID, playlist, SongsAdded, se
 
 AddPage.propTypes = {
     setAddMode : PropTypes.func,
-    OneListID : PropTypes.string.isRequired
+    OneListID : PropTypes.string.isRequired,
+    playlist: PropTypes.array,
+    SongsAdded: PropTypes.array,
+    setSongsAdded: PropTypes.func,
+    user: PropTypes.string
 }
 
 //<SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>

@@ -16,7 +16,6 @@ const handler = nc({ onError }).use(cors)
 
       //return the onelist iD 
       res.status(200).json(data); 
-      console.log("id is " + data.id);
     }
 }); 
 
