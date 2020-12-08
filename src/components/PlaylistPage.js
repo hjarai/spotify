@@ -55,21 +55,30 @@ export default function PlaylistPage({ setMode, OneListID, setSongDetails, user}
             setPlaylist(myPlaylist); 
         };
         getPlaylist(OneListID);
-    }, [addMode]);
-   
-    //needs to use actual functions, don't call setmode
-    function removeSong(removedSongTitle){
-    const updatedPlaylist = OneList.playlist.filter((song)=> {
-        return song.title !== removedSongTitle;
-    });
-    OneList.playlist = updatedPlaylist
-    setMode(OneListID);
-    }
+    }, [addMode, songsAdded]);
+
+
+    const removeSong = async ( someID ) => {
+        const response = await fetch(
+            `/api/songs/${someID}`,{method: 'DELETE'});
+        if (!response.ok) {
+        throw new Error(response.statusText);
+        }
+        const updatedPlaylist = songsAdded.filter((id)=> {
+            return id !== someID;
+        });
+        setSongsAdded(updatedPlaylist);
+        console.log(someID+'deleted');
+    };
 
     const currentPlaylistView = (playlist)? 
         playlist.map((song) => {
-            return (<PlayListSongDetail key = {song.title} songDetails = {song} setSongDetails = {setSongDetails} removeSong = {removeSong}/> )
-        }):<></>;
+            return (<PlayListSongDetail key = {song.title} 
+                                        songDetails = {song} 
+                                        setSongDetails = {setSongDetails} 
+                                        removeSong = {removeSong}
+                                        songsAdded = {songsAdded}/> )})
+        :<></>;
 
 
   /*   const AddPageView = (addMode)?

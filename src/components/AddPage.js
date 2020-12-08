@@ -37,7 +37,7 @@ export default function AddPage({setAddMode, OneListID, playlist, SongsAdded, se
       addSongDB(songwithid);
       setAddedRecently([...addedRecently, newSong.songUrl]);
       alert(`${newSong.title} by ${newSong.artist} is now added to your OneList!`);
-      //console.log(addedRecently);
+      console.log(SongsAdded);
     }
   }
 
@@ -51,8 +51,8 @@ export default function AddPage({setAddMode, OneListID, playlist, SongsAdded, se
     if(!response.ok){
       throw new Error(response.statusText);
       }
-    const newSongId = await response.json();
-    setSongsAdded([...SongsAdded, newSongId]);
+    const newSongwithId = await response.json();
+    setSongsAdded([...SongsAdded, newSongwithId.id]);
     }
 
   return (

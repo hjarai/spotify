@@ -63,24 +63,34 @@ export async function addSong(song) {
   return songdata;
 }
 
-/**
- * Change value of upvote to onelist in data store
- * 
- * returns new upvote count
- */
-export async function changeupvote(songid, value) {
-  const votedata = await Song.query().patchAndFetchById(songid, {up: value});
-  return votedata;
-}
+// /**
+//  * Change value of upvote to onelist in data store
+//  * 
+//  * returns new upvote count
+//  */
+// export async function changeupvote(songid, value) {
+//   const votedata = await Song.query().patchAndFetchById(songid, {up: value});
+//   return votedata;
+// }
+
+// /**
+//  * Change value of downvote to onelist in data store
+//  * 
+//  * returns new downvote count
+//  */
+// export async function changedownvote(songid, value) {
+//   const votedata = await Song.query().patchAndFetchById(songid, {down: value});
+//   return votedata;
+// }
 
 /**
- * Change value of downvote to onelist in data store
+ * Change song value with songid
  * 
- * returns new downvote count
+ * returns number of changed songs
  */
-export async function changedownvote(songid, value) {
-  const votedata = await Song.query().patchAndFetchById(songid, {down: value});
-  return votedata;
+export async function updateSong(song) {
+  const newsong = await Song.query().patch(song).findById(song.id);
+  return newsong;
 }
 
 
