@@ -66,21 +66,35 @@ main {
   text-align: center;
   width: fit-content;
 }
+
 #AddSongsButton{
 display: inline-block;
+}
 
+#AddSongsButton:hover{
+  color:#FFBC93; 
+  background-color: black;
 }
 
 #ExportSongsButton{
   display: inline-block;
   margin-right: 4px;
+}
 
+#ExportSongsButton:hover{
+  color:#FFBC93; 
+  background-color: black;
 }
 
 #InvitationLinkButton{
   display: inline-block;
-
 }
+
+#InvitationLinkButton:hover{
+  color:#FFBC93; 
+  background-color: black;
+}
+
 .rightcolumn {
   float: right;
   width: 50%;
@@ -389,10 +403,9 @@ display: inline-block;
   background-color: #FFBC93;
   font-size: 16px;
   border-radius: 6px;
-  width: 8%;
-  margin-top: 4px;
-  margin-left:10px ;
-  border: 2px solid;
+  width: 4%;
+  margin-left:5px;
+  border: 1px solid;
   cursor: pointer;
   padding: 2px 2px;
   display: inline;
@@ -404,13 +417,13 @@ display: inline-block;
 .removeSongButton{
   font-family: Arial, Helvetica, sans-serif;
   background-color: #FFBC93;
-  font-size: 16px;
-  border-radius: 6px;
+  font-size: 13px;
+  border-radius: 5px;
   width: fit-content;
-  margin-left:5px ;
-  border: 2px solid;
+  margin-left: 5px ;
+  border: 1px solid;
   cursor: pointer;
-  padding: 4px 5px;
+  padding: 4px 4px;
   display: inline-block;
 
 }
@@ -471,4 +484,22 @@ footer a {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.playlistView{
+  width: 70%;
+}
+
+.VoteDisplay {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  font-size: 18px;
+  border: 2px solid;
+  border-color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.VoteDisplay:hover{
+  color:#FFBC93; 
 }

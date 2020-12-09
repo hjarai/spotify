@@ -4,10 +4,9 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/Host.module.css';
 import Head from 'next/head';
-import Link from 'next/link';
 import FileBase64 from 'react-file-base64';
 
-import { signIn, signOut, 
+import { signIn, 
     useSession
   } from 'next-auth/client'
  // import { useRouter } from 'next/router'; 
@@ -19,7 +18,7 @@ import { signIn, signOut,
 export default function HostPage({setMode, setUser, setOneListID}){
     const defaultImage = "./OneListLogo.png"; 
     const [eventTitle, setEventTitle] = useState();
-    const [eventDescription, setEventDescription] = useState();
+    const [eventDescription, setEventDescription] = useState('');
     const [eventDate, setEventDate] = useState(new Date().toDateString());
     const [eventImage, setEventImage] = useState(defaultImage);
     const [session, loading] = useSession();
@@ -128,7 +127,7 @@ useEffect(()=>{
                     <img src= {eventImage} width="200" height="200"/>
                     <label className = "photoLabel" htmlFor= "userImage"></label>
                     <input className = {styles.photoLabel} id="userImage" name="userImage" 
-                        aria-label = "Import Image" type="button" value="Submit" onClick={handleImage} />
+                        aria-label = "Import Image" type="button" value="Upload Image" onClick={handleImage} />
                      <FileBase64 multiple={false} onDone={setFileData} />
                   </div>
                   <div className={styles.currentUser}>
@@ -180,11 +179,6 @@ useEffect(()=>{
                   {/* //all the buttons here */}
                   <button className={styles.EventButton} disabled={!eventTitle || !session} onClick={() => addOneList()}>Create Event</button>
                   <button className={styles.EventButton} onClick={() => setMode()}>Cancel</button>
-              </div>
-              <div>
-              <Link href="./onelists">
-            <a>Link to your onelists</a>
-          </Link>
               </div>
     </div>
     );

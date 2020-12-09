@@ -4,8 +4,6 @@ import {useSession } from 'next-auth/client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-
-
 export default function OneLists(){
     const [session, loading] = useSession();
     const [userData, setUserData] = useState([]); 
@@ -15,26 +13,20 @@ export default function OneLists(){
 
     // renders if the user is not logged in
     if(!loading && !session){
-
         return (
             <div>
-            
-            <div>
-            You must login to view onelists
-
+                <main>
+                    <div className="mainHeader">
+                        <img className = "headerLogo" src= "OnelistLogoSmall.png"/>
+                     </div>     
+                    <h4> Please login to view your OneLists </h4>
+                    <Link href="./">
+                    <button className="CreateOneListButton">Back</button>
+                    </Link>
+                </main>
             </div>
-            <div>
-            <Link href="./">
-            <a>Link to homepage</a>
-          </Link>
-            </div>
-            
-            </div>
-            
-        )
-
+        );
     }
-
     // this is only executed when the user is logged in
 
     useEffect(()=>{
@@ -49,34 +41,26 @@ export default function OneLists(){
     }, [session]);
     // prints the lists of onelists with their IDs
    const onelists =  userData.map((onelist) => <li key={onelist.id}>
-   
-   {" OneList ID: " +  onelist.id + "  Title: " + onelist.title}</li>)
+        {" OneList ID: " +  onelist.id + "  Title: " + onelist.title} </li>)
 
-
-
-
-if(onelists !==0){ // return onelists
+if(onelists!==0){ // return onelists
     return (
-        <div >
+        <div className={styles}>
             <Head>
                 <title>
                     Your OneLists
                 </title>
             </Head>
-
-            <main className = {styles.main}>
-                <h1 > Your oneLists </h1>
-               
-                <p> 
-                     {onelists}
-                </p>
-
-                <div>         
+            <main>
+                    <div className="mainHeader">
+                        <img className = "headerLogo" src= "OnelistLogoSmall.png"/>
+                     </div>     
+            
+                <h1 > Your OneLists </h1>
+                <p> {onelists}</p>
                 <Link href="./">
-            <a>Link to homepage</a>
-          </Link>
-          </div>
-
+                <button className="CreateOneListButton">Back</button>
+                </Link>
             </main>
         </div>
     );
@@ -91,8 +75,7 @@ else{ // return message if no section is selected
             </Head>
 
             <main className = {styles.main}>
-                <h1 > There are no onelists to display </h1>
-
+                <h1 > There are no OneLists to display </h1>
             </main>
         </div>
     );

@@ -7,11 +7,11 @@ import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import {useSession} from 'next-auth/client';
 import {addSongToPlaylist} from '../pages/api/Export.js';
-
+import Link from 'next/link';
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
-export default function PlaylistPage({ OneListID, user}) {
+export default function PlaylistPage({ OneListID, user, goHome}) {
     const [session] = useSession();
     const [OneList, setOneList] = useState({id:'', title:'', date: undefined, imagesrc:"/OnelistLogo.png"});
     const [playlist, setPlaylist] = useState();
@@ -37,7 +37,9 @@ export default function PlaylistPage({ OneListID, user}) {
     const getOneList = async ( someID ) => {
         const response = await fetch(`/api/onelists/${someID}`);
         if (!response.ok) {
-          throw new Error(response.statusText);
+          //throw new Error(response.statusText);
+          goHome();
+          return setTimeout(() => {alert('Incorrect Event ID! Please try again.');}, 300);
         }
         const myOneList = await response.json();
         setOneList(myOneList); 
@@ -77,7 +79,7 @@ export default function PlaylistPage({ OneListID, user}) {
     // since the info in the db (what getplaylist returns) is asynchronous
     useEffect(()=>{
         if(playlist){
-        const updated = playlist.map((song) => song.id === update.id? update:song);
+        const updated = playlist.map((song) => (song.id === update.id? update:song));
         setPlaylist(updated.sort((song1, song2) => (song2.vote - song1.vote)));
     }}, [update]);
 
@@ -94,9 +96,8 @@ export default function PlaylistPage({ OneListID, user}) {
 
 
     const share = () => {
-        const shareText = `You are being invited to collaborate in the 
-            ${OneList.title} OneList! Use this link onelist.herokuapp.com with ID
-            ${OneList.id}`
+        const shareText = `You are being invited to collaborate in the ${OneList.title} OneList!
+    Use this link onelist.herokuapp.com with ID ${OneList.id}. Click OK to copy to your clipboard.`
 
         if (confirm(shareText)){
             const component = document.createElement('textarea');
@@ -138,12 +139,17 @@ export default function PlaylistPage({ OneListID, user}) {
         </div>
             <div className="PlaylistButtons">
             <button id = "AddSongsButton" onClick={() => setAddMode(true)}>Add Songs </button>
-            <button id = "ExportSongsButton" onClick = {handleClickExport} disabled = {!session}> Export</button>
+            <button id = "ExportSongsButton" onClick = { () => {
+                handleClickExport();
+                alert(`${OneList.title} was successfully exported to your Spotify!`);
+            }} disabled = {!session}> Export</button>
             <button id = "InvitationLinkButton" onClick={() => share()}>Invite friends!</button>
             </div>
-            <ul aria-label = "Playlist" id = "Playlist">{currentPlaylistView}</ul>
+            <ul aria-label = "Playlist" id = "Playlist" className="playlistView">{currentPlaylistView}</ul>
             </div>
+            
         }
+        <button className="backButton" onClick = {() => goHome()}>Return to Home</button>
         </div>
 
     );
@@ -154,5 +160,6 @@ PlaylistPage.propTypes = {
     setMode : PropTypes.func,
     OneListID : PropTypes.string.isRequired,
     setSongDetails: PropTypes.func, 
-    user: PropTypes.string
+    user: PropTypes.string, 
+    goHome: PropTypes.func
 }
