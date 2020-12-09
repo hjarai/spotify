@@ -3,9 +3,9 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/Host.module.css';
-//import Home from './index.js'; 
 import Head from 'next/head';
 import Link from 'next/link';
+import FileBase64 from 'react-file-base64';
 
 import { signIn, signOut, 
     useSession
@@ -17,7 +17,7 @@ import { signIn, signOut,
 //assume setMode is what changes state to OneList page and Home page
 //OneList is an object {title: , description:, image: , playlist:{}}
 export default function HostPage({setMode, setUser, setOneListID}){
-    const defaultImage = "./OnelistLogo.png";
+    const defaultImage = "./OneListLogo.png"; 
     const [eventTitle, setEventTitle] = useState();
     const [eventDescription, setEventDescription] = useState();
     const [eventDate, setEventDate] = useState(new Date().toDateString());
@@ -78,6 +78,39 @@ useEffect(()=>{
       setMode((onelistwithid.id.toString()));
       }
 
+      //trying out some image functionality
+      const [fileData, setFileData] = useState();
+      const [image, setImage] = useState();
+    
+      const handleImage = async () => {
+        // make sure we have an image file
+        if (/\.(jpe?g|png)$/i.test(fileData.name)) {
+          // create our payload 
+          const imageData = {
+            name:fileData.name,
+            image:fileData.base64,
+            id:Date.now()
+          }
+
+          //figure out suffix
+          const [header, body] = imageData.image.split(",");
+          const suffix = header.slice(11,header.indexOf(';'));
+    
+          // send it to the server
+          const response = await fetch('/api/image',{
+            method:'POST',
+            body:JSON.stringify(imageData),
+              headers: new Headers({ 'Content-type': 'application/json' }),
+          });
+    
+          if (response.ok){
+            const data = await response.json();
+            setImage(data.image);
+            setEventImage('./uploads/'+imageData.id+'.'+suffix);
+          }
+        }
+      }
+
     return(
      <div className={styles}>
           <Head>
@@ -94,10 +127,10 @@ useEffect(()=>{
                   <div id={styles.eventImage}>
                     <img src= {eventImage} width="200" height="200"/>
                     <label className = "photoLabel" htmlFor= "userImage"></label>
-                    <input className = {styles.photoLabel} id="userImage" name="userImage" aria-label = "Import Image" type="file" accept="image/*" multiple = {false} 
-                         onChange={()=>setEventImage( URL.createObjectURL(event.target.files[0]))} /> 
+                    <input className = {styles.photoLabel} id="userImage" name="userImage" 
+                        aria-label = "Import Image" type="button" value="Submit" onClick={handleImage} />
+                     <FileBase64 multiple={false} onDone={setFileData} />
                   </div>
-
                   <div className={styles.currentUser}>
                   <p> {session && (<>
                  <small>Signed in as</small><br/>
