@@ -46,7 +46,8 @@ export const addSongToPlaylist = async (exporter, oneListID) => {
         throw new Error(response.statusText);
         }
         const myPlaylist = await response.json();
-        return myPlaylist;
+        const sortedPlaylist = myPlaylist.sort((song1, song2) => (song2.vote - song1.vote)); 
+        return sortedPlaylist;
     };
     const urishelper = await getPlaylist(oneListID); 
     const uris = [];

@@ -17,6 +17,7 @@ export default function PlaylistPage({ OneListID, user}) {
     const [playlist, setPlaylist] = useState();
     const [songsAdded, setSongsAdded] = useState([]); //songs added will hold list of songs added by the user 
     const [addMode, setAddMode] = useState(false);
+    const [update, setUpdate] = useState(false);
     
     /* causing lots of errors in test
     //session management
@@ -53,7 +54,10 @@ export default function PlaylistPage({ OneListID, user}) {
             throw new Error(response.statusText);
             }
             const myPlaylist = await response.json();
-            setPlaylist(myPlaylist.sort((song1, song2) => (song2.vote - song1.vote))); 
+            const sortedPlaylist = myPlaylist.sort((song1, song2) => (song2.vote - song1.vote)); 
+            setPlaylist(sortedPlaylist);
+            //if user is a host, make remove button appear on every song
+            //if(user is a host){setSongsAdded(sortedPlaylist.map((song) => song.id))};
         };
         getPlaylist(OneListID);
     }, [addMode, songsAdded]);
@@ -69,14 +73,24 @@ export default function PlaylistPage({ OneListID, user}) {
         setSongsAdded(updatedPlaylist);
     };
 
+    //most updated version of the votes and rankings stored in the playlist state,
+    // since the info in the db (what getplaylist returns) is asynchronous
+    useEffect(()=>{
+        if(playlist){
+        const updated = playlist.map((song) => song.id === update.id? update:song);
+        setPlaylist(updated.sort((song1, song2) => (song2.vote - song1.vote)));
+    }}, [update]);
 
     const currentPlaylistView = (playlist)? 
         playlist.map((song) => {
             return (<PlayListSongDetail key = {song.spotify_id} 
                                         songDetails = {song} 
                                         removeSong = {removeSong}
-                                        songsAdded = {songsAdded}/> )})
-        :<></>;
+                                        songsAdded = {songsAdded}
+                                        update = {update}
+                                        setUpdate = {setUpdate}
+                                        /> )})
+        :<>Add some songs to get started on your OneList!</>;
 
 
     const share = () => {
