@@ -60,12 +60,10 @@ export default function HostPage({setMode, setUser, setOneListID}){
     const OneList = {
         id : currentID,
         title : eventTitle,
-//      hostid : host should be logged in
         description : eventDescription,
         imagesrc: eventImage,
-        //playlist: [],
-        date : eventDate,   
-//      spotify : spotify playlist id
+        date : eventDate, 
+        host_spotify : userData
     }
 
     const addOneList = async () => {

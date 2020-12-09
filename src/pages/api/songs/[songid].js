@@ -20,7 +20,7 @@ const handler = nc({ onError }).use(cors)
     if (count === 0) {
       res.status(404).end(`song with id ${id} not found`);
     } else {
-      res.status(200).end();
+      res.status(200).json(count);
     }
   })
 .delete(async (req, res) => {
