@@ -53,7 +53,7 @@ export default function PlaylistPage({ OneListID, user}) {
             throw new Error(response.statusText);
             }
             const myPlaylist = await response.json();
-            setPlaylist(myPlaylist); 
+            setPlaylist(myPlaylist.sort((song1, song2) => (song2.vote - song1.vote))); 
         };
         getPlaylist(OneListID);
     }, [addMode, songsAdded]);
@@ -69,39 +69,6 @@ export default function PlaylistPage({ OneListID, user}) {
         setSongsAdded(updatedPlaylist);
     };
 
-
-
-    /* 
-    const setSongDetails = (voteA) => {
-        const currentPlaylist = oneList.playlist.map((song) => 
-        {
-            if (song.id===voteA[0]){
-            song.upvote += voteA[1];
-            song.downvote += voteA[2];
-            return song;
-            }
-            else{
-            return song;
-            } 
-        }
-        );
-        const currentOneList = {...oneList};
-        currentOneList.playlist = currentPlaylist;
-        currentOneList.playlist = currentOneList.playlist.sort((song1,song2)=>{
-        const song1sum = (song1.upvote) + (song1.downvote);
-        const song2sum = (song2.upvote) + (song2.downvote);
-        if (song1sum > song2sum){
-            return -1;
-        }
-        else if (song1sum === song2sum){
-            return 0;
-        }
-        else{
-            return 1;
-        }
-        })
-        setOneList(currentOneList);
-    } */
 
     const currentPlaylistView = (playlist)? 
         playlist.map((song) => {

@@ -15,12 +15,11 @@ class OneList extends Model {
 
       properties: {
         id: { type: 'integer' },
-        host_id: { type: 'integer' },
+        host_id: { type: 'string' },
         title: { type: 'string' },
         description: { type: 'text' },
         date: { type: 'string' },
         imagesrc: { type: 'string' },
-        spotify: { type: 'string' },
       },
     };
   }
