@@ -36,8 +36,7 @@ describe('Attendee Sign in Page Tests', () => {
     });
           
 
-    //Sign In button disabled unless 6 digit eventId, not necessary if database gives unique smaller ID
-    test.skip('Sign in button is disabled without event id', () => {
+    test('Sign in button is disabled without event id', () => {
         render(<AttendeeSignInPage setMode={handler} />);
       
         const eventIdInput = screen.getByRole('textbox', { name: 'EventId' }); 
@@ -45,17 +44,9 @@ describe('Attendee Sign in Page Tests', () => {
         const SignInButton = screen.getByRole('button', { name: 'Sign In' });
         expect(SignInButton).toBeDisabled();
 
-        fireEvent.change(eventIdInput, { target: { value: '12345' } });
-        expect(eventIdInput).toHaveValue('12345');
-        expect(SignInButton).toBeDisabled();
-
-        fireEvent.change(eventIdInput, { target: { value: '123456' } });
-        expect(eventIdInput).toHaveValue('123456');
+        fireEvent.change(eventIdInput, { target: { value: '12' } });
+        expect(eventIdInput).toHaveValue('12');
         expect(SignInButton).toBeEnabled();
-
-        fireEvent.change(eventIdInput, { target: { value: '1234567' } });
-        expect(eventIdInput).toHaveValue('1234567');
-        expect(SignInButton).toBeDisabled();
     });
 
     //Sign in button calls setmode with eventID

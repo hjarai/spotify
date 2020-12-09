@@ -12,6 +12,7 @@ import {
     getHostOneList,
     getPlaylist,
     knex,
+    updateSong,
   } from "./backend-utils";
 
 //create sample one list and host data that matches the migration tables!
@@ -72,26 +73,13 @@ describe("Tests of the database functions", () => {
         expect(returnedSong.id).toBeGreaterThanOrEqual(0);
     })
 
-    test.skip("upvote functionality", async () => {
-        const samplePlaylist = sampleOneLists[0].playlist;
-        const sampleSong = samplePlaylist[0];
-        expect(sampleSong.up).toBe(0);
+    test("update song functionality", async () => {
+        const sampleSong = sampleOneLists[0].playlist[0];
         addSong(sampleSong);
+        const count = await updateSong(sampleSong);
+        expect(count).toBe(1);
 
-        const returnedSong = await changeupvote(sampleSong.id, 1);      
-        expect(returnedSong.up).toBe(1);
-
-    })
-
-    test.skip("downvote functionality", async () => {
-        const samplePlaylist= sampleOneLists[0].playlist;
-        const sampleSong = samplePlaylist[0];
-        expect(sampleSong.down).toBe(0);
-        addSong(sampleSong);
-
-        const returnedSong = await changedownvote(sampleSong.id, -1);      
-        expect(returnedSong.down).toBe(-1);
-    })
+    });
 
     test("delete song functionality", async () => {
         const sampleSong = sampleOneLists[0].playlist[0];
