@@ -3,11 +3,11 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/Host.module.css';
-//import Home from './index.js'; 
 import Head from 'next/head';
+import Link from 'next/link';
 import FileBase64 from 'react-file-base64';
 
-import { 
+import { signIn, signOut, 
     useSession
   } from 'next-auth/client'
  // import { useRouter } from 'next/router'; 
@@ -26,37 +26,26 @@ export default function HostPage({setMode, setUser, setOneListID}){
     const [currentID] = useState();
     const [dateChanged, setDateChanged]  = useState(false); 
     const [userData, setUserData] = useState(); 
+    const [userID, setUserID] = useState("anonymous"); 
     
-/*
-    useEffect(()=>{
-      const getOneLists = async() =>{
-          const response = await fetch(`api/private/${session.user.email}`);
-          if(response.ok){
-              const data = await response.json();
-              setUserData(data);
-          }
-      };
-      getOneLists();
-  }, [session]);
 
-  */
 
 // this prints a user's onelists if the user is in session. 
-  
- if(session){
-    const getOneLists = async() =>{
-        const response = await fetch(`api/private/${session.user.email}`); // access the user spotify email. probably chage to spotify id. 
-        if(response.ok){
-            const data = await response.json();
-            setUserData(data);
-        }
-    };
-    getOneLists();
-  }
- if(session){
-   console.log(session.user.id); 
- }
 
+/* 
+checks if there is a session. If there is one, it sets the user ID to user Spotify ID, else it sets to anonymous 
+The create button is disabled if there is no session
+*/
+
+
+useEffect(()=>{
+  const getSession = () =>{
+    const userSession = session ? session.user.id : "anonymous";
+    setUserID(userSession); 
+   
+  };
+  getSession(); 
+}, [session]);
 
     const OneList = {
         id : currentID,
@@ -64,7 +53,7 @@ export default function HostPage({setMode, setUser, setOneListID}){
         description : eventDescription,
         imagesrc: eventImage,
         date : eventDate, 
-        host_spotify : userData
+        host_spotify : userID
     }
 
     const addOneList = async () => {
@@ -146,11 +135,16 @@ export default function HostPage({setMode, setUser, setOneListID}){
                   <p> {session && (<>
                  <small>Signed in as</small><br/>
                  <strong>{session.user.email || session.user.name}</strong><br/>
-                 <small>Your oneLists</small><br/>
-                 <small>{userData}</small>
                 </>)}
                 {!session && (<>
-                {`Not signed in`}
+                {`Not signed in`} <br/>
+                <a href={`/api/auth/signin`}
+                 className = {styles.currentUser}
+                 onClick={(e) => {
+                 e.preventDefault()
+                 signIn() }} >
+                 Sign in
+              </a>  
               </>)}
               </p>
           </div>
@@ -184,8 +178,13 @@ export default function HostPage({setMode, setUser, setOneListID}){
                   </div>
 
                   {/* //all the buttons here */}
-                  <button className={styles.EventButton} disabled={!eventTitle} onClick={() => addOneList()}>Create Event</button>
+                  <button className={styles.EventButton} disabled={!eventTitle || !session} onClick={() => addOneList()}>Create Event</button>
                   <button className={styles.EventButton} onClick={() => setMode()}>Cancel</button>
+              </div>
+              <div>
+              <Link href="./onelists">
+            <a>Link to your onelists</a>
+          </Link>
               </div>
     </div>
     );
