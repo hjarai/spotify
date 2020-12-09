@@ -5,8 +5,6 @@ import {
     getOneList,
     addOneList,
     addSong,
-    changeupvote,
-    changedownvote,
     deleteSong,
     addHost,
     getHostOneList,
@@ -92,23 +90,23 @@ describe("Tests of the database functions", () => {
 
     });
 
-    test("add host functionality", async () => {
-        //what does the host data entry look like? 
+    // test("add host functionality", async () => {
+    //     //what does the host data entry look like? 
        
-        const returnedHost = await addHost(sampleHost);
+    //     const returnedHost = await addHost(sampleHost);
         
-        expect(returnedHost.spotify).toBe(sampleHost.spotify);
+    //     expect(returnedHost.spotify).toBe(sampleHost.spotify);
        
-    }); 
+    // }); 
 
-    test("get Host OneList functionality", async () => {
+    // test("get Host OneList functionality", async () => {
         
-        const currentHost = await addHost(sampleHost);
-        await addOneList(sampleOnelist);
-        const returnedOneLists = await getHostOneList(currentHost.spotify);
-        expect(returnedOneLists[0].host_spotify).toBe(currentHost.spotify);
+    //     const currentHost = await addHost(sampleHost);
+    //     await addOneList(sampleOnelist);
+    //     const returnedOneLists = await getHostOneList(currentHost.spotify);
+    //     expect(returnedOneLists[0].host_spotify).toBe(currentHost.spotify);
         
-    });
+    // });
 
     test("getPlaylist functionality", async () => {
         const currentOneList = await addOneList(sampleOnelist);
