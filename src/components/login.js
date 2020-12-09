@@ -8,11 +8,7 @@ export default function Login () {
 
   const [session, loading] = useSession();
   const router = useRouter(); 
-  /*
-  if(session){
- router.push('./HostPage')
-  }
-  */
+  
 
   return (
 
