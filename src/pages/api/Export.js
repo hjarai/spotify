@@ -1,8 +1,21 @@
 
 
-const makePlaylist = async (exporter) => {
-    console.log(exporter.token);
-    console.log(exporter.id);
+const makePlaylist = async (exporter, oneListID) => {
+    console.log(oneListID);
+    const getOneList = async ( someID ) => {
+        const response = await fetch(`api/onelists/${someID}`);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const myOneList = await response.json();
+        return myOneList;
+    };
+    const oneList = await getOneList(oneListID);
+    console.log(oneList);
+    const titles = oneList.title;
+    console.log(titles);
+    const descriptions = oneList.description;
+    console.log(descriptions);
     const response = await fetch(`https://api.spotify.com/v1/users/${exporter.id}/playlists`,{
         method: 'POST',
         headers: {
@@ -10,8 +23,8 @@ const makePlaylist = async (exporter) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            'name': 'Name from database',
-            'description': 'Description from database',
+            'name': titles,
+            'description': descriptions,
             'public': false,
         }),
 });
@@ -23,11 +36,23 @@ const makePlaylist = async (exporter) => {
     return id;
 }
 
-export const addSongToPlaylist = async (exporter) => {
-    console.log(exporter);
-    
-    const playlistID = await makePlaylist(exporter);
-    console.log
+export const addSongToPlaylist = async (exporter, oneListID) => {
+    console.log(oneListID);
+    const playlistID = await makePlaylist(exporter, oneListID);
+    const getPlaylist = async ( someID ) => {
+        const response = await fetch(
+            `api/playlist/${someID}`, );
+        if (!response.ok) {
+        throw new Error(response.statusText);
+        }
+        const myPlaylist = await response.json();
+        return myPlaylist;
+    };
+    const urishelper = await getPlaylist(oneListID); 
+    const uris = [];
+    for(let i = 0; i < urishelper.length; i++){
+        uris.push(urishelper[i].uri);
+    }
     const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistID}/tracks`,{
         method: 'POST',
         headers: {
@@ -35,7 +60,7 @@ export const addSongToPlaylist = async (exporter) => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            'uris': ['spotify:track:7lEptt4wbM0yJTvSG5EBof'],
+            'uris': uris,
         }),
     })
     if (!response.ok) {
