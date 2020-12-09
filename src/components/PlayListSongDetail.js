@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-export default function PlayListSongDetail({songDetails, removeSong, songsAdded, update, setUpdate}) {
+export default function PlayListSongDetail({songDetails, removeSong, songsAdded, setUpdate}) {
 
   const [upvoteDisable,setUpvoteDisable] = useState();
   const [downvoteDisable,setDownvoteDisable] = useState();
@@ -27,7 +27,7 @@ export default function PlayListSongDetail({songDetails, removeSong, songsAdded,
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-    const count = await response.json();
+    //const count = await response.json();
     setUpdate(updatedSong);
   };
 
@@ -60,7 +60,7 @@ export default function PlayListSongDetail({songDetails, removeSong, songsAdded,
     <div className="ButtonsSongDetail">
       {songDetails.title} by {songDetails.artist} added by {songDetails.username}
       <button className="VoteButton" onClick={()=>votefunc('up')} disabled = {upvoteDisable===true}>⬆</button>
-        {vote}  
+      <text className="VoteDisplay"> {vote} </text>  
       <button  className="VoteButton" onClick={()=> votefunc('down')} disabled = {downvoteDisable===true}>⬇</button>
       {removeButton}
     </div>
@@ -70,5 +70,6 @@ export default function PlayListSongDetail({songDetails, removeSong, songsAdded,
 PlayListSongDetail.propTypes = {
     songDetails : PropTypes.object,
     removeSong: PropTypes.func,
-    songsAdded: PropTypes.array
+    songsAdded: PropTypes.array, 
+    setUpdate: PropTypes.func
 }

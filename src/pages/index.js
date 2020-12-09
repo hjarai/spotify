@@ -3,7 +3,6 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import Link from 'next/link';
-
 //import CreationPage from '../components/CreationPage.js';
 //changed from CreationPage to Host Page
 import HostPage from './HostPage.js';
@@ -34,10 +33,15 @@ export default function Home() {
       setView('OneList');    
     }
   };
+
+  const goHome = () => {
+    setUser();
+    setView('home');
+  }
   
   const pageContent = (view === 'createOneList')? <HostPage setMode = {setMode} setUser={setUser}/>
     :(view === 'attendeeSignIn')? <AttendeeSignInPage setMode = {setMode} user={user} setUser={setUser}/>
-    :(view === 'OneList')? <PlaylistPage OneListID = {oneListID} user={user}/>
+    :(view === 'OneList')? <PlaylistPage OneListID = {oneListID} user={user} goHome={goHome}/>
     :<div> 
       <div className="mainDescriptionAndButtonsHome">
 
@@ -50,13 +54,9 @@ export default function Home() {
         <p className="description">  Add your own music to the OneList of that event using your EventID.</p>
         <button className="JoinOneListButton" onClick = {() => {setView('attendeeSignIn')}}>Join OneList</button> 
         <h1 className="description"> Already a host?</h1>
-        <p className="description">  
         <Link href="./onelists">
-            <a>Continue modifying your OneLists for your events. Click this link. </a>
-          </Link>
-        
-        
-        </p>
+        <button className="CreateOneListButton" >View your current OneLists</button>
+        </Link>
         <Login Host Login/>
         
       </div>
@@ -66,6 +66,7 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>OneList Home</title>
+        <link rel="icon" href="/defaultImage.png" />
       </Head>
       <main>
       <div className="mainHeader">
