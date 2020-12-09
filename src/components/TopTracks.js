@@ -25,8 +25,7 @@ export default function TopTracks ({ searchTerm, addSong, sortType}) {
     }  
   } else { 
     return data.map((track) => (
-      track.up = 0,
-      track.down = 0,
+      track.vote = 0,
       <Track key={track.songUrl} track = {track} addSong = {addSong}/>
     ));
   }

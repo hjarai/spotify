@@ -17,6 +17,7 @@ export default function PlaylistPage({ OneListID, user}) {
     const [playlist, setPlaylist] = useState();
     const [songsAdded, setSongsAdded] = useState([]); //songs added will hold list of songs added by the user 
     const [addMode, setAddMode] = useState(false);
+    const [update, setUpdate] = useState(false);
     
     /* causing lots of errors in test
     //session management
@@ -53,7 +54,10 @@ export default function PlaylistPage({ OneListID, user}) {
             throw new Error(response.statusText);
             }
             const myPlaylist = await response.json();
-            setPlaylist(myPlaylist); 
+            const sortedPlaylist = myPlaylist.sort((song1, song2) => (song2.vote - song1.vote)); 
+            setPlaylist(sortedPlaylist);
+            //if user is a host, make remove button appear on every song
+            //if(user is a host){setSongsAdded(sortedPlaylist.map((song) => song.id))};
         };
         getPlaylist(OneListID);
     }, [addMode, songsAdded]);
@@ -69,47 +73,24 @@ export default function PlaylistPage({ OneListID, user}) {
         setSongsAdded(updatedPlaylist);
     };
 
-
-
-    /* 
-    const setSongDetails = (voteA) => {
-        const currentPlaylist = oneList.playlist.map((song) => 
-        {
-            if (song.id===voteA[0]){
-            song.upvote += voteA[1];
-            song.downvote += voteA[2];
-            return song;
-            }
-            else{
-            return song;
-            } 
-        }
-        );
-        const currentOneList = {...oneList};
-        currentOneList.playlist = currentPlaylist;
-        currentOneList.playlist = currentOneList.playlist.sort((song1,song2)=>{
-        const song1sum = (song1.upvote) + (song1.downvote);
-        const song2sum = (song2.upvote) + (song2.downvote);
-        if (song1sum > song2sum){
-            return -1;
-        }
-        else if (song1sum === song2sum){
-            return 0;
-        }
-        else{
-            return 1;
-        }
-        })
-        setOneList(currentOneList);
-    } */
+    //most updated version of the votes and rankings stored in the playlist state,
+    // since the info in the db (what getplaylist returns) is asynchronous
+    useEffect(()=>{
+        if(playlist){
+        const updated = playlist.map((song) => song.id === update.id? update:song);
+        setPlaylist(updated.sort((song1, song2) => (song2.vote - song1.vote)));
+    }}, [update]);
 
     const currentPlaylistView = (playlist)? 
         playlist.map((song) => {
             return (<PlayListSongDetail key = {song.spotify_id} 
                                         songDetails = {song} 
                                         removeSong = {removeSong}
-                                        songsAdded = {songsAdded}/> )})
-        :<></>;
+                                        songsAdded = {songsAdded}
+                                        update = {update}
+                                        setUpdate = {setUpdate}
+                                        /> )})
+        :<>Add some songs to get started on your OneList!</>;
 
 
     const share = () => {

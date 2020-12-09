@@ -23,7 +23,7 @@ import knexInitializer from 'knex';
 import { Model } from 'objection';
 import OneList from '../../models/OneList';
 import Song from '../../models/Song';
-import Host from '../../models/Host';
+// import Host from '../../models/Host';
 
 export const knex = knexInitializer(
   knexConfig[process.env.TESTING || process.env.NODE_ENV || 'development']
