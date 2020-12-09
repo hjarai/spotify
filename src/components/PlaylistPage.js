@@ -157,7 +157,7 @@ export default function PlaylistPage({ OneListID, user}) {
         </div>
             <div className="PlaylistButtons">
             <button id = "AddSongsButton" onClick={() => setAddMode(true)}>Add Songs </button>
-            <button id = "ExportSongsButton" onClick = {handleClickExport}> Export</button>
+            <button id = "ExportSongsButton" onClick = {handleClickExport} disabled = {!session}> Export</button>
             <button id = "InvitationLinkButton" onClick={() => share()}>Invite friends!</button>
             </div>
             <ul aria-label = "Playlist" id = "Playlist">{currentPlaylistView}</ul>
