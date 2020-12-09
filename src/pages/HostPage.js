@@ -133,9 +133,10 @@ export default function HostPage({setMode, setUser, setOneListID}){
                   <div id={styles.eventImage}>
                     <img src= {eventImage} width="200" height="200"/>
                     <label className = "photoLabel" htmlFor= "userImage"></label>
-                    <FileBase64 multiple={false} onDone={setFileData} />
-                    <input className = {styles.photoLabel} id="userImage" name="userImage" aria-label = "Import Image" type="button" value="Submit" 
-                        onClick={handleImage} />
+                    <input className = {styles.photoLabel} id="userImage" name="userImage" 
+                        aria-label = "Import Image" type="button" value="Submit" onClick={handleImage} />
+                     <FileBase64 multiple={false} onDone={setFileData} />
+
                   </div>
                   <div className={styles.currentUser}>
                   <p> {session && (<>
