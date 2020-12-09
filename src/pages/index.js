@@ -2,6 +2,7 @@
 /* eslint-disable no-undef, no-unused-vars */
 import Head from 'next/head';
 import { useState } from 'react';
+import Link from 'next/link';
 
 //import CreationPage from '../components/CreationPage.js';
 //changed from CreationPage to Host Page
@@ -49,7 +50,13 @@ export default function Home() {
         <p className="description">  Add your own music to the OneList of that event using your EventID.</p>
         <button className="JoinOneListButton" onClick = {() => {setView('attendeeSignIn')}}>Join OneList</button> 
         <h1 className="description"> Already a host?</h1>
-        <p className="description">  Continue modifying your OneLists for your events.</p>
+        <p className="description">  
+        <Link href="./onelists">
+            <a>Continue modifying your OneLists for your events. Click this link. </a>
+          </Link>
+        
+        
+        </p>
         <Login Host Login/>
         
       </div>
