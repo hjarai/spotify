@@ -99,8 +99,13 @@ export default function HostPage({setMode, setUser, setOneListID}){
           // create our payload 
           const imageData = {
             name:fileData.name,
-            image:fileData.base64
+            image:fileData.base64,
+            id:Date.now()
           }
+
+          //figure out suffix
+          const [header, body] = imageData.image.split(",");
+          const suffix = header.slice(11,header.indexOf(';'));
     
           // send it to the server
           const response = await fetch('/api/image',{
@@ -112,7 +117,7 @@ export default function HostPage({setMode, setUser, setOneListID}){
           if (response.ok){
             const data = await response.json();
             setImage(data.image);
-            setEventImage('./uploads/'+imageData.name)
+            setEventImage('./uploads/'+imageData.id+'.'+suffix);
           }
         }
       }
@@ -136,7 +141,6 @@ export default function HostPage({setMode, setUser, setOneListID}){
                     <input className = {styles.photoLabel} id="userImage" name="userImage" 
                         aria-label = "Import Image" type="button" value="Submit" onClick={handleImage} />
                      <FileBase64 multiple={false} onDone={setFileData} />
-
                   </div>
                   <div className={styles.currentUser}>
                   <p> {session && (<>
