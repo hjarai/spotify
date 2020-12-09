@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/Host.module.css';
 //import Home from './index.js'; 
@@ -21,10 +21,42 @@ export default function HostPage({setMode, setUser, setOneListID}){
     const [eventDescription, setEventDescription] = useState();
     const [eventDate, setEventDate] = useState(new Date().toDateString());
     const [eventImage, setEventImage] = useState(defaultImage);
-    const [session] = useSession();
+    const [session, loading] = useSession();
     const [currentID] = useState();
     const [dateChanged, setDateChanged]  = useState(false); 
-       
+    const [userData, setUserData] = useState(); 
+    
+/*
+    useEffect(()=>{
+      const getOneLists = async() =>{
+          const response = await fetch(`api/private/${session.user.email}`);
+          if(response.ok){
+              const data = await response.json();
+              setUserData(data);
+          }
+      };
+      getOneLists();
+  }, [session]);
+
+  */
+
+// this prints a user's onelists if the user is in session. 
+  
+ if(session){
+    const getOneLists = async() =>{
+        const response = await fetch(`api/private/${session.user.email}`); // access the user spotify email. probably chage to spotify id. 
+        if(response.ok){
+            const data = await response.json();
+            setUserData(data);
+        }
+    };
+    getOneLists();
+  }
+ if(session){
+   console.log(session.user.id); 
+ }
+
+
     const OneList = {
         id : currentID,
         title : eventTitle,
@@ -81,7 +113,9 @@ export default function HostPage({setMode, setUser, setOneListID}){
                   <div className={styles.currentUser}>
                   <p> {session && (<>
                  <small>Signed in as</small><br/>
-                 <strong>{session.user.email || session.user.name}</strong>
+                 <strong>{session.user.email || session.user.name}</strong><br/>
+                 <small>Your oneLists</small><br/>
+                 <small>{userData}</small>
                 </>)}
                 {!session && (<>
                 {`Not signed in`}
