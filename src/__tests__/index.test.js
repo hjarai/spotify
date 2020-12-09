@@ -16,7 +16,7 @@ describe('Top level integration tests', () => {
   });
 });
 
-describe.skip('Home Page Tests', () => {
+describe('Home Page Tests', () => {
   /*
   beforeEach(async () => {
     fetchMock.get('/api/${...nextauth}',()=>{
@@ -27,19 +27,11 @@ describe.skip('Home Page Tests', () => {
   test('Initially renders home view', ()=>{
 
     render(<Home />);
-    expect(screen.queryByText("Welcome to OneList")).toBeInTheDocument();
+    expect(screen.queryByText("Welcome to OneList: The Perfect Playlist For Social Events")).toBeInTheDocument();
     expect(screen.queryByRole('button', { name: 'Create OneList' })).toBeInTheDocument(); 
     expect(screen.queryByRole('button', { name: 'Join OneList' })).toBeInTheDocument(); 
    });
 
-  test('Clicking button functionality for creating OneList', () =>{
-      render(<Home/>);
-      let homePage = screen.queryByText("Welcome to OneList");
-      fireEvent.click(screen.queryByText('Create OneList'));
-      expect(homePage).not.toBeInTheDocument();
-      expect(screen.queryByText("Event ID:")).toBeInTheDocument();
-      
-
-  });
+  
 
 });
