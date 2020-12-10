@@ -1,3 +1,9 @@
+/*
+  AttendeeSignInPage.test.js
+
+  Collection of tests for all functionalities of AttendeeSignInPage.
+*/
+
 import { fireEvent, render, screen } from '@testing-library/react';
 import AttendeeSignInPage from './AttendeeSignInPage.js';
 

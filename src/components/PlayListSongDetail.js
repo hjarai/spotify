@@ -1,3 +1,9 @@
+/*
+  PlayListSongDetail.js
+
+  Component that handles changes (ie. votes or removed) for each song in the OneList.
+*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -6,7 +12,8 @@ export default function PlayListSongDetail({songDetails, removeSong, songsAdded,
 
   const [upvoteDisable,setUpvoteDisable] = useState();
   const [downvoteDisable,setDownvoteDisable] = useState();
-  //need votes as state independent of what is in DB, because updating the DB is asynchronous and not immediate
+  //need votes as state independent of what is in DB, 
+  // because updating the DB is asynchronous and not immediate
   const [vote, setVote] = useState(songDetails.vote);
 
   const removeButton = (songsAdded.find(id => id === songDetails.id))?
@@ -27,7 +34,6 @@ export default function PlayListSongDetail({songDetails, removeSong, songsAdded,
     }
     setUpdate(updatedSong);
   };
-
 
   const votefunc = (dir)  => {
     let newvote;
@@ -52,7 +58,6 @@ export default function PlayListSongDetail({songDetails, removeSong, songsAdded,
     setVote(newvote);
    };
 
-  
   return (
     <div className="ButtonsSongDetail">
       {songDetails.title} by {songDetails.artist} added by {songDetails.username}

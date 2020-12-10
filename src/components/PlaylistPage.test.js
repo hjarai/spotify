@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 import { render, screen } from '@testing-library/react';
+=======
+/*
+  PlaylistPage.test.js
+
+  Collection of tests for all functionalities of PlaylistPage.
+*/
+
+import { render, screen, fireEvent } from '@testing-library/react';
+>>>>>>> main
 import PlaylistPage from './PlaylistPage';
 
 const mockOneList = {

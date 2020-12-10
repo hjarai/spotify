@@ -1,3 +1,10 @@
+/*
+  Track.js
+
+  Component that handles changes (ie. added) for each song in the top Spotify search 
+  results of AddPage. 
+*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
