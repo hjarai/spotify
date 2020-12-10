@@ -41,7 +41,7 @@ export default function OneLists(){
     }, [session]);
     // prints the lists of onelists with their IDs
    const onelists =  userData.map((onelist) => <li key={onelist.id}>
-        {" OneList ID: " +  onelist.id + "  Title: " + onelist.title} </li>)
+        {` OneList ID: ${   onelist.id  }  Title: ${  onelist.title}`} </li>)
 
 if(onelists!==0){ // return onelists
     return (

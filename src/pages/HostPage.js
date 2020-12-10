@@ -9,34 +9,19 @@ import FileBase64 from 'react-file-base64';
 import { signIn, 
     useSession
   } from 'next-auth/client'
- // import { useRouter } from 'next/router'; 
 
-/* eslint-disable no-undef, no-unused-vars, react/self-closing-comp */
-
-//assume setMode is what changes state to OneList page and Home page
-//OneList is an object {title: , description:, image: , playlist:{}}
-export default function HostPage({setMode, setUser, setOneListID}){
+export default function HostPage({setMode, setUser}){
     const defaultImage = "./OneListLogo.png"; 
     const [eventTitle, setEventTitle] = useState();
     const [eventDescription, setEventDescription] = useState('');
     const [eventDate, setEventDate] = useState(new Date().toDateString());
     const [eventImage, setEventImage] = useState(defaultImage);
-    const [session, loading] = useSession();
+    const [session] = useSession();
     const [currentID] = useState();
     const [dateChanged, setDateChanged]  = useState(false); 
-    const [userData, setUserData] = useState(); 
     const [userID, setUserID] = useState("anonymous"); 
+    const [fileData, setFileData] = useState();
     
-
-
-// this prints a user's onelists if the user is in session. 
-
-/* 
-checks if there is a session. If there is one, it sets the user ID to user Spotify ID, else it sets to anonymous 
-The create button is disabled if there is no session
-*/
-
-
 useEffect(()=>{
   const getSession = () =>{
     const userSession = session ? session.user.id : "anonymous";
@@ -77,9 +62,8 @@ useEffect(()=>{
       setMode((onelistwithid.id.toString()));
       }
 
-      //trying out some image functionality
-      const [fileData, setFileData] = useState();
-      const [image, setImage] = useState();
+      
+
     
       const handleImage = async () => {
         // make sure we have an image file
@@ -92,7 +76,7 @@ useEffect(()=>{
           }
 
           //figure out suffix
-          const [header, body] = imageData.image.split(",");
+          const header = (imageData.image.split(","))[0];
           const suffix = header.slice(11,header.indexOf(';'));
     
           // send it to the server
@@ -103,9 +87,7 @@ useEffect(()=>{
           });
     
           if (response.ok){
-            const data = await response.json();
-            setImage(data.image);
-            setEventImage('./uploads/'+imageData.id+'.'+suffix);
+            setEventImage(`./uploads/${imageData.id}.${suffix}`);
           }
         }
       }
@@ -125,7 +107,7 @@ useEffect(()=>{
             <div className={styles.leftcolumn}>
                   <div id={styles.eventImage}>
                     <img src= {eventImage} width="200" height="200"/>
-                    <label className = "photoLabel" htmlFor= "userImage"></label>
+                    <label className = "photoLabel" htmlFor= "userImage"/>
                     <input className = {styles.photoLabel} id="userImage" name="userImage" 
                         aria-label = "Import Image" type="button" value="Upload Image" onClick={handleImage} />
                      <FileBase64 multiple={false} onDone={setFileData} />
@@ -187,6 +169,5 @@ useEffect(()=>{
 HostPage.propTypes = {
   setMode : PropTypes.func,
   setUser: PropTypes.func,
-  setOneListID: PropTypes.func
 }
 

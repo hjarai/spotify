@@ -1,5 +1,3 @@
-/* eslint-disable no-constant-condition */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -27,7 +25,6 @@ export default function PlayListSongDetail({songDetails, removeSong, songsAdded,
     if (!response.ok) {
       throw new Error(response.statusText);
     }
-    //const count = await response.json();
     setUpdate(updatedSong);
   };
 

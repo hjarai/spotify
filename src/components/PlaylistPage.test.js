@@ -1,4 +1,3 @@
-/* eslint-disable no-undef, no-unused-vars */
 import { render, screen, fireEvent } from '@testing-library/react';
 import PlaylistPage from './PlaylistPage';
 
@@ -70,11 +69,6 @@ describe('PlayList Page tests', () => {
 });
 
 describe.skip('Delete song button inside song component', () => {
-    // const handler = jest.fn();
-
-    // beforeEach(() => {
-    //     handler.mockReset();
-    // });
 
     test('User can remove a song that they added previously',() => {
 

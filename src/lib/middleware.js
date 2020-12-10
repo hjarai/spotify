@@ -1,8 +1,6 @@
 /*
   middleware.js
-
   This file contains middleware functions for the API routes.
-
 */
 
 
