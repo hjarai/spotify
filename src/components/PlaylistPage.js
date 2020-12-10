@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import {useSession} from 'next-auth/client';
 import {addSongToPlaylist} from '../pages/api/Export.js';
+import  Head from 'next/head';
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
@@ -142,9 +143,7 @@ export default function PlaylistPage({ OneListID, user, goHome}) {
 }
 
 PlaylistPage.propTypes = {
-    setMode : PropTypes.func,
     OneListID : PropTypes.string.isRequired,
-    setSongDetails: PropTypes.func, 
     user: PropTypes.string, 
     goHome: PropTypes.func
 }

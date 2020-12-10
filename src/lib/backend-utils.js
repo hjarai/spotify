@@ -63,43 +63,6 @@ export async function deleteSong(songid) {
   return songdata;
 }
 
-<<<<<<< HEAD
-
-/**
- * add new host to data store
- * 
- * returns host with new id attached
- */
-export async function addHost(host) {
-  const hostdata = await Host.query().insertAndFetch(host); 
-  return hostdata;
-}
-
-
-/**
- * get onelist ids associated with hostid
- * 
- * returns array of onelist ids
- */
-/*
-export async function getHostOneList(hostid) {
-  const hostdata = await OneList.query().where({host_id: hostid}).select('id');
-  return hostdata;
-} */
-
-/**
- * get onelist ids associated with host emai;
- * 
- * returns array of onelist ids
- */
-// export async function getHostOneList(email) {
-//   //const hostemail = await Host.query().where({spotify: email});
-//   const hostdata = await OneList.query().where({host_spotify: email});
-//   return hostdata;
-// }
-
-=======
->>>>>>> main
 /**
  * get songs associated with a single OneList
  * 

@@ -1,5 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import AddPage from './AddPage';
+import { render, screen } from '@testing-library/react';
 import PlaylistPage from './PlaylistPage';
 
 const mockOneList = {
@@ -67,56 +66,6 @@ describe('PlayList Page tests', () => {
 
     });
 
-    test.skip('When add song is clicked, set mode is called with "AddPage"', () => {
-        render(<PlaylistPage setMode={handler} OneList={mockOneList}/>);
-        const addSongsButton = screen.getByRole('button', { name: 'Add Songs'});
-        fireEvent.click(addSongsButton);
-        expect(handler).toHaveBeenCalled();
-        expect(handler).toHaveBeenCalledWith("AddPage");
-
-    });
-
 });
-
-describe.skip('Delete song button inside song component', () => {
-
-    test('User can remove a song that they added previously',() => {
-
-
-        render(<AddPage 
-           // setAddMode = {setAddMode(true)}
-            OneListID={mockOneList.id} 
-            playlist={mockOneList.playlist} 
-            SongsAdded={[{title: 'ROCKSTAR (feat. Roddy Ricch)', artist: 'DaBaby,Roddy Ricch', upvote: '1'}]} 
-            //setSongsAdded = {setSongsAdded["ROCKSTAR (feat. Roddy Ricch) by DaBaby, Roddy Ricch"]} 
-            user={"John"}/>);
-
-        render(<PlaylistPage /* setMode={"AddPage"} */ user = "John" OneList={mockOneList.id}/>);
-        const song = 'ROCKSTAR (feat. Roddy Ricch) by DaBaby, Roddy Ricch added by John';
-        expect(screen.getByText(song)).toBeVisible();  
-        const removeSongButton =  screen.getByRole('button', { name: 'Remove'});
-        expect(screen.getByRole(removeSongButton)).toBeVisible(); 
-        fireEvent.click(removeSongButton);
-        expect(screen.getByText(song)).not.toBeVisible();    
-    });
-
-    test("User can't remove a song that they did not add",() => {
-
-        render(<AddPage 
-           // setAddMode = {true}
-            OneListID={mockOneList.id} 
-            playlist={mockOneList.playlist} 
-            SongsAdded={[{title: 'ROCKSTAR (feat. Roddy Ricch)', artist: 'DaBaby,Roddy Ricch', upvote: '1'}]} 
-
-          //  setSongsAdded = {["ROCKSTAR (feat. Roddy Ricch) by DaBaby, Roddy Ricch"]} 
-            user={"John"}/>);
-
-        render(<PlaylistPage /* setMode={"AddPage"} */ user = "Michaelangelo" OneList={mockOneList} OneListID={mockOneList.id}/>);
-        const removeButton = screen.queryByText('Remove');
-        expect(removeButton).not.toBeInTheDocument();  
-        const song = 'ROCKSTAR (feat. Roddy Ricch) by DaBaby, Roddy Ricch added by John';
-        expect(screen.getByText(song)).toBeVisible();       
-    
-    });
-});
+  
 
