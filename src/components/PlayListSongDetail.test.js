@@ -1,6 +1,6 @@
 
 import PlayListSongDetail from '../components/PlayListSongDetail.js';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen} from '@testing-library/react';
 
 
 const remove = () => {

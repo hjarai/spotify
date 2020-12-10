@@ -4,7 +4,7 @@
   Collection of tests for all functionalities of PlaylistPage.
 */
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import PlaylistPage from './PlaylistPage';
 
 const mockOneList = {
