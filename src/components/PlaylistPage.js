@@ -8,6 +8,7 @@ import { render } from 'react-dom';
 import {useSession} from 'next-auth/client';
 import {addSongToPlaylist} from '../pages/api/Export.js';
 import Link from 'next/link';
+import Head from 'next/head';
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
@@ -116,8 +117,10 @@ export default function PlaylistPage({ OneListID, user, goHome}) {
     }
     
     return(
-        //ADD LABELS TO EACH COMPONENT
         <div> 
+            <Head>
+                <title>Playlist Page</title>
+            </Head>
             {(addMode)?
             <AddPage    setAddMode = {setAddMode} 
                         OneListID={OneListID} 

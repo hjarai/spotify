@@ -132,11 +132,11 @@ export async function getHostOneList(hostid) {
  * 
  * returns array of onelist ids
  */
-export async function getHostOneList(email) {
-  //const hostemail = await Host.query().where({spotify: email});
-  const hostdata = await OneList.query().where({host_spotify: email});
-  return hostdata;
-}
+// export async function getHostOneList(email) {
+//   //const hostemail = await Host.query().where({spotify: email});
+//   const hostdata = await OneList.query().where({host_spotify: email});
+//   return hostdata;
+// }
 
 /**
  * get songs associated with a single OneList
