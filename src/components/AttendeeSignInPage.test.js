@@ -1,6 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import AttendeeSignInPage from './AttendeeSignInPage.js';
-/* eslint-disable no-undef, no-unused-vars */
 
 const mockEventId = '123456';
 const mockuser = 'pam';

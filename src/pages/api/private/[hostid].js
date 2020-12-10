@@ -1,7 +1,6 @@
 
 
 import nc from 'next-connect';
-//import { getSession } from 'next-auth/client';
 import { onError, cors } from '../../../lib/middleware'; 
 import { getHostOneList
        } from '../../../lib/backend-utils'; 
@@ -18,28 +17,5 @@ const handler = nc({ onError }).use(cors)
        res.status(200).json(data); 
     }
 }); 
-
-
-
-
-/*
-Sample Code index.js Home()
-
-const hostid = 1; 
- 
-  const gethost = async ( someID ) => {
-  const response = await fetch(
-    `/api/private/${someID}`,
-  );
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-  const newhost = await response.json();
-
-}
-
-gethost(hostid);
-
-*/
 
 export default handler; 
