@@ -1,13 +1,9 @@
-/* eslint-disable no-undef, no-unused-vars, no-use-before-define, prefer-const*/
-
 import PlayListSongDetail from './PlayListSongDetail';
 import AddPage from './AddPage.js'
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
-import { render } from 'react-dom';
 import {useSession} from 'next-auth/client';
 import {addSongToPlaylist} from '../pages/api/Export.js';
-import Link from 'next/link';
 
 //displays the Playlist Page, takes one parameter, the OneList to be displayed
 
@@ -18,19 +14,6 @@ export default function PlaylistPage({ OneListID, user, goHome}) {
     const [songsAdded, setSongsAdded] = useState([]); //songs added will hold list of songs added by the user 
     const [addMode, setAddMode] = useState(false);
     const [update, setUpdate] = useState(false);
-    
-    /* causing lots of errors in test
-    //session management
-    useEffect(() => {
-        const checkSession = async ()=>{
-            const newSession = await getSession();
-            setSession(newSession)
-        }
-        if (!session){
-        checkSession();
-        }
-    });
-    */
 
    //fetch OneList details         
    useEffect(() => {
@@ -108,7 +91,7 @@ export default function PlaylistPage({ OneListID, user, goHome}) {
             document.body.removeChild(component);
         }
     }
-    let exporter = {};
+    const exporter = {};
     const handleClickExport = () => {
         exporter.id = session.user.id;
         exporter.token = session.user.accessToken;

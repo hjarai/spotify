@@ -11,31 +11,3 @@ const handler = nc ({onError})
 });
 
 export default handler; 
-
-
-/*
-Sample Code index.js Home()
-
-const host = { 
-    host_id: 2000, // this was meant for testing, otherwise ID should self increment
-    spotify: "trial3@middlebury.edu"}; 
-
-
-
-const addition = async (newhost) => {
- const response = await fetch(`/api/private`,{
-   method:'POST',
-   body: JSON.stringify(newhost),
-   headers: new Headers({'Content-type': 'application/json'}),
-   });
- //error handling 
- if(!response.ok){
-   throw new Error(response.statusText);
-   }
-  }
-
-  addition(host); 
-
-
-
-*/

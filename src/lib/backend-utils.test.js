@@ -6,18 +6,13 @@ import {
     addOneList,
     addSong,
     deleteSong,
-    addHost,
-    getHostOneList,
     getPlaylist,
     knex,
     updateSong,
   } from "./backend-utils";
 
 //create sample one list and host data that matches the migration tables!
-const sampleHost = {
- 
-    "spotify" : "yellow@yabby.com"
-}
+
 const sampleOnelist = {
     "id" : 5678,
     "title" : "Halloween",
@@ -89,24 +84,6 @@ describe("Tests of the database functions", () => {
 
 
     });
-
-    // test("add host functionality", async () => {
-    //     //what does the host data entry look like? 
-       
-    //     const returnedHost = await addHost(sampleHost);
-        
-    //     expect(returnedHost.spotify).toBe(sampleHost.spotify);
-       
-    // }); 
-
-    // test("get Host OneList functionality", async () => {
-        
-    //     const currentHost = await addHost(sampleHost);
-    //     await addOneList(sampleOnelist);
-    //     const returnedOneLists = await getHostOneList(currentHost.spotify);
-    //     expect(returnedOneLists[0].host_spotify).toBe(currentHost.spotify);
-        
-    // });
 
     test("getPlaylist functionality", async () => {
         const currentOneList = await addOneList(sampleOnelist);

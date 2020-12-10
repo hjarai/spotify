@@ -20,9 +20,9 @@ export function onError(error, req, res) {
 
 const handler = nc({onError})
   .post( (req, res) => {
-    const name = req.body.name;
-    const image = req.body.image;
-    const id = req.body.id
+    const {name} = req.body;
+    const {image} = req.body;
+    const {id} = req.body
 
     // at this point you could save the material in a database
     // or you could save the image somewhere and just store the path in the database

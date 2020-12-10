@@ -1,10 +1,5 @@
 import querystring from 'querystring';
 
-/*const {
-  SPOTIFY_CLIENT_ID: client_id,
-  SPOTIFY_CLIENT_SECRET: client_secret,
-} = process.env;*/
-
 const basic = Buffer.from(`${'abbf0ae2d23e4358aa7b6b26d83a4656'}:${'167511ce082643c69e3b4a02dd85112d'}`).toString('base64');
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 

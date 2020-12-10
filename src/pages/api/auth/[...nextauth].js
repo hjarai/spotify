@@ -32,20 +32,14 @@ const options = {
       if(account){
         token.id = account.id;
         token.accessToken = account.accessToken;   // get access token to modify user's playlist 
-        //console.log("This is token.accessToken" +   token.accessToken );
       }
       return token 
     },
     async session(session, user) {
-      session.user = user;  // get user information i.e id, email, name and profile picture
-      //console.log("This is user" +   user); 
-     
+      session.user = user;  // get user information i.e id, email, name and profile picture     
       return session 
     }
   }, 
 };
-
-
-
 
 export default (req, res) => NextAuth(req, res, options);

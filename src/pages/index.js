@@ -1,19 +1,12 @@
 
-/* eslint-disable no-undef, no-unused-vars */
 import Head from 'next/head';
 import { useState } from 'react';
 import Link from 'next/link';
-//import CreationPage from '../components/CreationPage.js';
-//changed from CreationPage to Host Page
 import HostPage from './HostPage.js';
-//import AddPage from '../components/AddPage.js'
 import PlaylistPage from '../components/PlaylistPage.js';
 import Login from '../components/login.js'
 import styles from '../styles/Home.module.css';
-//import data from '../../data/songs.json';
-//import onelistData from '../../data/onelists.json';
 import AttendeeSignInPage from '../components/AttendeeSignInPage.js';
-//import OneList from '../../models/OneList.js';
 
 export default function Home() {
   const [view, setView] = useState('home');

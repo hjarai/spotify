@@ -1,6 +1,6 @@
-/* eslint-disable */
 import '../styles/globals.css';
 import { Provider } from 'next-auth/client';
+import PropTypes from 'prop-types';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,3 +11,8 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
+
+MyApp.propTypes = {
+  Component: PropTypes.elementType,
+  pageProps: PropTypes.elementType,
+};

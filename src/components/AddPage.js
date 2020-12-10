@@ -11,7 +11,6 @@ export default function AddPage({setAddMode, OneListID, playlist, SongsAdded, se
   const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState("track");
   const [addedRecently, setAddedRecently] = useState([]);
-// const currentOneList = {...OneList}; 
 
   const addSongDB = async (newSong) => {
     const response = await fetch(`/api/songs`,{
@@ -60,5 +59,3 @@ AddPage.propTypes = {
     setSongsAdded: PropTypes.func,
     user: PropTypes.string
 }
-
-//<SongResults songs={songs} searchTerm={searchTerm} sortType={sortType} addSong = {addSong}/>

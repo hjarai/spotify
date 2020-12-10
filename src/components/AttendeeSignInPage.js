@@ -3,8 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-/* eslint-disable no-undef, no-unused-vars */
-
 //assume setMode is what changes state to OneList page and Home page
 export default function AttendeeSignInPage({ setMode, user, setUser }){
     const [eventId, seteventId] = useState();
