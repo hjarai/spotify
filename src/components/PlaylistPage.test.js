@@ -8,7 +8,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import PlaylistPage from './PlaylistPage';
 
 const mockOneList = {
-    id: 135397,
+    id: '135397',
     title: 'Mo Bamba',
     description: 'One of the worst songs in existence',
     image_path: 'http://localhost/defaultImage.png',
@@ -23,7 +23,7 @@ describe('PlayList Page tests', () => {
         handler.mockReset();
     });
 
-    test('playlist page is rendered with all the components', () => {
+    test('Playlist page is rendered with all the components', () => {
         //event id, title, description, image, current playlist, date, add song button, 
         render(<PlaylistPage setMode= {handler} OneList= {mockOneList} OneListID="0"/>);
 
@@ -45,7 +45,7 @@ describe('PlayList Page tests', () => {
         //check that image is rendered
         const displayImage = screen.getByRole('img'); 
         expect(displayImage).toBeVisible();
-        expect(displayImage.src).toBe('http://localhost/OnelistLogo.png')
+        expect(displayImage.src).toBe('http://localhost/OnelistLogo.png');
 
 
         //check that the playlist is rendered
@@ -61,44 +61,17 @@ describe('PlayList Page tests', () => {
         //check that the add song button is rendered
         const addSongsButton = screen.getByRole('button', { name: 'Add Songs' });
         expect(addSongsButton).toBeVisible();
-    });
 
-    test.skip('when add song is clicked, set mode is called with "AddPage"', () => {
-        render(<PlaylistPage setMode={handler} OneList={mockOneList}/>);
-        const addSongsButton = screen.getByRole('button', { name: 'Add Songs'});
-        fireEvent.click(addSongsButton);
-        expect(handler).toHaveBeenCalled();
-        expect(handler).toHaveBeenCalledWith("AddPage");
+        //check that the Export songs button is rendered
+        const ExportSongsButton = screen.getByRole('button', { name: 'Export' });
+        expect(ExportSongsButton).toBeVisible();
+
+        //check that the Invite friends button is rendered
+        const InviteButton = screen.getByRole('button', { name: 'Invite friends!' });
+        expect(InviteButton).toBeVisible();
 
     });
 
 });
-
-describe.skip('Delete song button inside song component', () => {
-
-    test('User can remove a song that they added previously',() => {
-
-        //fake playlist and user signed in
-        render(<PlaylistPage setMode={"AddPage"} OneList={mockOneList}/>);
-        //songs added with the fake user
-        const removeSongButton = screen.getByRole('button', { name: 'Remove'});
-        expect(removeSongButton).toBeVisible();
-        fireEvent.click(removeSongButton);
-        const song = mockOneList.title;
-        expect(screen.queryByText(song)).not.toBeInTheDocument();    
-    
-    });
-
-    test("User can't remove a song that they did not add",() => {
-
-        //fake playlist and user signed in
-        render(<PlaylistPage setMode={"AddPage"} OneList={mockOneList}/>);
-        //songs not added by same user signed in
-        const removeSongButton = screen.getByRole('button', { name: 'Remove'});
-        expect(removeSongButton).not.toBeVisible();  
-    
-    });
-
-
-});
+  
 
