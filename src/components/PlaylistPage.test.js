@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-import { render, screen } from '@testing-library/react';
-=======
 /*
   PlaylistPage.test.js
 
@@ -8,7 +5,6 @@ import { render, screen } from '@testing-library/react';
 */
 
 import { render, screen, fireEvent } from '@testing-library/react';
->>>>>>> main
 import PlaylistPage from './PlaylistPage';
 
 const mockOneList = {
