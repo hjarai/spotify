@@ -1,3 +1,9 @@
+/*
+  AddPage.test.js
+
+  Collection of tests for all functionalities of AddPage.
+*/
+
 import AddPage from './AddPage.js';
 import { render, screen, fireEvent } from '@testing-library/react';
 
@@ -36,9 +42,7 @@ describe('Top level integration tests', () => {
     fireEvent.change(dropdownInput, { target: { value: "artist" } });  
     fireEvent.change(searchInput, { target: { value: "Sheck Wes" } });
       
-    //console.log(dropdownInput);
     expect(dropdownInput).toHaveValue("artist");
-    //expect(screen.getByDisplayValue(song.title)).toBeInTheDocument();
   });
   
   test("When Search Bar is non-matching term, output is 'No Results Found'", async()=>{

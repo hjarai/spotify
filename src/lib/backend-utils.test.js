@@ -1,6 +1,10 @@
+/*
+  backend-utils.test.js
+
+  Collection of tests for all functionalities of backend-utils.
+*/
 
 import sampleOneLists from "../../data/onelists.json";
-
 import {
     getOneList,
     addOneList,
@@ -12,7 +16,6 @@ import {
   } from "./backend-utils";
 
 //create sample one list and host data that matches the migration tables!
-
 const sampleOnelist = {
     "id" : 5678,
     "title" : "Halloween",
@@ -24,28 +27,21 @@ const sampleOnelist = {
   
 describe("Tests of the database functions", () => {
     
-
     beforeEach(async () => {
         await knex.migrate.rollback();
-        await knex.migrate.latest();
-       
-        
+        await knex.migrate.latest();   
       });
 
     test("getOneList, gets OneList based on id", async () => {
-        const addedList = await addOneList(sampleOnelist);
-        
+        const addedList = await addOneList(sampleOnelist);   
         const returnedOneList = await getOneList(addedList.id);
         
         expect(returnedOneList.title).toBe(sampleOnelist.title);
         expect(returnedOneList.description).toBe(sampleOnelist.description);
-      
-
     });
 
     test("add new OneList to database and return newly added OneList with new id", async () => {
-       
-        
+          
         const returnedOneList = await addOneList(sampleOnelist);
 
         expect(returnedOneList.title).toBe(sampleOnelist.title);
@@ -81,14 +77,12 @@ describe("Tests of the database functions", () => {
         expect(count).toBe(1);
         const rows = await knex('Song').where({title:sampleSong.title}).select();
         expect(rows).toHaveLength(0);
-
-
     });
 
     test("getPlaylist functionality", async () => {
         const currentOneList = await addOneList(sampleOnelist);
-       
         const returnedPlaylist = await getPlaylist(currentOneList.id);
+
         expect(returnedPlaylist).toBeDefined();
     })
 

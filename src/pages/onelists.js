@@ -27,8 +27,8 @@ export default function OneLists(){
             </div>
         );
     }
+    
     // this is only executed when the user is logged in
-
     useEffect(()=>{
         const getOneLists = async() =>{
             const response = await fetch(`api/private/${session.user.id}`);
@@ -73,12 +73,9 @@ else{ // return message if no section is selected
                     Your OneLists
                 </title>
             </Head>
-
             <main className = {styles.main}>
                 <h1 > There are no OneLists to display </h1>
             </main>
         </div>
     );
-}
-        
-}
+}   }

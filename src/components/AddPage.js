@@ -1,9 +1,12 @@
+/*
+  AddPage.js
+
+  Add Page component allows users to add valid Spotify songs to a OneList.
+*/
+
 import { useState } from 'react';
-
 import PropTypes from 'prop-types';
-
 import SearchBar from '../components/SearchBar.js';
-
 import TopTracks from '../components/TopTracks.js';
 
 export default function AddPage({setAddMode, OneListID, playlist, SongsAdded, setSongsAdded, user}) {

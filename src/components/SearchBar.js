@@ -1,3 +1,10 @@
+/*
+  SearchBar.js
+
+  Component within AddPage that tracks what users input as a search term and whether they 
+  are searching by track title or by artist. 
+*/
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/searchBar.module.css';
