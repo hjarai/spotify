@@ -1,3 +1,8 @@
+/*
+  backend-utils.js
+
+  Functions to initialize the database and add OneList and Song tables. 
+*/
 
 import knexConfig from '../../knexfile';
 import knexInitializer from 'knex';
@@ -11,7 +16,6 @@ export const knex = knexInitializer(
 
 // Bind all Models to a knex instance.
 Model.knex(knex);
-
 
 /**
  * Find relevant OneList with user id

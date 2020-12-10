@@ -1,9 +1,15 @@
+/*
+  AttendeeSignInPage.js
+
+  Attendee page component that allows users without Spotify accounts to enter a username and 
+  Event ID to contribute to a OneList. setMode is the arg that changes state to 
+  OneList page and Home page. 
+*/
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-//assume setMode is what changes state to OneList page and Home page
 export default function AttendeeSignInPage({ setMode, user, setUser }){
     const [eventId, seteventId] = useState();
     
@@ -19,8 +25,6 @@ export default function AttendeeSignInPage({ setMode, user, setUser }){
                     value={eventId} 
                     onChange={(event)=>seteventId(event.target.value)}
                     />
-            
-            
                 <h2> Username </h2>
                 <textarea 
                     className= "Attendee"
@@ -30,7 +34,6 @@ export default function AttendeeSignInPage({ setMode, user, setUser }){
                     onChange={(event)=>setUser(event.target.value)}
                     />
         
-
         {/* //all the buttons here */}
         <button className="AttendeeButton"
             disabled={!eventId} 

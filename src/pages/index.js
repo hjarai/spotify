@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import Link from 'next/link';
-import HostPage from './HostPage.js';
+import HostPage from '../components/HostPage.js';
 import PlaylistPage from '../components/PlaylistPage.js';
 import Login from '../components/login.js'
 import styles from '../styles/Home.module.css';

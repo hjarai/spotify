@@ -1,3 +1,10 @@
+/*
+  PlaylistPage.js
+
+  Playlist Page component allows users to view the OneList of their event, votes on songs,
+  and remove songs if they added them.  
+*/
+
 import PlayListSongDetail from './PlayListSongDetail';
 import AddPage from './AddPage.js'
 import PropTypes from 'prop-types';

@@ -1,9 +1,15 @@
+/*
+  TopTracks.js
+
+  Component that allows users to search songs available in Spotify by track 
+  title or by artist. 
+*/
+
 import React from 'react';
 import useSWR from 'swr';
 import fetcher from '../lib/fetcher';
 import Track from './Track'
 import PropTypes from 'prop-types';
-
 
 export default function TopTracks ({ searchTerm, addSong, sortType}) {
   if (searchTerm==='') {
@@ -29,9 +35,8 @@ export default function TopTracks ({ searchTerm, addSong, sortType}) {
       <Track key={track.songUrl} track = {track} addSong = {addSong}/>
     ));
   }
-
-  
 }
+
 TopTracks.propTypes = {
   searchTerm: PropTypes.string,
   addSong: PropTypes.func,

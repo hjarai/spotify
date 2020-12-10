@@ -1,14 +1,16 @@
-// uncomment to enable routing 
+/*
+  login.js
+
+  Login component using NextAuth for users to access Spotify. 
+*/
 
 import { signIn, signOut, useSession } from 'next-auth/client'
+import styles from '../styles/login.module.css'
 
-import styles from './login.module.css'
 export default function Login () {
-
   const [session] = useSession();
   
   return (
-
       <div >
        <p>
           {session && <>
